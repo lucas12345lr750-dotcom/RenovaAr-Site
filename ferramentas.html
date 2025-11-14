@@ -1,10 +1,9 @@
-<!DOCTYPE html>
+      <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ferramentas - RenovaAr</title>
-
   <style>
     body {
       margin: 0;
@@ -14,19 +13,13 @@
       color: #fff;
       text-align: center;
     }
-
     .container {
       background: rgba(0, 0, 0, 0.55);
       padding: 20px;
       margin: 20px;
       border-radius: 18px;
     }
-
-    h1 {
-      font-size: 32px;
-      color: #7BF68F;
-    }
-
+    h1 { color: #7bf68f; }
     .tool-box {
       background: rgba(255, 255, 255, 0.15);
       margin: 15px 0;
@@ -34,31 +27,25 @@
       border-radius: 14px;
       text-align: left;
     }
-
-    .tool-box h3 {
-      margin: 0 0 5px 0;
-      color: #7BF68F;
-    }
-
+    .tool-box h3 { color: #7bf68f; }
     .menu {
       display: flex;
       justify-content: space-around;
+      flex-wrap: wrap;
       margin-top: 25px;
     }
-
-    .menu a {
-      padding: 12px 18px;
+    .menu button {
       background: #7bf68f;
+      border: none;
+      padding: 12px 20px;
       border-radius: 12px;
-      color: #000;
       font-weight: bold;
-      text-decoration: none;
+      color: #000;
+      cursor: pointer;
     }
   </style>
 </head>
-
 <body>
-
   <div class="container">
     <h1>Ferramentas</h1>
 
@@ -66,30 +53,25 @@
       <h3>🌬️ Técnica de Respiração</h3>
       <p>Exercício guiado para controlar a ansiedade e reduzir a vontade de fumar.</p>
     </div>
-
     <div class="tool-box">
       <h3>📊 Controle de Progresso</h3>
       <p>Acompanhe seus dias sem fumar e suas conquistas diárias.</p>
     </div>
-
     <div class="tool-box">
       <h3>🧠 Motivação Diária</h3>
       <p>Frases motivacionais e lembretes para manter o foco.</p>
     </div>
-
     <div class="tool-box">
       <h3>🚫 Gatilhos</h3>
       <p>Dicas para evitar situações que dão vontade de fumar.</p>
     </div>
 
     <div class="menu">
-      <a href="index.html">Home</a>
-      <a href="ferramentas.html">Ferramentas</a>
-      <a href="loja.html">Loja</a>
-      <a href="perfil.html">Perfil</a>
+      <button onclick="window.location.href='index.html'">Home</button>
+      <button onclick="window.location.href='ferramentas.html'">Ferramentas</button>
+      <button onclick="window.location.href='loja.html'">Loja</button>
+      <button onclick="window.location.href='perfil.html'">Perfil</button>
     </div>
-
   </div>
-
 </body>
 </html>
