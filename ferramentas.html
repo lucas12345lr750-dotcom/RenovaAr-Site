@@ -1,77 +1,165 @@
-      <!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ferramentas - RenovaAr</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: url("https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1200") no-repeat center center fixed;
-      background-size: cover;
-      color: #fff;
-      text-align: center;
-    }
-    .container {
-      background: rgba(0, 0, 0, 0.55);
-      padding: 20px;
-      margin: 20px;
-      border-radius: 18px;
-    }
-    h1 { color: #7bf68f; }
-    .tool-box {
-      background: rgba(255, 255, 255, 0.15);
-      margin: 15px 0;
-      padding: 15px;
-      border-radius: 14px;
-      text-align: left;
-    }
-    .tool-box h3 { color: #7bf68f; }
-    .menu {
-      display: flex;
-      justify-content: space-around;
-      flex-wrap: wrap;
-      margin-top: 25px;
-    }
-    .menu button {
-      background: #7bf68f;
-      border: none;
-      padding: 12px 20px;
-      border-radius: 12px;
-      font-weight: bold;
-      color: #000;
-      cursor: pointer;
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ferramentas - RenovaAr</title>
+
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: url("https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1600") no-repeat center center fixed;
+    background-size: cover;
+    color: #fff;
+  }
+
+  .overlay {
+    background: rgba(0, 0, 0, 0.55);
+    padding: 25px;
+    min-height: 100vh;
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 34px;
+    color: #7BF68F;
+    margin-bottom: 10px;
+  }
+
+  p.sub {
+    text-align: center;
+    font-size: 16px;
+    opacity: 0.8;
+    margin-bottom: 30px;
+  }
+
+  .tools-container {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .tool-card {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 18px;
+    border-radius: 14px;
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .tool-card h2 {
+    font-size: 22px;
+    color: #7BF68F;
+    margin-bottom: 6px;
+  }
+
+  .tool-card p {
+    opacity: 0.9;
+    font-size: 15px;
+    margin-bottom: 12px;
+  }
+
+  /* Botões */
+  button {
+    width: 100%;
+    padding: 12px;
+    background: #7BF68F;
+    color: black;
+    border: none;
+    border-radius: 12px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background: #6be07f;
+  }
+
+  /* MENU */
+  .menu {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .menu button {
+    width: auto;
+    padding: 10px 20px;
+  }
+</style>
 </head>
+
 <body>
-  <div class="container">
-    <h1>Ferramentas</h1>
 
-    <div class="tool-box">
-      <h3>🌬️ Técnica de Respiração</h3>
-      <p>Exercício guiado para controlar a ansiedade e reduzir a vontade de fumar.</p>
-    </div>
-    <div class="tool-box">
-      <h3>📊 Controle de Progresso</h3>
-      <p>Acompanhe seus dias sem fumar e suas conquistas diárias.</p>
-    </div>
-    <div class="tool-box">
-      <h3>🧠 Motivação Diária</h3>
-      <p>Frases motivacionais e lembretes para manter o foco.</p>
-    </div>
-    <div class="tool-box">
-      <h3>🚫 Gatilhos</h3>
-      <p>Dicas para evitar situações que dão vontade de fumar.</p>
+<div class="overlay">
+
+  <h1>Ferramentas</h1>
+  <p class="sub">Use recursos práticos para fortalecer sua jornada.</p>
+
+  <div class="tools-container">
+
+    <!-- Ferramenta 1 -->
+    <div class="tool-card">
+      <h2>⏳ Contador de Vícios</h2>
+      <p>Acompanhe quantos dias está sem fumar e veja seu progresso crescer.</p>
+      <button onclick="alert('Esta ferramenta será ativada em breve!')">Acessar</button>
     </div>
 
-    <div class="menu">
-      <button onclick="window.location.href='index.html'">Home</button>
-      <button onclick="window.location.href='ferramentas.html'">Ferramentas</button>
-      <button onclick="window.location.href='loja.html'">Loja</button>
-      <button onclick="window.location.href='perfil.html'">Perfil</button>
+    <!-- Ferramenta 2 -->
+    <div class="tool-card">
+      <h2>❤️ Controle da Ansiedade</h2>
+      <p>Exercícios simples de respiração para reduzir o desejo de fumar.</p>
+      <button onclick="alert('Em breve você poderá usar esta função!')">Acessar</button>
     </div>
+
+    <!-- Ferramenta 3 -->
+    <div class="tool-card">
+      <h2>📘 Diário da Jornada</h2>
+      <p>Anote seu humor, desafios e vitórias diárias.</p>
+      <button onclick="alert('Função chegando!')">Acessar</button>
+    </div>
+
+    <!-- Ferramenta 4 -->
+    <div class="tool-card">
+      <h2>📊 Economia Estimada</h2>
+      <p>Veja quanto dinheiro você já deixou de gastar desde que parou.</p>
+      <button onclick="alert('Função em construção!')">Acessar</button>
+    </div>
+
+    <!-- Ferramenta 5 — NOVA -->
+    <div class="tool-card">
+      <h2>🧠 Teste de Ansiedade</h2>
+      <p>Responda perguntas rápidas e descubra seu nível de ansiedade no momento.</p>
+      <button onclick="alert('O Teste de Ansiedade será implementado em breve!')">Fazer Teste</button>
+    </div>
+
+    <!-- Ferramenta 6 — NOVA -->
+    <div class="tool-card">
+      <h2>🎯 Agenda de Metas</h2>
+      <p>Defina metas semanais e acompanhe sua evolução com clareza.</p>
+      <button onclick="alert('A Agenda de Metas está em desenvolvimento!')">Criar Metas</button>
+    </div>
+
+    <!-- Ferramenta 7 — NOVA -->
+    <div class="tool-card">
+      <h2>🏅 Sistema de Medalhas</h2>
+      <p>Ganhe medalhas conforme avança: 1 dia, 7 dias, 30 dias, 100 dias e muito mais!</p>
+      <button onclick="alert('O sistema de medalhas será liberado em breve!')">Ver Medalhas</button>
+    </div>
+
   </div>
+
+  <!-- MENU -->
+  <div class="menu">
+    <button onclick="window.location.href='index.html'">Home</button>
+    <button onclick="window.location.href='ferramentas.html'">Ferramentas</button>
+    <button onclick="window.location.href='loja.html'">Loja</button>
+    <button onclick="window.location.href='perfil.html'">Perfil</button>
+  </div>
+
+</div>
+
 </body>
 </html>
