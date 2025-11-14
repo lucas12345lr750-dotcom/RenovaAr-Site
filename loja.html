@@ -4,96 +4,74 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Loja - RenovaAr</title>
-
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200") no-repeat center center fixed;
+      background: url("https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=1200") no-repeat center center fixed;
       background-size: cover;
-      color: #fff;
+      color: white;
       text-align: center;
     }
-
     .container {
       background: rgba(0, 0, 0, 0.55);
       padding: 20px;
       margin: 20px;
       border-radius: 18px;
     }
-
-    h1 {
-      font-size: 32px;
-      color: #7BF68F;
+    h1 { color: #7bf68f; }
+    .product {
+      background: rgba(255,255,255,0.1);
+      border-radius: 10px;
+      margin: 10px;
+      padding: 10px;
     }
-
-    .item {
-      background: rgba(255, 255, 255, 0.15);
-      padding: 15px;
-      margin-top: 15px;
-      border-radius: 12px;
-      text-align: left;
+    .product img {
+      width: 80%;
+      border-radius: 10px;
     }
-
-    .price {
-      font-size: 20px;
-      color: #7BF68F;
-      font-weight: bold;
-    }
-
     .menu {
       display: flex;
       justify-content: space-around;
+      flex-wrap: wrap;
       margin-top: 25px;
     }
-
-    .menu a {
-      padding: 12px 18px;
+    .menu button {
       background: #7bf68f;
+      border: none;
+      padding: 12px 20px;
       border-radius: 12px;
-      color: #000;
       font-weight: bold;
-      text-decoration: none;
+      color: #000;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
-
   <div class="container">
-    <h1>Loja RenovaAr</h1>
-    <p>Itens úteis para sua jornada livre do cigarro.</p>
+    <h1>Loja</h1>
+    <p>Produtos para ajudar na sua jornada sem fumo.</p>
 
-    <div class="item">
-      <h3>🌿 Pastilha de Hortelã Antiansiedade</h3>
-      <p>Ajuda a controlar a vontade de fumar e refresca a respiração.</p>
-      <p class="price">R$ 12,90</p>
+    <div class="product">
+      <img src="https://images.unsplash.com/photo-1600180758890-6c4a5d1d1d88?w=800" alt="Chá Relaxante">
+      <h3>Chá Relaxante Natural</h3>
+      <p>Ajuda a reduzir o estresse e a ansiedade.</p>
+      <p><strong>R$ 29,90</strong></p>
     </div>
 
-    <div class="item">
-      <h3>📘 Guia Digital: Pare de Fumar em 21 Dias</h3>
-      <p>Livro digital com técnicas práticas baseadas em ciência.</p>
-      <p class="price">R$ 29,90</p>
-    </div>
-
-    <div class="item">
-      <h3>🧘 Acesso Premium ao App</h3>
-      <p>Desbloqueie conteúdos exclusivos e ferramentas avançadas.</p>
-      <p class="price">R$ 14,90/mês</p>
-    </div>
-
-    <div class="item">
-      <h3>🔥 Spray Aromático Calmante</h3>
-      <p>Reduce o estresse e ajuda no controle de fissuras.</p>
-      <p class="price">R$ 39,90</p>
+    <div class="product">
+      <img src="https://images.unsplash.com/photo-1581382575285-9f16dfe5d1b1?w=800" alt="Spray Refrescante">
+      <h3>Spray Refrescante</h3>
+      <p>Ideal para momentos de vontade de fumar.</p>
+      <p><strong>R$ 19,90</strong></p>
     </div>
 
     <div class="menu">
-      <a href="index.html">Home</a>
-      <a href="ferramentas.html">Ferramentas</a>
-      <a href="loja.html">Loja</a>
-      <a href="perfil.html">Perfil</a>
+      <button onclick="window.location.href='index.html'">Home</button>
+      <button onclick="window.location.href='ferramentas.html'">Ferramentas</button>
+      <button onclick="window.location.href='loja.html'">Loja</button>
+      <button onclick="window.location.href='perfil.html'">Perfil</button>
     </div>
   </div>
-
 </body>
 </html>
