@@ -17,7 +17,7 @@
     .overlay {
         background: rgba(0, 0, 0, 0.55);
         min-height: 100vh;
-        padding-top: 100px;
+        padding-top: 110px;
     }
 
     /* NAVBAR SUPERIOR */
@@ -118,6 +118,43 @@
         font-size: 13px;
         opacity: 0.9;
     }
+
+    /* DICAS MÉDICAS */
+    .dicas-container {
+        width: 95%;
+        margin: auto;
+        margin-top: 25px;
+    }
+    .dicas-title {
+        font-size: 22px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+    .dicas-cards {
+        display: flex;
+        overflow-x: auto;
+        gap: 12px;
+        padding-bottom: 15px;
+    }
+    .dica-card {
+        min-width: 200px;
+        background: rgba(255,255,255,0.18);
+        border-radius: 12px;
+        padding: 12px;
+        text-align: center;
+        backdrop-filter: blur(10px);
+    }
+    .dica-card img {
+        width: 100%;
+        height: 120px;
+        border-radius: 10px;
+        object-fit: cover;
+        margin-bottom: 10px;
+    }
+    .dica-card p {
+        font-size: 13px;
+        opacity: 0.95;
+    }
 </style>
 
 </head>
@@ -143,7 +180,7 @@
         <p style="font-size: 20px;">R$ 150 economizados</p>
     </div>
 
-    <!-- MOTIVAÇÃO DO MOMENTO -->
+    <!-- MOTIVAÇÃO -->
     <div class="card">
         <h2>Motivação do Momento</h2>
         <p id="fraseDia">Você é mais forte do que pensa.</p>
@@ -154,6 +191,7 @@
         <p class="depo-title">Depoimentos de Pessoas Como Você</p>
 
         <div class="depo-cards">
+
             <div class="depo-card">
                 <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600">
                 <p>"Não acreditava que conseguiria. Hoje sinto orgulho de cada dia."</p>
@@ -173,13 +211,38 @@
                 <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=600">
                 <p>"Se eu consegui, qualquer pessoa consegue."</p>
             </div>
+
+        </div>
+    </div>
+
+    <!-- ⭐ NOVA SESSÃO PROFISSIONAL: DICAS MÉDICAS -->
+    <div class="card dicas-container">
+        <p class="dicas-title">Dicas Médicas de Especialistas</p>
+
+        <div class="dicas-cards">
+
+            <div class="dica-card">
+                <img src="https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?w=600">
+                <p>"Beber água ajuda a reduzir a ansiedade e controlar a vontade de fumar."</p>
+            </div>
+
+            <div class="dica-card">
+                <img src="https://images.unsplash.com/photo-1580281657521-8a1e6fdd7b67?w=600">
+                <p>"Caminhadas leves melhoram o humor e diminuem sintomas de abstinência."</p>
+            </div>
+
+            <div class="dica-card">
+                <img src="https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?w=600">
+                <p>"Respiração profunda reduz o estresse — pratique 3 minutos por dia."</p>
+            </div>
+
         </div>
     </div>
 
 </div>
 
 <script>
-// FRASES ROTATIVAS (troca a cada 1 minuto)
+// FRASES MOTIVACIONAIS ROTATIVAS
 const frases = [
     "Você é mais forte do que pensa.",
     "Cada dia sem fumar é uma vitória.",
@@ -193,7 +256,7 @@ function trocarFrase() {
     alvo.textContent = frases[Math.floor(Math.random() * frases.length)];
 }
 
-setInterval(trocarFrase, 60000); // 60s
+setInterval(trocarFrase, 60000);
 </script>
 
 </body>
