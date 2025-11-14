@@ -9,7 +9,8 @@
     body {
         margin: 0;
         font-family: Arial, sans-serif;
-        background: url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1600") no-repeat center center fixed;
+        background: url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1600")
+        no-repeat center center fixed;
         background-size: cover;
         color: #fff;
     }
@@ -17,7 +18,7 @@
     .overlay {
         background: rgba(0, 0, 0, 0.55);
         min-height: 100vh;
-        padding-top: 140px;
+        padding-top: 130px;
     }
 
     /* NAVBAR SUPERIOR */
@@ -44,11 +45,21 @@
         font-weight: bold;
     }
 
-    /* TÍTULO */
+    /* LOGO */
+    .logo {
+        display: block;
+        width: 140px;
+        height: 140px;
+        margin: auto;
+        border-radius: 18px;
+        object-fit: cover;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    }
+
     h1 {
         text-align: center;
         font-size: 34px;
-        margin-top: 10px;
+        margin: 12px 0 5px 0;
     }
 
     .subtitulo {
@@ -70,7 +81,6 @@
         box-shadow: 0px 4px 10px rgba(0,0,0,0.4);
     }
 
-    /* FRASE MOTIVACIONAL */
     #fraseDia {
         font-size: 18px;
         font-style: italic;
@@ -78,7 +88,6 @@
         opacity: 0.9;
     }
 
-    /* DEPOIMENTOS */
     .depo-container {
         width: 95%;
         margin: auto;
@@ -120,11 +129,11 @@
         opacity: 0.9;
     }
 </style>
-
 </head>
+
 <body>
 
-<!-- NAVBAR SUPERIOR -->
+<!-- NAVBAR -->
 <div class="navbar">
     <button onclick="window.location.href='index.html'">Home</button>
     <button onclick="window.location.href='ferramentas.html'">Ferramentas</button>
@@ -135,12 +144,9 @@
 <div class="overlay">
 
     <!-- LOGO -->
-    <div style="text-align:center; margin-top: -40px;">
-        <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=800"
-        alt="Logo mãos quebrando cigarro"
-        style="width:110px; border-radius:12px; margin-bottom:12px; 
-               box-shadow:0 0 10px rgba(0,0,0,0.6);">
-    </div>
+    <img src="https://images.unsplash.com/photo-1523978591478-c753949ff840?w=800"
+         alt="Logo RenovaAr"
+         class="logo">
 
     <h1>RenovaAr</h1>
     <p class="subtitulo">Sua jornada de liberdade começa aqui. Um dia de cada vez.</p>
@@ -152,7 +158,7 @@
         <p style="font-size: 20px;">R$ 150 economizados</p>
     </div>
 
-    <!-- MOTIVAÇÃO DO MOMENTO -->
+    <!-- MOTIVAÇÃO -->
     <div class="card">
         <h2>Motivação do Momento</h2>
         <p id="fraseDia">Você é mais forte do que pensa.</p>
@@ -188,7 +194,7 @@
 </div>
 
 <script>
-// FRASES ROTATIVAS (troca a cada 1 minuto)
+// FRASES ROTATIVAS A CADA 60s
 const frases = [
     "Você é mais forte do que pensa.",
     "Cada dia sem fumar é uma vitória.",
