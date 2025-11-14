@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Contador de Vícios - RenovaAr</title>
+
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200") no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+  }
+
+  .overlay {
+    backdrop-filter: blur(4px);
+    padding: 20px;
+    background: rgba(0,0,0,0.45);
+    min-height: 100vh;
+  }
+
+  h1 {
+    text-align: center;
+    margin-top: 20px;
+    color: #7BF68F;
+    font-size: 28px;
+  }
+
+  .card {
+    background: rgba(255,255,255,0.15);
+    padding: 18px;
+    margin: 20px auto;
+    width: 90%;
+    border-radius: 14px;
+    text-align: center;
+  }
+
+  input {
+    width: 90%;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 10px;
+    border: none;
+    margin-top: 10px;
+  }
+
+  button {
+    margin-top: 15px;
+    padding: 12px 18px;
+    background: #7BF68F;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  .resultado {
+    font-size: 20px;
+    margin-top: 15px;
+  }
+
+  .menu {
+    text-align: center;
+    margin-top: 25px;
+  }
+
+  .menu button {
+    margin: 5px;
+  }
+</style>
+
+</head>
+<body>
+<div class="overlay">
+
+  <h1>🚭 Contador de Vícios</h1>
+
+  <div class="card">
+    <p>Informe os dados abaixo para calcular seu progresso.</p>
+
+    <input type="number" id="dias" placeholder="Dias sem fumar" />
+    <input type="number" id="cigarros" placeholder="Quantidade de cigarros que fumava por dia" />
+    <input type="number" id="preco" placeholder="Preço médio do maço (R$)" />
+
+    <button onclick="calcular()">Calcular Progresso</button>
+
+    <div id="resultado" class="resultado"></div>
+  </div>
+
+  <!-- MENU -->
+  <div class="menu">
+    <button onclick="window.location.href='ferramentas.html'">Voltar</button>
+    <button onclick="window.location.href='index.html'">Home</button>
+  </div>
+
+</div>
+
+<script>
+function calcular() {
+  const dias = parseInt(document.getElementById("dias").value);
+  const cigarros = parseInt(document.getElementById("cigarros").value);
+  const preco = parseFloat(document.getElementById("preco").value);
+
+  if (!dias || !cigarros || !preco) {
+    document.getElementById("resultado").innerHTML = "Preencha todos os campos!";
+    return;
+  }
+
+  const maçosPorDia = cigarros / 20;
+  const gastoDiario = maçosPorDia * preco;
+  const economia = gastoDiario * dias;
+
+  document.getElementById("resultado").innerHTML = `
+    🎉 <strong>Parabéns!</strong><br>
+    Você está há <strong>${dias}</strong> dias sem fumar!<br><br>
+    💰 Economia estimada: <strong>R$ ${economia.toFixed(2)}</strong><br>
+    🚬 Você deixou de fumar: <strong>${dias * cigarros} cigarros</strong>
+  `;
+}
+</script>
+
+</body>
+</html>
