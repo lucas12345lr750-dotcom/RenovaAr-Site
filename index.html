@@ -170,6 +170,13 @@
 
 <div class="overlay">
 
+    <!-- LOGO + TÍTULO -->
+    <div style="text-align:center; margin-top: -20px;">
+        <img src="https://i.imgur.com/JOS9wfg.png" 
+             alt="Logo RenovaAr" 
+             style="width: 90px; margin-bottom: 10px;">
+    </div>
+
     <h1>RenovaAr</h1>
     <p class="subtitulo">Sua jornada de liberdade começa aqui. Um dia de cada vez.</p>
 
@@ -180,7 +187,7 @@
         <p style="font-size: 20px;">R$ 150 economizados</p>
     </div>
 
-    <!-- MOTIVAÇÃO -->
+    <!-- MOTIVAÇÃO DO MOMENTO -->
     <div class="card">
         <h2>Motivação do Momento</h2>
         <p id="fraseDia">Você é mais forte do que pensa.</p>
@@ -215,7 +222,7 @@
         </div>
     </div>
 
-    <!-- ⭐ NOVA SESSÃO PROFISSIONAL: DICAS MÉDICAS -->
+    <!-- ⭐ DICAS MÉDICAS -->
     <div class="card dicas-container">
         <p class="dicas-title">Dicas Médicas de Especialistas</p>
 
@@ -223,17 +230,17 @@
 
             <div class="dica-card">
                 <img src="https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?w=600">
-                <p>"Beber água ajuda a reduzir a ansiedade e controlar a vontade de fumar."</p>
+                <p>"Beber água reduz ansiedade e ajuda a controlar a abstinência."</p>
             </div>
 
             <div class="dica-card">
                 <img src="https://images.unsplash.com/photo-1580281657521-8a1e6fdd7b67?w=600">
-                <p>"Caminhadas leves melhoram o humor e diminuem sintomas de abstinência."</p>
+                <p>"Caminhadas leves reduzem o estresse e melhoram o humor."</p>
             </div>
 
             <div class="dica-card">
                 <img src="https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?w=600">
-                <p>"Respiração profunda reduz o estresse — pratique 3 minutos por dia."</p>
+                <p>"Respiração profunda acalma o sistema nervoso em minutos."</p>
             </div>
 
         </div>
@@ -242,7 +249,7 @@
 </div>
 
 <script>
-// FRASES MOTIVACIONAIS ROTATIVAS
+// FRASES ROTATIVAS
 const frases = [
     "Você é mais forte do que pensa.",
     "Cada dia sem fumar é uma vitória.",
@@ -252,8 +259,8 @@ const frases = [
 ];
 
 function trocarFrase() {
-    const alvo = document.getElementById("fraseDia");
-    alvo.textContent = frases[Math.floor(Math.random() * frases.length)];
+    document.getElementById("fraseDia").textContent =
+        frases[Math.floor(Math.random() * frases.length)];
 }
 
 setInterval(trocarFrase, 60000);
