@@ -1,77 +1,61 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RenovaAr - Um dia de cada vez</title>
-
-  <!-- Estilos gerais -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RenovaAr</title>
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: url("https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1200&q=80")
-        no-repeat center center fixed;
+      background: url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200") no-repeat center center fixed;
       background-size: cover;
-      color: #ffffff;
-    }
-
-    .container {
-      background: rgba(0, 0, 0, 0.55);
-      padding: 20px;
-      border-radius: 12px;
-      max-width: 500px;
-      margin: 40px auto;
-    }
-
-    h1 {
-      color: #7be495;
+      color: white;
       text-align: center;
     }
-
-    .box {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 15px;
-      border-radius: 10px;
-      margin-top: 20px;
+    .container {
+      background: rgba(0, 0, 0, 0.55);
+      padding: 25px;
+      margin: 25px;
+      border-radius: 20px;
     }
-
+    h1 { color: #7bf68f; font-size: 40px; margin-bottom: 10px; }
+    p { font-size: 18px; }
+    .info {
+      margin: 25px 0;
+      font-size: 22px;
+    }
     .menu {
       display: flex;
-      justify-content: space-between;
-      margin-top: 25px;
+      justify-content: space-around;
+      flex-wrap: wrap;
     }
-
-    .menu a {
-      background: #7be495;
-      padding: 10px 18px;
-      border-radius: 8px;
-      color: #000;
+    .menu button {
+      background: #7bf68f;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 12px;
       font-weight: bold;
-      text-decoration: none;
-    }
-
-    .menu a:hover {
-      background: #5bc87b;
+      color: #000;
+      cursor: pointer;
     }
   </style>
 </head>
-
 <body>
   <div class="container">
     <h1>RenovaAr</h1>
-    <p style="text-align:center;">Um dia de cada vez. Você está indo bem!</p>
+    <p>Um dia de cada vez. Você está indo bem!</p>
 
-    <div class="box">
-      <p style="font-size: 22px;">27 dias sem fumar</p>
-      <p style="font-size: 22px;">R$ 150 economizados</p>
+    <div class="info">
+      <p>27 dias sem fumar</p>
+      <p>R$ 150 economizados</p>
     </div>
 
     <div class="menu">
-      <a href="#">Home</a>
-      <a href="#">Ferramentas</a>
-      <a href="#">Loja</a>
-      <a href="#">Perfil</a>
+      <button onclick="window.location.href='index.html'">Home</button>
+      <button onclick="window.location.href='ferramentas.html'">Ferramentas</button>
+      <button onclick="window.location.href='loja.html'">Loja</button>
+      <button onclick="window.location.href='perfil.html'">Perfil</button>
     </div>
   </div>
 </body>
