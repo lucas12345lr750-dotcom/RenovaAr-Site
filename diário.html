@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diário da Jornada - RenovaAr</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1600") no-repeat center/cover;
+        color: #fff;
+    }
+
+    .overlay {
+        background: rgba(0,0,0,0.55);
+        width: 100%;
+        min-height: 100vh;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    h1 {
+        text-align: center;
+        font-size: 32px;
+        color: #7bf68f;
+        margin-bottom: 10px;
+    }
+
+    p.sub {
+        text-align: center;
+        font-size: 15px;
+        opacity: 0.9;
+        margin-bottom: 20px;
+    }
+
+    .card {
+        background: rgba(255, 255, 255, 0.15);
+        padding: 18px;
+        border-radius: 12px;
+        margin-bottom: 20px;
+        backdrop-filter: blur(5px);
+    }
+
+    textarea {
+        width: 100%;
+        padding: 12px;
+        border-radius: 10px;
+        border: none;
+        resize: none;
+        outline: none;
+        font-size: 15px;
+        height: 120px;
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+        background: #7bf68f;
+        color: black;
+        border: none;
+        border-radius: 12px;
+        font-weight: bold;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+
+    .entry {
+        background: rgba(255,255,255,0.12);
+        padding: 15px;
+        border-radius: 10px;
+        margin-bottom: 12px;
+    }
+
+    .entry small {
+        opacity: 0.8;
+        display: block;
+        margin-bottom: 8px;
+    }
+
+    .delete-btn {
+        display: inline-block;
+        padding: 6px 10px;
+        font-size: 12px;
+        background: #ff7878;
+        color: #000;
+        border-radius: 8px;
+        margin-top: 6px;
+        cursor: pointer;
+    }
+
+    .btn-back {
+        margin-top: 20px;
+        padding: 12px;
+        background: #7bf68f;
+        color: black;
+        border: none;
+        border-radius: 12px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+</style>
+</head>
+
+<body>
+
+<div class="overlay">
+
+    <h1>📘 Diário da Jornada</h1>
+    <p class="sub">Registre suas emoções, vitórias e pensamentos diariamente.</p>
+
+    <!-- FORMULÁRIO DE NOVA ENTRADA -->
+    <div class="card">
+        <h2 style="margin-top:0;">Nova Entrada</h2>
+        <textarea id="textoDiario" placeholder="Escreva algo sobre seu dia..."></textarea>
+        <button onclick="salvarEntrada()">Salvar Entrada</button>
+    </div>
+
+    <!-- LISTA DE ENTRADAS -->
+    <div class="card">
+        <h2 style="margin-top:0;">Suas Entradas</h2>
+        <div id="listaEntradas"></div>
+    </div>
+
+    <button class="btn-back" onclick="window.location.href='ferramentas.html'">⬅ Voltar</button>
+
+</div>
+
+<script>
+    // Carregar entradas salvas
+    let diario = JSON.parse(localStorage.getItem("diarioRenovaAr")) || [];
+
+    function atualizarLista() {
+        const lista = document.getElementById("listaEntradas");
+        lista.innerHTML = "";
+
+        diario.forEach((entrada, index) => {
+            lista.innerHTML += `
+                <div class="entry">
+                    <small>${entrada.data}</small>
+                    <p>${entrada.texto}</p>
+                    <span class="delete-btn" onclick="removerEntrada(${index})">Excluir</span>
+                </div>
+            `;
+        });
+    }
+
+    function salvarEntrada() {
+        const texto = document.getElementById("textoDiario").value;
+
+        if (texto.trim() === "") {
+            alert("Digite algo antes de salvar.");
+            return;
+        }
+
+        const data = new Date().toLocaleString("pt-BR");
+
+        diario.unshift({ texto, data });
+
+        localStorage.setItem("diarioRenovaAr", JSON.stringify(diario));
+
+        document.getElementById("textoDiario").value = "";
+        atualizarLista();
+    }
+
+    function removerEntrada(index) {
+        diario.splice(index, 1);
+        localStorage.setItem("diarioRenovaAr", JSON.stringify(diario));
+        atualizarLista();
+    }
+
+    atualizarLista();
+</script>
+
+</body>
+</html>
