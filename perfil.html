@@ -10,7 +10,7 @@ body {
   margin: 0;
   font-family: Arial, sans-serif;
   background: url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1600")
-    center/cover no-repeat fixed;
+      center/cover no-repeat fixed;
   color: #fff;
 }
 
@@ -20,7 +20,7 @@ body {
   padding: 20px;
 }
 
-/* MENU */
+/* ===== MENU SUPERIOR ===== */
 .menu {
   display: flex;
   justify-content: center;
@@ -38,7 +38,7 @@ body {
   cursor: pointer;
 }
 
-/* CARDS */
+/* ===== CARDS ===== */
 .card {
   background: rgba(255,255,255,0.15);
   border-radius: 14px;
@@ -48,7 +48,7 @@ body {
   backdrop-filter: blur(8px);
 }
 
-/* FOTO DE PERFIL */
+/* ===== FOTO DE PERFIL ===== */
 .profile-picture {
   width: 120px;
   height: 120px;
@@ -59,6 +59,12 @@ body {
   margin: auto;
 }
 
+.upload-input {
+  display: block;
+  margin: 12px auto;
+}
+
+/* ===== NOME + BIO ===== */
 .profile-name {
   text-align: center;
   font-size: 26px;
@@ -73,15 +79,30 @@ body {
   margin-top: 6px;
 }
 
-/* UPLOAD */
-.upload-input {
-  margin-top: 12px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+/* ===== TEXTAREA EDITÁVEL ===== */
+textarea {
+  width: 100%;
+  border-radius: 10px;
+  padding: 10px;
+  border: none;
+  resize: none;
+  height: 90px;
 }
 
-/* NÍVEIS */
+/* ===== BOTÕES ===== */
+.edit-btn {
+  background: #7BF68F;
+  color: black;
+  padding: 10px 16px;
+  border: none;
+  margin-top: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  width: 100%;
+}
+
+/* ===== SISTEMA DE NÍVEIS ===== */
 .level-box {
   text-align: center;
 }
@@ -107,26 +128,12 @@ body {
   transition: width 0.4s;
 }
 
-/* EDIÇÃO */
-textarea {
-  width: 100%;
-  border-radius: 10px;
+/* ===== LINHA DO TEMPO ===== */
+.timeline-item {
+  background: rgba(255,255,255,0.1);
   padding: 10px;
-  border: none;
-  resize: none;
-  height: 90px;
-}
-
-button.edit-btn {
-  background: #7BF68F;
-  color: black;
-  padding: 10px 16px;
-  border: none;
-  margin-top: 10px;
   border-radius: 10px;
-  cursor: pointer;
-  font-weight: bold;
-  width: 100%;
+  margin-bottom: 10px;
 }
 </style>
 </head>
@@ -149,15 +156,28 @@ button.edit-btn {
 
   <div class="profile-name" id="nomeUsuario">Usuário RenovaAr</div>
 
+  <!-- BIOGRAFIA -->
   <p class="profile-bio" id="bioTexto">
     “Estou vivendo uma nova fase da minha vida, com mais força e saúde.”
   </p>
 
-  <!-- EDITOR DE BIO -->
   <div class="card">
     <h2 style="text-align:center;">✏️ Editar Biografia</h2>
     <textarea id="bioInput" placeholder="Escreva algo sobre sua jornada..."></textarea>
     <button class="edit-btn" onclick="salvarBio()">Salvar Biografia</button>
+  </div>
+
+  <!-- DEPOIMENTO PESSOAL EDITÁVEL -->
+  <div class="card">
+    <h2 style="text-align:center;">💬 Seu Depoimento</h2>
+
+    <p id="depoimentoTexto" style="font-style:italic;opacity:0.9;text-align:center;margin-bottom:15px;">
+      "Aqui estará o seu depoimento pessoal."
+    </p>
+
+    <textarea id="depoimentoInput" placeholder="Escreva seu depoimento aqui..."></textarea>
+
+    <button class="edit-btn" onclick="salvarDepoimento()">Salvar Depoimento</button>
   </div>
 
   <!-- SISTEMA DE NÍVEIS -->
@@ -171,14 +191,6 @@ button.edit-btn {
 
     <p style="opacity:0.8;margin-top:6px;">
       Evolua seus níveis conforme seus dias sem fumar!
-    </p>
-  </div>
-
-  <!-- DEPOIMENTO -->
-  <div class="card">
-    <h2 style="text-align:center;">💬 Depoimento Pessoal</h2>
-    <p id="depoimentoTexto" style="font-style:italic;opacity:0.9;text-align:center;">
-      "Cada dia sem fumar é uma vitória pessoal. Estou descobrindo uma nova versão de mim."
     </p>
   </div>
 
@@ -235,13 +247,33 @@ function salvarBio(){
 }
 
 /* ===============================
+    DEPOIMENTO PESSOAL
+================================ */
+const depoimentoTexto = document.getElementById("depoimentoTexto");
+const depoimentoInput = document.getElementById("depoimentoInput");
+
+if(localStorage.getItem("depoimentoUser")){
+  depoimentoTexto.innerText = localStorage.getItem("depoimentoUser");
+}
+
+function salvarDepoimento(){
+  const txt = depoimentoInput.value.trim();
+  if(txt.length > 0){
+    localStorage.setItem("depoimentoUser", txt);
+    depoimentoTexto.innerText = txt;
+    alert("Depoimento atualizado!");
+  }
+}
+
+/* ===============================
     SISTEMA DE NÍVEIS
 ================================ */
-let diasSemFumar = 27; // você pode integrar depois com sistema real
+let diasSemFumar = 27; // Pode integrar com o sistema real
 
 function calcularNivel(){
   let nivel = Math.floor(diasSemFumar / 5);
   let progresso = (diasSemFumar % 5) * 20;
+
   document.getElementById("nivelNumero").innerText = "Nível " + nivel;
   document.getElementById("levelFill").style.width = progresso + "%";
 }
