@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Economia Estimada - RenovaAr</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1600") no-repeat center/cover;
+        color: #fff;
+    }
+
+    .overlay {
+        background: rgba(0,0,0,0.55);
+        padding: 20px;
+        min-height: 100vh;
+    }
+
+    h1 {
+        text-align: center;
+        color: #7BF68F;
+        font-size: 32px;
+        margin-bottom: 10px;
+    }
+
+    p.sub {
+        text-align: center;
+        opacity: 0.9;
+        margin-bottom: 25px;
+    }
+
+    .card {
+        background: rgba(255,255,255,0.15);
+        padding: 18px;
+        margin-bottom: 18px;
+        border-radius: 12px;
+        backdrop-filter: blur(4px);
+    }
+
+    .valor {
+        font-size: 28px;
+        color: #7BF68F;
+        font-weight: bold;
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    .grid {
+        display: grid;
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+    .btn-voltar {
+        display: block;
+        width: 100%;
+        margin-top: 25px;
+        padding: 12px;
+        font-size: 16px;
+        background: #7BF68F;
+        color: black;
+        border: none;
+        border-radius: 10px;
+        font-weight: bold;
+        cursor: pointer;
+        text-align: center;
+    }
+</style>
+</head>
+
+<body>
+<div class="overlay">
+
+    <h1>Economia Estimada</h1>
+    <p class="sub">Veja quanto dinheiro você já deixou de gastar desde que parou de fumar.</p>
+
+    <div class="card">
+        <h3>💵 Economia total até agora:</h3>
+        <div id="totalEconomia" class="valor">R$ 0</div>
+    </div>
+
+    <div class="grid">
+
+        <div class="card">
+            <h3>📅 Economia por semana:</h3>
+            <div id="semanaEconomia" class="valor">R$ 0</div>
+        </div>
+
+        <div class="card">
+            <h3>🗓️ Economia por mês:</h3>
+            <div id="mesEconomia" class="valor">R$ 0</div>
+        </div>
+
+        <div class="card">
+            <h3>📈 Economia por ano:</h3>
+            <div id="anoEconomia" class="valor">R$ 0</div>
+        </div>
+
+        <div class="card">
+            <h3>🎉 Motivação extra:</h3>
+            <p id="comparacao" style="text-align:center; font-size:14px;"></p>
+        </div>
+
+    </div>
+
+    <button class="btn-voltar" onclick="window.location.href='ferramentas.html'">
+        ⬅ Voltar
+    </button>
+
+</div>
+
+<script>
+    // Valores padrão
+    const precoMaco = 10; // R$
+    const cigarrosPorMaco = 20;
+
+    // Dados salvos no navegador do usuário (se existirem)
+    const dados = JSON.parse(localStorage.getItem("economiaRenovaAr")) || {
+        diasSemFumar: 0,
+        cigarrosPorDia: 10
+    };
+
+    // Cálculos
+    const precoPorCigarro = precoMaco / cigarrosPorMaco;
+    const dinheiroEconomizado = dados.diasSemFumar * dados.cigarrosPorDia * precoPorCigarro;
+
+    const semana = dados.cigarrosPorDia * 7 * precoPorCigarro;
+    const mes = dados.cigarrosPorDia * 30 * precoPorCigarro;
+    const ano = dados.cigarrosPorDia * 365 * precoPorCigarro;
+
+    // Comparações motivacionais
+    const comparacoes = [
+        "Isso paga uma academia!",
+        "Isso paga uma assinatura de streaming por vários meses!",
+        "Isso poderia ser uma viagem curta!",
+        "Dá para comprar roupas novas!",
+        "Dá para começar uma reserva financeira!"
+    ];
+
+    document.getElementById("totalEconomia").innerText = "R$ " + dinheiroEconomizado.toFixed(2);
+    document.getElementById("semanaEconomia").innerText = "R$ " + semana.toFixed(2);
+    document.getElementById("mesEconomia").innerText = "R$ " + mes.toFixed(2);
+    document.getElementById("anoEconomia").innerText = "R$ " + ano.toFixed(2);
+    document.getElementById("comparacao").innerText = comparacoes[Math.floor(Math.random() * comparacoes.length)];
+</script>
+
+</body>
+</html>
