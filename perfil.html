@@ -3,122 +3,130 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Seu Perfil – RenovaAr</title>
+<title>Perfil – RenovaAr</title>
 
 <style>
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1600")
-        center/cover no-repeat fixed;
-    color: #fff;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1600")
+    center/cover no-repeat fixed;
+  color: #fff;
 }
 
 .overlay {
-    background: rgba(0, 0, 0, 0.55);
-    min-height: 100vh;
-    padding: 20px;
+  background: rgba(0,0,0,0.55);
+  min-height: 100vh;
+  padding: 20px;
 }
 
-/* MENU SUPERIOR */
+/* MENU */
 .menu {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    margin-bottom: 25px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 25px;
 }
 
 .menu button {
-    padding: 10px 18px;
-    background: #7BF68F;
-    color: #000;
-    border: none;
-    border-radius: 10px;
-    font-weight: bold;
-    cursor: pointer;
+  padding: 10px 18px;
+  background: #7BF68F;
+  color: black;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
 }
 
-/* CARD PADRÃO */
+/* CARDS */
 .card {
-    background: rgba(255, 255, 255, 0.15);
-    padding: 18px;
-    border-radius: 14px;
-    margin: 20px auto;
-    width: 92%;
-    backdrop-filter: blur(6px);
+  background: rgba(255,255,255,0.15);
+  border-radius: 14px;
+  padding: 18px;
+  width: 92%;
+  margin: 20px auto;
+  backdrop-filter: blur(8px);
 }
 
-/* PERFIL */
+/* FOTO DE PERFIL */
 .profile-picture {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin: auto;
-    display: block;
-    border: 3px solid #7BF68F;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 3px solid #7BF68F;
+  object-fit: cover;
+  display: block;
+  margin: auto;
 }
 
 .profile-name {
-    font-size: 26px;
-    font-weight: bold;
-    text-align: center;
-    margin-top: 12px;
+  text-align: center;
+  font-size: 26px;
+  margin-top: 10px;
+  font-weight: bold;
 }
 
 .profile-bio {
-    font-size: 14px;
-    opacity: 0.9;
-    text-align: center;
+  text-align: center;
+  font-size: 14px;
+  opacity: 0.9;
+  margin-top: 6px;
 }
 
-/* DEPOIMENTO */
-.depoimento {
-    font-style: italic;
-    text-align: center;
-    opacity: 0.9;
+/* UPLOAD */
+.upload-input {
+  margin-top: 12px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-/* CONQUISTAS */
-.medalhas {
-    display: flex;
-    justify-content: center;
-    gap: 18px;
-    flex-wrap: wrap;
-    margin-top: 10px;
+/* NÍVEIS */
+.level-box {
+  text-align: center;
 }
 
-.medalha {
-    font-size: 28px;
+.level-number {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 6px;
 }
 
-/* LINHA DO TEMPO */
-.timeline {
-    margin-top: 12px;
+.level-bar {
+  width: 100%;
+  height: 14px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 10px;
+  overflow: hidden;
 }
 
-.timeline-item {
-    background: rgba(255,255,255,0.12);
-    padding: 10px;
-    border-radius: 10px;
-    margin-bottom: 10px;
+.level-fill {
+  height: 100%;
+  background: #7BF68F;
+  width: 0%;
+  transition: width 0.4s;
 }
 
-/* BOTÕES DO PERFIL */
-.button-area {
-    text-align: center;
-    margin-top: 15px;
+/* EDIÇÃO */
+textarea {
+  width: 100%;
+  border-radius: 10px;
+  padding: 10px;
+  border: none;
+  resize: none;
+  height: 90px;
 }
 
-.button-area button {
-    padding: 10px 18px;
-    border: none;
-    background: #7BF68F;
-    color: #000;
-    font-weight: bold;
-    border-radius: 10px;
-    cursor: pointer;
-    margin: 5px;
+button.edit-btn {
+  background: #7BF68F;
+  color: black;
+  padding: 10px 16px;
+  border: none;
+  margin-top: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  width: 100%;
 }
 </style>
 </head>
@@ -126,67 +134,152 @@ body {
 <body>
 <div class="overlay">
 
-    <!-- MENU -->
-    <div class="menu">
-        <button onclick="window.location.href='index.html'">Home</button>
-        <button onclick="window.location.href='ferramentas.html'">Ferramentas</button>
-        <button onclick="window.location.href='loja.html'">Loja</button>
-        <button onclick="window.location.href='perfil.html'">Perfil</button>
+  <!-- MENU -->
+  <div class="menu">
+    <button onclick="window.location.href='index.html'">Home</button>
+    <button onclick="window.location.href='ferramentas.html'">Ferramentas</button>
+    <button onclick="window.location.href='loja.html'">Loja</button>
+    <button onclick="window.location.href='perfil.html'">Perfil</button>
+  </div>
+
+  <!-- FOTO DE PERFIL -->
+  <img id="fotoPerfil" class="profile-picture" src="">
+
+  <input type="file" id="uploadFoto" class="upload-input" accept="image/*">
+
+  <div class="profile-name" id="nomeUsuario">Usuário RenovaAr</div>
+
+  <p class="profile-bio" id="bioTexto">
+    “Estou vivendo uma nova fase da minha vida, com mais força e saúde.”
+  </p>
+
+  <!-- EDITOR DE BIO -->
+  <div class="card">
+    <h2 style="text-align:center;">✏️ Editar Biografia</h2>
+    <textarea id="bioInput" placeholder="Escreva algo sobre sua jornada..."></textarea>
+    <button class="edit-btn" onclick="salvarBio()">Salvar Biografia</button>
+  </div>
+
+  <!-- SISTEMA DE NÍVEIS -->
+  <div class="card level-box">
+    <h2>⭐ Seu Nível</h2>
+    <div class="level-number" id="nivelNumero"></div>
+
+    <div class="level-bar">
+      <div class="level-fill" id="levelFill"></div>
     </div>
 
-    <!-- FOTO + NOME + BIO -->
-    <img class="profile-picture" src="https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?w=800">
-
-    <div class="profile-name">Usuário RenovaAr</div>
-
-    <p class="profile-bio">
-        “Comecei minha jornada para uma vida mais leve e saudável.  
-        Todos os dias me sinto mais forte.”
+    <p style="opacity:0.8;margin-top:6px;">
+      Evolua seus níveis conforme seus dias sem fumar!
     </p>
+  </div>
 
-    <!-- DEPOIMENTO PESSOAL -->
-    <div class="card">
-        <h2 style="text-align:center;">💬 Depoimento Pessoal</h2>
-        <p class="depoimento">
-            "Parar de fumar foi um desafio enorme, mas o RenovaAr me ajudou a manter o foco.  
-            Hoje já percebo mudanças na respiração, no humor e na autoestima."
-        </p>
-    </div>
+  <!-- DEPOIMENTO -->
+  <div class="card">
+    <h2 style="text-align:center;">💬 Depoimento Pessoal</h2>
+    <p id="depoimentoTexto" style="font-style:italic;opacity:0.9;text-align:center;">
+      "Cada dia sem fumar é uma vitória pessoal. Estou descobrindo uma nova versão de mim."
+    </p>
+  </div>
 
-    <!-- CONQUISTAS -->
-    <div class="card">
-        <h2 style="text-align:center;">🏅 Suas Conquistas</h2>
+  <!-- LINHA DO TEMPO -->
+  <div class="card">
+    <h2 style="text-align:center;">🗓 Minha Jornada</h2>
 
-        <div class="medalhas">
-            <div class="medalha">🥉</div>
-            <div class="medalha">🥈</div>
-            <div class="medalha">🥇</div>
-            <div class="medalha">🏆</div>
-        </div>
+    <div id="timeline"></div>
 
-        <p style="text-align:center; margin-top:10px;">
-            Cada medalha representa uma vitória na sua jornada.
-        </p>
-    </div>
-
-    <!-- LINHA DO TEMPO -->
-    <div class="card">
-        <h2 style="text-align:center;">🗓 Linha do Tempo da Jornada</h2>
-
-        <div class="timeline">
-            <div class="timeline-item">📌 Dia 1 – Decidi mudar minha vida.</div>
-            <div class="timeline-item">📌 Dia 5 – Percebi que estava respirando melhor.</div>
-            <div class="timeline-item">📌 Dia 10 – Zero vontade de fumar pela primeira vez.</div>
-            <div class="timeline-item">📌 Dia 15 – Comecei a sentir orgulho real do meu progresso.</div>
-        </div>
-    </div>
-
-    <!-- BOTÕES -->
-    <div class="button-area">
-        <button onclick="alert('Função em desenvolvimento!')">Editar Perfil</button>
-        <button onclick="alert('Função em desenvolvimento!')">Alterar Foto</button>
-    </div>
+    <button class="edit-btn" onclick="adicionarEvento()">Adicionar Evento</button>
+  </div>
 
 </div>
+
+<script>
+/* ===============================
+    FOTO DE PERFIL
+================================ */
+const foto = document.getElementById("fotoPerfil");
+const upload = document.getElementById("uploadFoto");
+
+if(localStorage.getItem("fotoPerfil")){
+  foto.src = localStorage.getItem("fotoPerfil");
+} else {
+  foto.src = "https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?w=800";
+}
+
+upload.addEventListener("change", function(){
+  const reader = new FileReader();
+  reader.onload = function(e){
+    localStorage.setItem("fotoPerfil", e.target.result);
+    foto.src = e.target.result;
+  }
+  reader.readAsDataURL(this.files[0]);
+});
+
+/* ===============================
+    BIOGRAFIA
+================================ */
+const bioInput = document.getElementById("bioInput");
+const bioTexto = document.getElementById("bioTexto");
+
+if(localStorage.getItem("bioTexto")){
+  bioTexto.innerText = localStorage.getItem("bioTexto");
+}
+
+function salvarBio(){
+  const texto = bioInput.value.trim();
+  if(texto.length > 0){
+    localStorage.setItem("bioTexto", texto);
+    bioTexto.innerText = texto;
+    alert("Biografia atualizada!");
+  }
+}
+
+/* ===============================
+    SISTEMA DE NÍVEIS
+================================ */
+let diasSemFumar = 27; // você pode integrar depois com sistema real
+
+function calcularNivel(){
+  let nivel = Math.floor(diasSemFumar / 5);
+  let progresso = (diasSemFumar % 5) * 20;
+  document.getElementById("nivelNumero").innerText = "Nível " + nivel;
+  document.getElementById("levelFill").style.width = progresso + "%";
+}
+calcularNivel();
+
+/* ===============================
+    LINHA DO TEMPO
+================================ */
+const timeline = document.getElementById("timeline");
+
+if(!localStorage.getItem("eventos")){
+  localStorage.setItem("eventos", JSON.stringify([
+    "📌 Dia 1 – Decidi mudar minha vida.",
+    "📌 Dia 5 – Passei o dia sem vontade de fumar.",
+    "📌 Dia 10 – Minha respiração está melhor!",
+    "📌 Dia 15 – Comecei a sentir orgulho real.",
+  ]));
+}
+
+function exibirEventos(){
+  const eventos = JSON.parse(localStorage.getItem("eventos"));
+  timeline.innerHTML = "";
+  eventos.forEach(ev=>{
+    timeline.innerHTML += `<div class="timeline-item">${ev}</div>`;
+  });
+}
+exibirEventos();
+
+function adicionarEvento(){
+  const novo = prompt("Descreva um novo marco da sua jornada:");
+  if(novo){
+    const eventos = JSON.parse(localStorage.getItem("eventos"));
+    eventos.unshift("📌 " + novo);
+    localStorage.setItem("eventos", JSON.stringify(eventos));
+    exibirEventos();
+  }
+}
+</script>
+
 </body>
 </html>
