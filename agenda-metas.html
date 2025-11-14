@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agenda de Metas - RenovaAr</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1200') no-repeat center/cover;
+        color: #fff;
+    }
+
+    .overlay {
+        background: rgba(0,0,0,0.55);
+        width: 100%;
+        min-height: 100vh;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    h1 {
+        text-align: center;
+        font-size: 32px;
+        color: #7bf68f;
+        margin-bottom: 15px;
+    }
+
+    .card {
+        background: rgba(255, 255, 255, 0.12);
+        padding: 18px;
+        border-radius: 12px;
+        margin-bottom: 18px;
+        backdrop-filter: blur(6px);
+    }
+
+    input, textarea {
+        width: 100%;
+        padding: 10px;
+        border-radius: 10px;
+        border: none;
+        margin-top: 8px;
+        font-size: 15px;
+        outline: none;
+    }
+
+    button {
+        width: 100%;
+        margin-top: 10px;
+        padding: 12px;
+        background: #7bf68f;
+        color: #000;
+        border: none;
+        border-radius: 10px;
+        font-weight: bold;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    .meta-item {
+        background: rgba(255,255,255,0.1);
+        padding: 12px;
+        border-radius: 8px;
+        margin-top: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .meta-item button {
+        width: auto;
+        padding: 6px 10px;
+        font-size: 12px;
+        border-radius: 6px;
+    }
+
+</style>
+
+</head>
+<body>
+
+<div class="overlay">
+
+    <h1>Agenda de Metas</h1>
+
+    <!-- FORMULÁRIO -->
+    <div class="card">
+        <h2>Adicionar Nova Meta</h2>
+        <input id="metaTitulo" type="text" placeholder="Título da meta...">
+        <textarea id="metaDescricao" rows="3" placeholder="Descrição da meta..."></textarea>
+        <button onclick="adicionarMeta()">Salvar Meta</button>
+    </div>
+
+    <!-- LISTA DE METAS -->
+    <div class="card">
+        <h2>Suas Metas</h2>
+        <div id="listaMetas"></div>
+    </div>
+
+    <button onclick="window.location.href='ferramentas.html'">⬅ Voltar</button>
+
+</div>
+
+<script>
+    // Carregar metas salvas
+    let metas = JSON.parse(localStorage.getItem("metasRenovaAr")) || [];
+
+    function atualizarTela() {
+        const lista = document.getElementById("listaMetas");
+        lista.innerHTML = "";
+
+        metas.forEach((meta, index) => {
+            lista.innerHTML += `
+                <div class="meta-item">
+                    <div>
+                        <strong>${meta.titulo}</strong><br>
+                        <small>${meta.descricao}</small>
+                    </div>
+                    <button onclick="removerMeta(${index})">Excluir</button>
+                </div>`;
+        });
+    }
+
+    function adicionarMeta() {
+        const titulo = document.getElementById("metaTitulo").value;
+        const descricao = document.getElementById("metaDescricao").value;
+
+        if (titulo.trim() === "") {
+            alert("Digite pelo menos um título para a meta.");
+            return;
+        }
+
+        metas.push({ titulo, descricao });
+        localStorage.setItem("metasRenovaAr", JSON.stringify(metas));
+
+        atualizarTela();
+
+        document.getElementById("metaTitulo").value = "";
+        document.getElementById("metaDescricao").value = "";
+    }
+
+    function removerMeta(indice) {
+        metas.splice(indice, 1);
+        localStorage.setItem("metasRenovaAr", JSON.stringify(metas));
+        atualizarTela();
+    }
+
+    atualizarTela();
+</script>
+
+</body>
+</html>
