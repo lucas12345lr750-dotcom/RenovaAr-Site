@@ -17,7 +17,7 @@
     .overlay {
         background: rgba(0, 0, 0, 0.55);
         min-height: 100vh;
-        padding-top: 110px;
+        padding-top: 120px;
     }
 
     /* NAVBAR SUPERIOR */
@@ -47,7 +47,7 @@
     h1 {
         text-align: center;
         font-size: 34px;
-        margin-top: 10px;
+        margin-top: 5px;
     }
 
     .subtitulo {
@@ -119,40 +119,45 @@
         opacity: 0.9;
     }
 
-    /* DICAS MÉDICAS */
-    .dicas-container {
+    /* SESSÃO MÉDICA */
+    .med-container {
         width: 95%;
         margin: auto;
-        margin-top: 25px;
     }
-    .dicas-title {
+
+    .med-title {
         font-size: 22px;
         font-weight: bold;
-        margin-bottom: 10px;
+        margin: 15px 0 10px 0;
     }
-    .dicas-cards {
+
+    .med-cards {
         display: flex;
         overflow-x: auto;
         gap: 12px;
-        padding-bottom: 15px;
+        padding-bottom: 20px;
     }
-    .dica-card {
+
+    .med-card {
         min-width: 200px;
         background: rgba(255,255,255,0.18);
         border-radius: 12px;
-        padding: 12px;
-        text-align: center;
+        padding: 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.4);
         backdrop-filter: blur(10px);
+        text-align: center;
     }
-    .dica-card img {
+
+    .med-card img {
         width: 100%;
-        height: 120px;
-        border-radius: 10px;
+        height: 140px;
         object-fit: cover;
-        margin-bottom: 10px;
+        border-radius: 10px;
+        margin-bottom: 8px;
     }
-    .dica-card p {
-        font-size: 13px;
+
+    .med-card p {
+        font-size: 12px;
         opacity: 0.95;
     }
 </style>
@@ -170,11 +175,11 @@
 
 <div class="overlay">
 
-    <!-- LOGO + TÍTULO -->
-    <div style="text-align:center; margin-top: -20px;">
-        <img src="https://i.imgur.com/JOS9wfg.png" 
-             alt="Logo RenovaAr" 
-             style="width: 90px; margin-bottom: 10px;">
+    <!-- LOGO -->
+    <div style="text-align:center; margin-top: -40px;">
+        <img src="https://cdn-icons-png.flaticon.com/512/1040/1040230.png"
+         alt="Logo RenovaAr"
+         style="width:85px; margin-bottom:12px; filter: drop-shadow(0px 0px 6px rgba(0,0,0,0.6));">
     </div>
 
     <h1>RenovaAr</h1>
@@ -198,7 +203,6 @@
         <p class="depo-title">Depoimentos de Pessoas Como Você</p>
 
         <div class="depo-cards">
-
             <div class="depo-card">
                 <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600">
                 <p>"Não acreditava que conseguiria. Hoje sinto orgulho de cada dia."</p>
@@ -206,7 +210,7 @@
 
             <div class="depo-card">
                 <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600">
-                <p>"O RenovaAr se tornou parte da minha vitória pessoal."</p>
+                <p>"O RenovaAr fez parte da minha vitória pessoal."</p>
             </div>
 
             <div class="depo-card">
@@ -216,40 +220,37 @@
 
             <div class="depo-card">
                 <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=600">
-                <p>"Se eu consegui, qualquer pessoa consegue."</p>
+                <p>"Se eu consegui, você também consegue."</p>
             </div>
-
         </div>
     </div>
 
-    <!-- ⭐ DICAS MÉDICAS -->
-    <div class="card dicas-container">
-        <p class="dicas-title">Dicas Médicas de Especialistas</p>
+    <!-- DICAS DE MÉDICOS -->
+    <div class="card med-container">
+        <p class="med-title">Dicas de Especialistas</p>
 
-        <div class="dicas-cards">
-
-            <div class="dica-card">
-                <img src="https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?w=600">
-                <p>"Beber água reduz ansiedade e ajuda a controlar a abstinência."</p>
+        <div class="med-cards">
+            <div class="med-card">
+                <img src="https://images.unsplash.com/photo-1550831107-1553da8c8464?w=800">
+                <p>“Seu pulmão começa a se recuperar após 24h sem fumar. Continue firme!” — Dr. Carlos</p>
             </div>
 
-            <div class="dica-card">
-                <img src="https://images.unsplash.com/photo-1580281657521-8a1e6fdd7b67?w=600">
-                <p>"Caminhadas leves reduzem o estresse e melhoram o humor."</p>
+            <div class="med-card">
+                <img src="https://images.unsplash.com/photo-1544725176-7c40e5a2c9f9?w=800">
+                <p>“A ansiedade diminui com hidratação e respiração guiada.” — Dra. Helena</p>
             </div>
 
-            <div class="dica-card">
-                <img src="https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?w=600">
-                <p>"Respiração profunda acalma o sistema nervoso em minutos."</p>
+            <div class="med-card">
+                <img src="https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?w=800">
+                <p>“Caminhadas de 10 min reduzem 35% da vontade de fumar.” — Dr. Roberto</p>
             </div>
-
         </div>
     </div>
 
 </div>
 
 <script>
-// FRASES ROTATIVAS
+// FRASES ROTATIVAS (troca a cada 1 minuto)
 const frases = [
     "Você é mais forte do que pensa.",
     "Cada dia sem fumar é uma vitória.",
@@ -259,8 +260,8 @@ const frases = [
 ];
 
 function trocarFrase() {
-    document.getElementById("fraseDia").textContent =
-        frases[Math.floor(Math.random() * frases.length)];
+    const alvo = document.getElementById("fraseDia");
+    alvo.textContent = frases[Math.floor(Math.random() * frases.length)];
 }
 
 setInterval(trocarFrase, 60000);
