@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Teste de Ansiedade - RenovaAr</title>
+
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: url("https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1600") no-repeat center center fixed;
+    background-size: cover;
+    color: #fff;
+  }
+
+  .overlay {
+    background: rgba(0, 0, 0, 0.55);
+    padding: 25px;
+    min-height: 100vh;
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 32px;
+    color: #7BF68F;
+    margin-bottom: 10px;
+  }
+
+  .descricao {
+    text-align: center;
+    font-size: 16px;
+    opacity: 0.9;
+    margin-bottom: 25px;
+  }
+
+  .card {
+    background: rgba(255, 255, 255, 0.13);
+    padding: 18px;
+    border-radius: 14px;
+    margin-bottom: 20px;
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .card p {
+    margin: 0 0 10px;
+    font-size: 16px;
+  }
+
+  .opcao {
+    margin-top: 10px;
+  }
+
+  .opcao label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 15px;
+  }
+
+  button {
+    width: 100%;
+    padding: 12px;
+    background: #7BF68F;
+    color: black;
+    border: none;
+    font-weight: bold;
+    border-radius: 12px;
+    cursor: pointer;
+    margin-top: 15px;
+  }
+
+  button:hover {
+    background: #6de283;
+  }
+
+  #resultado {
+    margin-top: 20px;
+    padding: 15px;
+    background: rgba(0,0,0,0.4);
+    border-radius: 12px;
+    text-align: center;
+    display: none;
+  }
+
+  .menu {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .menu button {
+    width: auto;
+    padding: 10px 20px;
+  }
+
+</style>
+</head>
+
+<body>
+
+<div class="overlay">
+
+  <h1>Teste de Ansiedade</h1>
+  <p class="descricao">Responda as perguntas abaixo e descubra seu nível atual de ansiedade.</p>
+
+  <!-- PERGUNTA 1 -->
+  <div class="card">
+    <p>1. Nas últimas 24 horas, você sentiu seu coração acelerar sem motivo aparente?</p>
+    <div class="opcao">
+      <label><input type="radio" name="p1" value="0"> Nunca</label>
+      <label><input type="radio" name="p1" value="1"> Às vezes</label>
+      <label><input type="radio" name="p1" value="2"> Frequentemente</label>
+    </div>
+  </div>
+
+  <!-- PERGUNTA 2 -->
+  <div class="card">
+    <p>2. Você teve momentos de preocupação intensa ou sensação de perigo iminente?</p>
+    <div class="opcao">
+      <label><input type="radio" name="p2" value="0"> Não</label>
+      <label><input type="radio" name="p2" value="1"> Um pouco</label>
+      <label><input type="radio" name="p2" value="2"> Sim, bastante</label>
+    </div>
+  </div>
+
+  <!-- PERGUNTA 3 -->
+  <div class="card">
+    <p>3. Teve dificuldade para relaxar ou desligar a mente?</p>
+    <div class="opcao">
+      <label><input type="radio" name="p3" value="0"> Não</label>
+      <label><input type="radio" name="p3" value="1"> Às vezes</label>
+      <label><input type="radio" name="p3" value="2"> Sim, muita dificuldade</label>
+    </div>
+  </div>
+
+  <!-- PERGUNTA 4 -->
+  <div class="card">
+    <p>4. Sentiu tensão no corpo, como ombros duros ou mandíbula travada?</p>
+    <div class="opcao">
+      <label><input type="radio" name="p4" value="0"> Nunca</label>
+      <label><input type="radio" name="p4" value="1"> Às vezes</label>
+      <label><input type="radio" name="p4" value="2"> Frequentemente</label>
+    </div>
+  </div>
+
+  <!-- PERGUNTA 5 -->
+  <div class="card">
+    <p>5. Nos últimos dias, teve sensação de falta de ar ou respiração curta?</p>
+    <div class="opcao">
+      <label><input type="radio" name="p5" value="0"> Não</label>
+      <label><input type="radio" name="p5" value="1"> Às vezes</label>
+      <label><input type="radio" name="p5" value="2"> Sim</label>
+    </div>
+  </div>
+
+  <button onclick="calcular()">Ver Resultado</button>
+
+  <div id="resultado"></div>
+
+  <!-- MENU -->
+  <div class="menu">
+    <button onclick="window.location.href='index.html'">Home</button>
+    <button onclick="window.location.href='ferramentas.html'">Ferramentas</button>
+    <button onclick="window.location.href='loja.html'">Loja</button>
+    <button onclick="window.location.href='perfil.html'">Perfil</button>
+  </div>
+
+</div>
+
+<script>
+function calcular() {
+  let total = 0;
+
+  for (let i = 1; i <= 5; i++) {
+    let opcao = document.querySelector(`input[name="p${i}"]:checked`);
+    if (!opcao) {
+      alert("Responda todas as perguntas antes de continuar.");
+      return;
+    }
+    total += parseInt(opcao.value);
+  }
+
+  let texto = "";
+  if (total <= 3) {
+    texto = "<strong>Nível de Ansiedade: Baixa</strong><br>Você está estável. Continue cuidando da sua mente!";
+  } else if (total <= 6) {
+    texto = "<strong>Nível de Ansiedade: Moderada</strong><br>Respire fundo e mantenha sua rotina de autocuidado.";
+  } else {
+    texto = "<strong>Nível de Ansiedade: Alta</strong><br>Recomenda-se exercícios de respiração e pausas. Procure apoio se necessário.";
+  }
+
+  const box = document.getElementById("resultado");
+  box.style.display = "block";
+  box.innerHTML = texto + "<br><br><button onclick='reiniciar()'>Refazer Teste</button>";
+}
+
+function reiniciar() {
+  document.querySelectorAll("input[type=radio]").forEach(r => r.checked = false);
+  document.getElementById("resultado").style.display = "none";
+}
+</script>
+
+</body>
+</html>
