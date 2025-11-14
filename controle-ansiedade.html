@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Controle de Ansiedade - RenovaAr</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        color: #fff;
+        background: url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1600") no-repeat center/cover;
+    }
+
+    .overlay {
+        background: rgba(0,0,0,0.55);
+        padding: 25px;
+        min-height: 100vh;
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 32px;
+        color: #7BF68F;
+        margin-bottom: 10px;
+    }
+
+    p.sub {
+        opacity: 0.85;
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+
+    .ball {
+        width: 140px;
+        height: 140px;
+        margin: 30px auto;
+        background: rgba(255,255,255,0.2);
+        border-radius: 50%;
+        transition: 3s ease-in-out;
+        box-shadow: 0 0 25px rgba(255,255,255,0.4);
+    }
+
+    button {
+        padding: 12px 20px;
+        background: #7BF68F;
+        border: none;
+        border-radius: 10px;
+        color: black;
+        font-weight: bold;
+        cursor: pointer;
+        margin-top: 18px;
+        font-size: 16px;
+    }
+
+    button:hover {
+        background: #6fe683;
+    }
+
+    .card {
+        background: rgba(255,255,255,0.12);
+        padding: 18px;
+        border-radius: 10px;
+        margin: 25px auto;
+        width: 90%;
+        text-align: left;
+    }
+
+    .btn-voltar {
+        margin-top: 25px;
+        width: 100%;
+        padding: 12px;
+        background: #7BF68F;
+        border-radius: 10px;
+        font-weight: bold;
+        color: black;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="overlay">
+
+    <h1>Respiração Guiada</h1>
+    <p class="sub">Use esta técnica para reduzir o pico de ansiedade ou vontade de fumar.</p>
+
+    <!-- Círculo que expande e contrai -->
+    <div id="bola" class="ball"></div>
+
+    <h2 id="fase" style="margin-top: 10px;">Pressione iniciar</h2>
+
+    <button onclick="iniciarRespiracao()">Iniciar Exercício</button>
+    <button onclick="parar()" style="background:#ff7b7b; margin-left:10px;">Parar</button>
+
+    <div class="card">
+        <h3>Como funciona:</h3>
+        <p>O ciclo 4-4-6 é recomendado por especialistas.</p>
+        <ul style="opacity:0.9;">
+            <li><b>Inspire por 4 segundos</b> — o círculo aumenta;</li>
+            <li><b>Segure por 4 segundos</b> — o círculo fica parado;</li>
+            <li><b>Expire por 6 segundos</b> — o círculo diminui.</li>
+        </ul>
+        <p>Repita por 4 ciclos para reduzir a ansiedade rapidamente.</p>
+    </div>
+
+    <button class="btn-voltar" onclick="window.location.href='ferramentas.html'">⬅ Voltar</button>
+
+</div>
+
+<script>
+let interval;
+let etapa = 0;
+
+function iniciarRespiracao() {
+    const bola = document.getElementById("bola");
+    const fase = document.getElementById("fase");
+
+    parar(); // limpar ciclos antigos
+
+    etapa = 0;
+
+    interval = setInterval(() => {
+        etapa++;
+
+        // 1 — Inspirar
+        if (etapa === 1) {
+            fase.innerHTML = "🌬️ Inspire (4s)";
+            bola.style.transform = "scale(1.5)";
+        }
+
+        // 2 — Segurar
+        else if (etapa === 6) {
+            fase.innerHTML = "⏸️ Segure (4s)";
+            bola.style.transform = "scale(1.5)";
+        }
+
+        // 3 — Expirar
+        else if (etapa === 10) {
+            fase.innerHTML = "😮‍💨 Expire (6s)";
+            bola.style.transform = "scale(1)";
+        }
+
+        // Reinicia ciclo
+        else if (etapa === 16) {
+            etapa = 0;
+        }
+
+    }, 1000);
+}
+
+function parar() {
+    clearInterval(interval);
+    document.getElementById("fase").innerHTML = "Pressione iniciar";
+    document.getElementById("bola").style.transform = "scale(1)";
+}
+</script>
+
+</body>
+</html>
