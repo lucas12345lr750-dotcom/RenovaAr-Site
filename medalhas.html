@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sistema de Medalhas - RenovaAr</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1600") no-repeat center/cover;
+        color: #fff;
+    }
+
+    .overlay {
+        background: rgba(0,0,0,0.6);
+        min-height: 100vh;
+        padding: 20px;
+    }
+
+    h1 {
+        text-align: center;
+        font-size: 32px;
+        color: #7bf68f;
+        margin-bottom: 10px;
+    }
+
+    p.subtitulo {
+        text-align: center;
+        opacity: 0.8;
+        margin-bottom: 30px;
+    }
+
+    .medalha-card {
+        background: rgba(255,255,255,0.15);
+        padding: 20px;
+        margin: 15px auto;
+        border-radius: 15px;
+        width: 90%;
+        backdrop-filter: blur(6px);
+        text-align: center;
+    }
+
+    .medalha-card h2 {
+        margin-bottom: 8px;
+        color: #7bf68f;
+    }
+
+    .medalha-icon {
+        font-size: 50px;
+        margin-bottom: 10px;
+    }
+
+    .progresso-container {
+        width: 90%;
+        margin: 20px auto;
+        text-align: center;
+    }
+
+    .barra-fundo {
+        width: 100%;
+        height: 12px;
+        background: rgba(255,255,255,0.3);
+        border-radius: 20px;
+        overflow: hidden;
+    }
+
+    .barra-progresso {
+        height: 12px;
+        background: #7bf68f;
+        width: 40%; /* Progresso fictício */
+    }
+
+    .menu-voltar {
+        margin-top: 30px;
+        text-align: center;
+    }
+
+    .menu-voltar button {
+        padding: 12px 18px;
+        background: #7bf68f;
+        border: none;
+        border-radius: 12px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+</style>
+</head>
+
+<body>
+<div class="overlay">
+
+    <h1>🏅 Sistema de Medalhas</h1>
+    <p class="subtitulo">Ganhe medalhas conforme avança na jornada de parar de fumar!</p>
+
+    <!-- Barra de Progresso Geral -->
+    <div class="progresso-container">
+        <p>Progresso Geral</p>
+        <div class="barra-fundo">
+            <div class="barra-progresso"></div>
+        </div>
+    </div>
+
+    <!-- Medalha 1 -->
+    <div class="medalha-card">
+        <div class="medalha-icon">🥉</div>
+        <h2>Medalha de Bronze</h2>
+        <p>Conquistada ao completar **7 dias** sem fumar.</p>
+    </div>
+
+    <!-- Medalha 2 -->
+    <div class="medalha-card">
+        <div class="medalha-icon">🥈</div>
+        <h2>Medalha de Prata</h2>
+        <p>Conquistada ao completar **30 dias** sem fumar.</p>
+    </div>
+
+    <!-- Medalha 3 -->
+    <div class="medalha-card">
+        <div class="medalha-icon">🥇</div>
+        <h2>Medalha de Ouro</h2>
+        <p>Conquistada ao completar **90 dias** sem fumar.</p>
+    </div>
+
+    <!-- Medalha 4 -->
+    <div class="medalha-card">
+        <div class="medalha-icon">🏆</div>
+        <h2>Medalha Suprema</h2>
+        <p>Conquistada ao completar **1 ano** sem fumar. Você se tornou um campeão da vida!</p>
+    </div>
+
+    <!-- Botão para voltar -->
+    <div class="menu-voltar">
+        <button onclick="window.location.href='ferramentas.html'">⬅ Voltar para Ferramentas</button>
+    </div>
+
+</div>
+</body>
+</html>
