@@ -1,169 +1,227 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>RenovaAr - Um Dia de Cada Vez</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RenovaAr - Evolução Diária</title>
 
+<!-- ESTILO PREMIUM -->
 <style>
-  body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: url("https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1200") no-repeat center center fixed;
-    background-size: cover;
-    color: #fff;
-  }
+/* ====== CONFIGURAÇÕES GERAIS ====== */
+body {
+  margin: 0;
+  font-family: "Arial", sans-serif;
+  background: url("https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1600")
+    no-repeat center/cover fixed;
+  color: #fff;
+}
 
-  .overlay {
-    background: rgba(0,0,0,0.55);
-    min-height: 100vh;
-    padding: 20px;
-  }
+/* ====== NAVBAR PREMIUM ====== */
+.navbar {
+  width: 100%;
+  padding: 15px 0;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(8px);
+  text-align: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 20;
+  box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
+}
 
-  h1 {
-    text-align: center;
-    font-size: 38px;
-    margin-top: 10px;
-    margin-bottom: 5px;
-    color: #7BF68F;
-    font-weight: bold;
-  }
+.navbar button {
+  padding: 10px 18px;
+  margin: 0 8px;
+  background: #7bf68f;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.navbar button:hover {
+  background: #67d778;
+}
 
-  .subtitulo {
-    text-align: center;
-    font-size: 18px;
-    margin-bottom: 25px;
-    opacity: 0.9;
-  }
+/* ====== CONTAINER PRINCIPAL ====== */
+.container {
+  padding-top: 130px;
+  width: 92%;
+  max-width: 1000px;
+  margin: auto;
+}
 
-  /* CARROSSEL DE PESSOAS FELIZES */
-  .carousel {
-    display: flex;
-    overflow-x: auto;
-    gap: 15px;
-    padding: 10px 0;
-  }
-  .carousel img {
-    height: 150px;
-    width: 250px;
-    border-radius: 15px;
-    object-fit: cover;
-  }
+/* ====== TÍTULO ====== */
+h1 {
+  text-align: center;
+  font-size: 38px;
+  margin-bottom: 5px;
+  text-shadow: 0 0 8px rgba(0,0,0,0.7);
+}
 
-  /* CARTÕES */
-  .card {
-    background: rgba(255,255,255,0.15);
-    padding: 20px;
-    border-radius: 15px;
-    margin-top: 25px;
-  }
+/* ====== CARDS GLASS ====== */
+.card {
+  background: rgba(255, 255, 255, 0.13);
+  backdrop-filter: blur(10px);
+  padding: 18px;
+  border-radius: 18px;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+  animation: fadeIn 0.6s ease;
+}
 
-  .card h2 {
-    text-align: center;
-    color: #7BF68F;
-    margin-bottom: 10px;
-  }
+/* ====== ANIMAÇÃO ====== */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
 
-  .motivacao {
-    font-size: 18px;
-    margin-top: 10px;
-    text-align: center;
-  }
+/* ====== FRASE MOTIVACIONAL ====== */
+.motivacao {
+  font-size: 22px;
+  text-align: center;
+  margin-top: 5px;
+  font-style: italic;
+  opacity: 0;
+  animation: fraseFade 1s forwards;
+}
 
-  /* MENU */
-  .menu {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    margin-top: 25px;
-  }
+@keyframes fraseFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
 
-  .menu button {
-    padding: 12px 18px;
-    background: #7BF68F;
-    color: black;
-    border: none;
-    font-weight: bold;
-    border-radius: 12px;
-    cursor: pointer;
-    margin-top: 10px;
-  }
+/* ====== CARROSSEL DE DEPOIMENTOS ====== */
+.carousel {
+  display: flex;
+  overflow-x: auto;
+  gap: 15px;
+  scroll-behavior: smooth;
+  padding-bottom: 10px;
+}
+
+.carousel::-webkit-scrollbar {
+  height: 8px;
+}
+.carousel::-webkit-scrollbar-thumb {
+  background: #7bf68f;
+  border-radius: 10px;
+}
+
+.dep-card {
+  min-width: 200px;
+  background: rgba(255,255,255,0.12);
+  padding: 12px;
+  border-radius: 14px;
+  text-align: center;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+}
+
+.dep-card img {
+  width: 100%;
+  height: 130px;
+  object-fit: cover;
+  border-radius: 10px;
+}
 </style>
-
 </head>
+
 <body>
 
-<div class="overlay">
+<!-- NAVBAR PREMIUM -->
+<div class="navbar">
+  <button onclick="window.location.href='index.html'">Home</button>
+  <button onclick="window.location.href='ferramentas.html'">Ferramentas</button>
+  <button onclick="window.location.href='loja.html'">Loja</button>
+  <button onclick="window.location.href='perfil.html'">Perfil</button>
+</div>
+
+<!-- CONTEÚDO -->
+<div class="container">
 
   <h1>RenovaAr</h1>
-  <p class="subtitulo">Você está no caminho certo. Um dia de cada vez.</p>
+  <p style="text-align:center; opacity:0.9; font-size:16px;">
+    Sua jornada de liberdade começa aqui. Um dia de cada vez.
+  </p>
 
-  <!-- CARROSSEL DE IMAGENS FELIZES -->
-  <div class="carousel">
-    <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=800" />
-    <img src="https://images.unsplash.com/photo-1506784365847-bbad939e9335?w=800" />
-    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=800" />
-    <img src="https://images.unsplash.com/photo-1492567291473-fe3dfc175b45?w=800" />
-  </div>
-
-  <!-- CARTÃO PRINCIPAL -->
+  <!-- PROGRESSO -->
   <div class="card">
-    <h2>Seu Progresso</h2>
-    <p style="font-size: 22px; text-align:center;">27 dias sem fumar</p>
-    <p style="font-size: 22px; text-align:center;">R$ 150 economizados</p>
+    <h2 style="margin:0;">Seu Progresso</h2>
+    <p style="font-size:26px; margin-top:10px;">27 dias sem fumar</p>
+    <p style="font-size:26px; margin-top:5px;">R$ 150 economizados</p>
   </div>
 
-  <!-- CARTÃO DE MOTIVAÇÃO -->
+  <!-- MOTIVAÇÃO AUTOMÁTICA -->
   <div class="card">
-    <h2>Motivação do Dia</h2>
-    <p class="motivacao">"Cada cigarro evitado é uma vitória. Você está vencendo!"</p>
+    <h2 style="margin-top:0;">Motivação do Momento</h2>
+    <p id="frase" class="motivacao">Carregando frase...</p>
   </div>
 
-  <!-- CARTÃO DE FRASES -->
+  <!-- DEPOIMENTOS - CARROSSEL -->
   <div class="card">
-    <h2>Frase Inspiradora</h2>
-    <p class="motivacao">"Respire fundo. Você é mais forte do que pensa."</p>
-  </div>
+    <h2>Depoimentos de Pessoas Como Você</h2>
 
-  <!-- MENU -->
-  <div class="menu">
-    <button onclick="window.location.href='index.html'">Home</button>
-    <button onclick="window.location.href='ferramentas.html'">Ferramentas</button>
-    <button onclick="window.location.href='loja.html'">Loja</button>
-    <button onclick="window.location.href='perfil.html'">Perfil</button>
+    <div class="carousel" id="carousel">
+
+      <div class="dep-card">
+        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600">
+        <p>"Não acreditava que conseguiria. Hoje sinto orgulho de cada dia."</p>
+      </div>
+
+      <div class="dep-card">
+        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600">
+        <p>"O RenovaAr se tornou parte da minha vitória pessoal."</p>
+      </div>
+
+      <div class="dep-card">
+        <img src="https://images.unsplash.com/photo-1520813792240-56fc4a3765a7?w=600">
+        <p>"Minha respiração melhorou e minha autoestima também."</p>
+      </div>
+
+      <div class="dep-card">
+        <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=600">
+        <p>"Se eu consegui, qualquer pessoa consegue."</p>
+      </div>
+
+    </div>
   </div>
 
 </div>
 
-</body>
-  <footer style="
-    margin-top: 50px;
-    padding: 20px;
-    text-align: center;
-    font-size: 10px;
-    color: #e5e5e5;
-    opacity: 0.7;
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 12px;
-    width: 92%;
-    margin-left: auto;
-    margin-right: auto;
-    line-height: 1.5;
-">
-  <div style="margin-bottom: 6px;">
-    © 2025 RenovaAr — Todos os direitos reservados.
-  </div>
+<!-- SCRIPT DAS FRASES MOTIVACIONAIS -->
+<script>
+const frases = [
+  "Você é mais forte do que pensa.",
+  "Cada dia sem fumar é uma conquista.",
+  "Respire fundo. Você está vencendo.",
+  "Seu futuro agradece a decisão de hoje.",
+  "Orgulhe-se do seu progresso.",
+  "Uma nova vida começa quando você decide mudar."
+];
 
-  <div style="margin-bottom: 6px;">
-    RenovaAr é um projeto de apoio à saúde e bem-estar.
-    Conteúdos exibidos possuem caráter motivacional e informativo.
-  </div>
+function trocarFrase() {
+  const aleatoria = frases[Math.floor(Math.random() * frases.length)];
 
-  <div style="margin-top: 8px;">
-    <a href="politica.html" style="color:#9be7c4; margin: 0 6px;">Política de Privacidade</a> |
-    <a href="termos.html" style="color:#9be7c4; margin: 0 6px;">Termos de Uso</a> |
-    <a href="contato.html" style="color:#9be7c4; margin: 0 6px;">Contato</a>
-  </div>
-</footer>
+  const fraseElement = document.getElementById("frase");
+  fraseElement.style.opacity = 0;
+
+  setTimeout(() => {
+    fraseElement.textContent = aleatoria;
+    fraseElement.style.opacity = 1;
+  }, 500);
+}
+
+trocarFrase();
+setInterval(trocarFrase, 60000); // muda a cada 1 minuto
+
+// Carrossel automático leve
+setInterval(() => {
+  const carousel = document.getElementById("carousel");
+  carousel.scrollBy({ left: 220, behavior: "smooth" });
+}, 4000);
+</script>
+
 </body>
 </html>
