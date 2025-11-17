@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meus Produtos | RenovaAr</title>
+
+<style>
+    body{
+        margin:0;
+        font-family:Arial, sans-serif;
+        background:url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1600") no-repeat center center fixed;
+        background-size:cover;
+        color:#fff;
+    }
+
+    .overlay{
+        background:rgba(0,0,0,0.70);
+        min-height:100vh;
+        padding:110px 16px 40px;
+    }
+
+    /* NAVBAR */
+    .navbar{
+        position:fixed;
+        top:0;
+        left:0;
+        width:100%;
+        background:rgba(0,0,0,0.65);
+        padding:12px;
+        text-align:center;
+        z-index:999;
+        backdrop-filter:blur(8px);
+    }
+
+    .navbar button{
+        padding:8px 16px;
+        background:#7BF68F;
+        color:#04210b;
+        border:none;
+        border-radius:999px;
+        margin:0 4px;
+        cursor:pointer;
+        font-weight:bold;
+        font-size:13px;
+    }
+
+    h1{
+        text-align:center;
+        font-size:28px;
+        margin-top:10px;
+    }
+
+    .subtitle{
+        text-align:center;
+        margin-top:6px;
+        opacity:0.9;
+        font-size:14px;
+    }
+
+    .produtos{
+        max-width:900px;
+        margin:30px auto 0;
+        display:flex;
+        flex-direction:column;
+        gap:18px;
+    }
+
+    .card{
+        background:rgba(255,255,255,0.12);
+        border-radius:16px;
+        padding:18px;
+        backdrop-filter:blur(10px);
+        box-shadow:0 4px 12px rgba(0,0,0,0.45);
+    }
+
+    .card h2{
+        margin:0 0 4px 0;
+    }
+
+    .card p{
+        font-size:13px;
+        opacity:0.9;
+    }
+
+    .download-btn{
+        margin-top:12px;
+        padding:10px 14px;
+        background:#7BF68F;
+        border:none;
+        border-radius:10px;
+        cursor:pointer;
+        font-weight:bold;
+        color:#04210b;
+        width:100%;
+    }
+
+    .empty{
+        text-align:center;
+        margin-top:40px;
+        opacity:0.8;
+    }
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <button onclick="window.location.href='index.html'">Home</button>
+    <button onclick="window.location.href='loja.html'">Loja</button>
+    <button onclick="window.location.href='meus-produtos.html'">Meus Produtos</button>
+    <button onclick="window.location.href='perfil.html'">Perfil</button>
+</div>
+
+<div class="overlay">
+
+    <h1>Meus Produtos</h1>
+    <p class="subtitle">Todos os produtos digitais liberados após sua compra via Pix.</p>
+
+    <div id="listaProdutos" class="produtos"></div>
+
+    <p id="nenhum" class="empty" style="display:none;">
+        Você ainda não liberou nenhum produto.<br>
+        Após finalizar o pagamento no Pix, eles aparecerão aqui. 💚
+    </p>
+
+</div>
+
+<script>
+// Carrega produtos comprados
+function loadDownloads(){
+    try {
+        return JSON.parse(localStorage.getItem("renovaar_downloads")) || [];
+    } catch {
+        return [];
+    }
+}
+
+// Renderiza produtos
+function render(){
+    const area = document.getElementById("listaProdutos");
+    const vazio = document.getElementById("nenhum");
+    const itens = loadDownloads();
+
+    if(itens.length === 0){
+        vazio.style.display = "block";
+        area.innerHTML = "";
+        return;
+    }
+
+    vazio.style.display = "none";
+    area.innerHTML = "";
+
+    itens.forEach(item => {
+        const card = document.createElement("div");
+        card.className = "card";
+
+        card.innerHTML = `
+            <h2>${item.name}</h2>
+            <p>Produto digital liberado após a compra.</p>
+
+            <button class="download-btn" onclick="window.location.href='${item.link}'">
+                📥 Baixar / Acessar
+            </button>
+        `;
+
+        area.appendChild(card);
+    });
+}
+
+render();
+</script>
+
+</body>
+</html>
