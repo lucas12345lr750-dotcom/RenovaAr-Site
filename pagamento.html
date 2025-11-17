@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pagamento via PIX | RenovaAr</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#050711;
+    color:#ffffff;
+}
+.container{
+    max-width:900px;
+    margin:auto;
+    padding:20px 16px 40px;
+}
+h1{
+    text-align:center;
+    margin-top:10px;
+    margin-bottom:12px;
+}
+.info{
+    font-size:14px;
+    color:#c4c8d8;
+    margin-bottom:12px;
+    text-align:center;
+}
+.box{
+    background:#101321;
+    border-radius:16px;
+    padding:16px;
+    box-shadow:0 4px 14px rgba(0,0,0,0.5);
+    margin-bottom:16px;
+}
+.label{
+    font-size:13px;
+    color:#9fa7c2;
+    margin-bottom:4px;
+}
+.valor{
+    font-size:20px;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+.chave{
+    background:#181b2a;
+    border-radius:10px;
+    padding:10px;
+    font-size:13px;
+    word-wrap:break-word;
+}
+.btn-row{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    margin-top:16px;
+}
+.btn{
+    width:100%;
+    padding:12px;
+    border-radius:999px;
+    border:none;
+    font-weight:bold;
+    font-size:14px;
+    cursor:pointer;
+}
+.btn-primary{
+    background:#7BF68F;
+    color:#04210b;
+}
+.btn-sec{
+    background:transparent;
+    border:1px solid #7BF68F;
+    color:#7BF68F;
+}
+.timer{
+    font-size:13px;
+    color:#ffc107;
+    margin-top:6px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Pagamento via PIX</h1>
+    <p class="info">Revise o valor e use a chave PIX abaixo para concluir seu pagamento.</p>
+
+    <div class="box">
+        <div class="label">Valor total da compra</div>
+        <div id="valorTotal" class="valor">R$ 0,00</div>
+        <div id="timer" class="timer"></div>
+    </div>
+
+    <div class="box">
+        <div class="label">Chave PIX (aleatória)</div>
+        <div class="chave" id="chavePix">
+            449418cf-8cde-4085-bf3c-fc578002990b
+        </div>
+        <div class="btn-row">
+            <button class="btn btn-primary" onclick="copiarChave()">Copiar chave PIX</button>
+            <button class="btn btn-sec" onclick="window.location.href='carrinho.html'">Voltar para o carrinho</button>
+        </div>
+    </div>
+
+    <div class="box">
+        <div class="label">Depois de efetuar o pagamento:</div>
+        <p style="font-size:13px;color:#c4c8d8;">
+            Após realizar o pagamento pelo seu banco, clique no botão abaixo para finalizar.
+        </p>
+        <button class="btn btn-primary" onclick="finalizarPagamento()">Já paguei</button>
+    </div>
+</div>
+
+<script>
+function formatBRL(valor){
+    return valor.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+}
+
+function carregarValor(){
+    const totalStr = localStorage.getItem('renovaar_total');
+    const el = document.getElementById('valorTotal');
+    if(!totalStr){
+        el.textContent = 'R$ 0,00';
+        return;
+    }
+    const total = Number(totalStr);
+    el.textContent = formatBRL(total);
+}
+carregarValor();
+
+// Timer simples de 15 minutos
+let segundos = 15 * 60;
+const timerEl = document.getElementById('timer');
+function atualizarTimer(){
+    const m = Math.floor(segundos / 60);
+    const s = segundos % 60;
+    timerEl.textContent = 'Tempo para concluir o pagamento: ' + 
+        String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+    segundos--;
+    if(segundos < 0){
+        timerEl.textContent = 'Tempo expirado. Você ainda pode pagar, mas atualize o valor se necessário.';
+        clearInterval(intervalo);
+    }
+}
+const intervalo = setInterval(atualizarTimer,1000);
+atualizarTimer();
+
+function copiarChave(){
+    const chave = document.getElementById('chavePix').innerText.trim();
+    navigator.clipboard.writeText(chave).then(()=>{
+        alert('Chave PIX copiada!');
+    }).catch(()=>{
+        alert('Não foi possível copiar automaticamente. Copie manualmente a chave exibida.');
+    });
+}
+
+function finalizarPagamento(){
+    // aqui estamos só simulando, sem integração com banco
+    localStorage.removeItem('renovaar_cart');
+    localStorage.removeItem('renovaar_total');
+    window.location.href = 'obrigado.html';
+}
+</script>
+
+</body>
+</html>
