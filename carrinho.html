@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carrinho | RenovaAr</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#0f1115;
+    color:#ffffff;
+}
+.container{
+    max-width:900px;
+    margin:auto;
+    padding:20px 16px 40px;
+}
+h1{
+    text-align:center;
+    margin-top:10px;
+    margin-bottom:20px;
+}
+.top-bar{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:10px;
+}
+.top-bar button{
+    padding:8px 14px;
+    border-radius:999px;
+    border:none;
+    background:#7BF68F;
+    color:#04210b;
+    font-weight:bold;
+    cursor:pointer;
+    font-size:13px;
+}
+.card{
+    background:#181b23;
+    border-radius:14px;
+    padding:14px;
+    margin-bottom:12px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.45);
+}
+.card-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+.card-title{
+    font-weight:bold;
+    font-size:15px;
+}
+.card-sub{
+    font-size:13px;
+    color:#b4bed8;
+}
+.qty-row{
+    margin-top:8px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:13px;
+}
+.qty-row button{
+    width:26px;
+    height:26px;
+    border-radius:999px;
+    border:none;
+    background:#7BF68F;
+    color:#04210b;
+    font-weight:bold;
+    cursor:pointer;
+}
+.remove-btn{
+    margin-top:8px;
+    padding:6px 10px;
+    border-radius:999px;
+    border:1px solid #ff7676;
+    background:transparent;
+    color:#ff7676;
+    font-size:12px;
+    cursor:pointer;
+}
+.total-box{
+    background:#181b23;
+    border-radius:14px;
+    padding:16px;
+    margin-top:18px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.45);
+}
+.total-line{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:4px;
+}
+.total-valor{
+    font-weight:bold;
+    font-size:17px;
+}
+.btn-primary{
+    margin-top:16px;
+    width:100%;
+    padding:12px;
+    border-radius:999px;
+    border:none;
+    background:#7BF68F;
+    color:#04210b;
+    font-weight:bold;
+    cursor:pointer;
+    font-size:15px;
+}
+.empty{
+    text-align:center;
+    margin-top:40px;
+    color:#c4c8d8;
+    font-size:14px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="top-bar">
+        <button onclick="window.location.href='loja.html'">← Voltar para a loja</button>
+        <button onclick="window.location.href='index.html'">Home</button>
+    </div>
+
+    <h1>Seu carrinho</h1>
+
+    <div id="lista"></div>
+
+    <div id="areaTotal" class="total-box" style="display:none;">
+        <div class="total-line">
+            <span>Total dos produtos</span>
+            <span id="totalValor" class="total-valor">R$ 0,00</span>
+        </div>
+        <button class="btn-primary" onclick="irParaPagamento()">Finalizar compra</button>
+    </div>
+
+    <div id="vazio" class="empty" style="display:none;">
+        Seu carrinho está vazio. Volte para a loja e escolha seus produtos.
+    </div>
+</div>
+
+<script>
+function loadCart(){
+    try{
+        return JSON.parse(localStorage.getItem('renovaar_cart')) || [];
+    }catch(e){
+        return [];
+    }
+}
+function saveCart(cart){
+    localStorage.setItem('renovaar_cart', JSON.stringify(cart));
+}
+
+function formatBRL(valor){
+    return valor.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+}
+
+function renderCart(){
+    const lista = document.getElementById('lista');
+    const vazio = document.getElementById('vazio');
+    const areaTotal = document.getElementById('areaTotal');
+    const totalValor = document.getElementById('totalValor');
+
+    let cart = loadCart();
+    lista.innerHTML = '';
+
+    if(cart.length === 0){
+        vazio.style.display = 'block';
+        areaTotal.style.display = 'none';
+        return;
+    }
+
+    vazio.style.display = 'none';
+    areaTotal.style.display = 'block';
+
+    let total = 0;
+
+    cart.forEach(item=>{
+        const subtotal = item.price * item.qty;
+        total += subtotal;
+
+        const div = document.createElement('div');
+        div.className = 'card';
+        div.innerHTML = `
+          <div class="card-header">
+            <div>
+              <div class="card-title">${item.name}</div>
+              <div class="card-sub">Preço unitário: ${formatBRL(item.price)}</div>
+            </div>
+            <div class="card-sub">Subtotal: <strong>${formatBRL(subtotal)}</strong></div>
+          </div>
+          <div class="qty-row">
+            <span>Quantidade:</span>
+            <button onclick="alterarQtd('${item.id}',-1)">-</button>
+            <span>${item.qty}</span>
+            <button onclick="alterarQtd('${item.id}',1)">+</button>
+          </div>
+          <button class="remove-btn" onclick="removerItem('${item.id}')">Remover</button>
+        `;
+        lista.appendChild(div);
+    });
+
+    totalValor.textContent = formatBRL(total);
+    // armazenar total para a página de pagamento
+    localStorage.setItem('renovaar_total', String(total));
+}
+
+function alterarQtd(id, delta){
+    let cart = loadCart();
+    const item = cart.find(i=>i.id === id);
+    if(!item) return;
+    item.qty += delta;
+    if(item.qty <= 0){
+        cart = cart.filter(i=>i.id !== id);
+    }
+    saveCart(cart);
+    renderCart();
+}
+
+function removerItem(id){
+    let cart = loadCart().filter(i=>i.id !== id);
+    saveCart(cart);
+    renderCart();
+}
+
+function irParaPagamento(){
+    window.location.href = 'pagamento.html';
+}
+
+renderCart();
+</script>
+
+</body>
+  </html>
