@@ -6,12 +6,6 @@
 <title>Loja | RenovaAr</title>
 
 <style>
-    * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-    }
-
     body {
         margin: 0;
         font-family: Arial, sans-serif;
@@ -26,55 +20,38 @@
         padding: 20px 16px 40px;
     }
 
-    .navbar {
-        text-align: center;
-        margin-bottom: 15px;
-    }
-
-    .navbar button {
-        padding: 8px 16px;
-        background: #7BF68F;
-        color: black;
-        border: none;
-        border-radius: 999px;
-        margin: 0 4px;
-        cursor: pointer;
-        font-weight: bold;
-        font-size: 13px;
-    }
-
     h1 {
         text-align: center;
-        margin-top: 8px;
-        font-size: 28px;
+        margin-top: 10px;
+        font-size: 30px;
     }
 
-    .subtitulo {
-        text-align: center;
+    .top-bar {
+        max-width: 900px;
+        margin: 10px auto 0;
+        display: flex;
+        justify-content: flex-end;
+        gap: 8px;
+    }
+
+    .top-bar button {
+        padding: 8px 14px;
+        border-radius: 999px;
+        border: none;
+        background: #7BF68F;
+        color: #04210b;
+        font-weight: bold;
+        cursor: pointer;
         font-size: 13px;
-        opacity: 0.9;
-        margin-bottom: 16px;
-    }
-
-    .link-carrinho {
-        text-align: center;
-        margin-bottom: 12px;
-        font-size: 14px;
-    }
-
-    .link-carrinho a {
-        color: #7BF68F;
-        text-decoration: underline;
     }
 
     .produto-grid {
         display: grid;
         grid-template-columns: 1fr;
-        gap: 18px;
+        gap: 20px;
         width: 92%;
         max-width: 900px;
-        margin: 0 auto;
-        margin-top: 10px;
+        margin: 25px auto 0;
     }
 
     @media (min-width: 700px) {
@@ -84,11 +61,11 @@
     }
 
     .card {
-        background: rgba(255,255,255,0.10);
-        backdrop-filter: blur(10px);
-        padding: 14px;
-        border-radius: 16px;
-        box-shadow: 0px 4px 12px rgba(0,0,0,0.5);
+        background: rgba(255,255,255,0.12);
+        backdrop-filter: blur(8px);
+        padding: 15px;
+        border-radius: 15px;
+        box-shadow: 0px 4px 12px rgba(0,0,0,0.4);
         color: #fff;
     }
 
@@ -96,85 +73,75 @@
         width: 100%;
         height: 170px;
         object-fit: cover;
-        border-radius: 12px;
-        margin-bottom: 10px;
+        border-radius: 10px;
     }
 
     .card h2 {
-        margin-bottom: 6px;
+        margin: 12px 0 4px 0;
         font-size: 18px;
     }
 
     .card p {
         font-size: 13px;
-        opacity: 0.95;
-        margin-bottom: 6px;
+        opacity: 0.9;
+        margin-bottom: 4px;
     }
 
     .preco {
-        font-size: 15px;
-        margin-bottom: 8px;
+        margin-top: 4px;
+        font-size: 14px;
     }
 
     .preco span {
-        display: inline-block;
+        margin-right: 6px;
     }
 
-    .preco-antigo {
+    .antigo {
         text-decoration: line-through;
-        color: #cccccc;
-        margin-right: 6px;
+        opacity: 0.7;
         font-size: 12px;
     }
 
-    .preco-novo {
-        color: #7BF68F;
+    .novo {
         font-weight: bold;
+        color: #7BF68F;
+        font-size: 15px;
+    }
+
+    .btn-row {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-top: 8px;
     }
 
     .btn {
-        margin-top: 6px;
-        padding: 9px 12px;
+        padding: 9px 14px;
         background: #7BF68F;
         border: none;
         border-radius: 10px;
         cursor: pointer;
         font-weight: bold;
-        width: 100%;
         font-size: 14px;
+        color: #04210b;
     }
 
     .btn-sec {
-        margin-top: 6px;
-        padding: 8px 12px;
         background: transparent;
         border: 1px solid #7BF68F;
-        border-radius: 10px;
-        cursor: pointer;
-        font-weight: bold;
-        width: 100%;
-        font-size: 13px;
         color: #7BF68F;
     }
-
 </style>
 </head>
 
 <body>
 <div class="overlay">
-
-    <div class="navbar">
-        <button onclick="window.location.href='index.html'">Home</button>
-        <button onclick="window.location.href='ferramentas.html'">Ferramentas</button>
-        <button onclick="window.location.href='loja.html'">Loja</button>
-        <button onclick="window.location.href='perfil.html'">Perfil</button>
-    </div>
-
+    
     <h1>Loja de Produtos Digitais</h1>
-    <p class="subtitulo">Invista em você – conteúdos digitais para apoiar sua jornada sem cigarro.</p>
 
-    <div class="link-carrinho">
-        <a href="carrinho.html">🛒 Ver carrinho</a>
+    <div class="top-bar">
+        <button onclick="window.location.href='index.html'">Home</button>
+        <button onclick="window.location.href='carrinho.html'">Ver carrinho 🛒</button>
     </div>
 
     <div class="produto-grid">
@@ -183,68 +150,60 @@
         <div class="card">
             <img src="https://images.unsplash.com/photo-1523942839745-7848f839b661?w=1600" alt="Áudios Anti-Ansiedade">
             <h2>Áudios Anti-Ansiedade Premium</h2>
-            <p>Controle a fissura em minutos com áudios profissionais guiados.</p>
-            <p class="preco">
-                <span class="preco-antigo">R$ 39,90</span>
-                <span class="preco-novo">R$ 19,90</span>
-            </p>
-            <button class="btn" onclick="addToCart('audios', 'Áudios Anti-Ansiedade Premium', 19.90)">
-                Adicionar ao carrinho
-            </button>
-            <button class="btn-sec" onclick="window.location.href='produto-audios.html'">
-                Ver detalhes
-            </button>
+            <p>Controle a fissura em minutos com áudios profissionais.</p>
+            <div class="preco">
+                <span class="antigo">R$ 39,90</span>
+                <span class="novo">R$ 19,90</span>
+            </div>
+            <div class="btn-row">
+                <button class="btn" onclick="addToCart('audios','Áudios Anti-Ansiedade Premium',19.90)">Adicionar ao carrinho</button>
+                <button class="btn btn-sec" onclick="window.location.href='produto-audios.html'">Ver detalhes</button>
+            </div>
         </div>
 
         <!-- PRODUTO 2 -->
         <div class="card">
-            <img src="https://images.unsplash.com/photo-1527977966376-1c8408f9ebd3?w=1600" alt="E-book 30 dias">
+            <img src="https://images.unsplash.com/photo-1527977966376-1c8408f9ebd3?w=1600" alt="E-book 30 Dias">
             <h2>E-book: Guia Completo 30 Dias</h2>
-            <p>Método estruturado com plano diário e técnicas testadas.</p>
-            <p class="preco">
-                <span class="preco-antigo">R$ 49,90</span>
-                <span class="preco-novo">R$ 29,90</span>
-            </p>
-            <button class="btn" onclick="addToCart('ebook', 'E-book: Guia Completo 30 Dias', 29.90)">
-                Adicionar ao carrinho
-            </button>
-            <button class="btn-sec" onclick="window.location.href='produto-ebook.html'">
-                Ver detalhes
-            </button>
+            <p>Método estruturado com plano diário e técnicas aprovadas.</p>
+            <div class="preco">
+                <span class="antigo">R$ 49,90</span>
+                <span class="novo">R$ 29,90</span>
+            </div>
+            <div class="btn-row">
+                <button class="btn" onclick="addToCart('ebook','E-book: Guia Completo 30 Dias',29.90)">Adicionar ao carrinho</button>
+                <button class="btn btn-sec" onclick="window.location.href='produto-ebook.html'">Ver detalhes</button>
+            </div>
         </div>
 
         <!-- PRODUTO 3 -->
         <div class="card">
             <img src="https://images.unsplash.com/photo-1579202673506-ca3ce28943ef?w=1600" alt="Curso Anti-Ansiedade">
             <h2>Curso Rápido Anti-Ansiedade</h2>
-            <p>15 videoaulas práticas para controlar fissura e ansiedade.</p>
-            <p class="preco">
-                <span class="preco-antigo">R$ 79,90</span>
-                <span class="preco-novo">R$ 39,90</span>
-            </p>
-            <button class="btn" onclick="addToCart('curso', 'Curso Rápido Anti-Ansiedade', 39.90)">
-                Adicionar ao carrinho
-            </button>
-            <button class="btn-sec" onclick="window.location.href='produto-curso.html'">
-                Ver detalhes
-            </button>
+            <p>15 vídeo-aulas com técnicas de foco e respiração.</p>
+            <div class="preco">
+                <span class="antigo">R$ 79,90</span>
+                <span class="novo">R$ 39,90</span>
+            </div>
+            <div class="btn-row">
+                <button class="btn" onclick="addToCart('curso','Curso Rápido Anti-Ansiedade',39.90)">Adicionar ao carrinho</button>
+                <button class="btn btn-sec" onclick="window.location.href='produto-curso.html'">Ver detalhes</button>
+            </div>
         </div>
 
         <!-- PRODUTO 4 -->
         <div class="card">
-            <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=1600" alt="Pacote motivacional">
+            <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=1600" alt="Pacote Motivacional">
             <h2>Pacote Motivacional Premium</h2>
-            <p>Frases, cartões e desafios para 30 dias de motivação.</p>
-            <p class="preco">
-                <span class="preco-antigo">R$ 29,90</span>
-                <span class="preco-novo">R$ 14,90</span>
-            </p>
-            <button class="btn" onclick="addToCart('motivacional', 'Pacote Motivacional Premium', 14.90)">
-                Adicionar ao carrinho
-            </button>
-            <button class="btn-sec" onclick="window.location.href='produto-motivacional.html'">
-                Ver detalhes
-            </button>
+            <p>Cartões e frases diárias para fortalecer sua jornada.</p>
+            <div class="preco">
+                <span class="antigo">R$ 29,90</span>
+                <span class="novo">R$ 14,90</span>
+            </div>
+            <div class="btn-row">
+                <button class="btn" onclick="addToCart('motivacional','Pacote Motivacional Premium',14.90)">Adicionar ao carrinho</button>
+                <button class="btn btn-sec" onclick="window.location.href='produto-motivacional.html'">Ver detalhes</button>
+            </div>
         </div>
 
     </div>
@@ -252,26 +211,25 @@
 </div>
 
 <script>
-function getCart() {
-    try {
-        const data = localStorage.getItem('renovaar_cart');
-        return data ? JSON.parse(data) : [];
-    } catch(e) {
+function loadCart(){
+    try{
+        return JSON.parse(localStorage.getItem('renovaar_cart')) || [];
+    }catch(e){
         return [];
     }
 }
 
-function saveCart(cart) {
+function saveCart(cart){
     localStorage.setItem('renovaar_cart', JSON.stringify(cart));
 }
 
-function addToCart(id, name, price) {
-    let cart = getCart();
+function addToCart(id, name, price){
+    let cart = loadCart();
     const existing = cart.find(item => item.id === id);
-    if (existing) {
+    if(existing){
         existing.qty += 1;
     } else {
-        cart.push({ id, name, price, qty: 1 });
+        cart.push({id, name, price, qty: 1});
     }
     saveCart(cart);
     alert('Produto adicionado ao carrinho!');
