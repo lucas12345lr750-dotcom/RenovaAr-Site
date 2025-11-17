@@ -1,622 +1,281 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>RenovaAr - Loja de Produtos Digitais</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loja | RenovaAr</title>
 
 <style>
-  *{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-  }
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
 
-  body{
-    margin:0;
-    font-family:Arial,sans-serif;
-    background:#f4f7fb;
-    color:#0a1f3c;
-  }
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: url("https://images.unsplash.com/photo-1520333789090-1afc82db536a?w=1600") no-repeat center center fixed;
+        background-size: cover;
+        color: #fff;
+    }
 
-  /* NAVBAR */
-  .navbar{
-    position:sticky;
-    top:0;
-    width:100%;
-    background:#0a1f3c;
-    padding:12px;
-    text-align:center;
-    z-index:999;
-  }
-  .navbar button{
-    padding:8px 18px;
-    background:#7bf68f;
-    color:#04210b;
-    border:none;
-    border-radius:999px;
-    margin:0 5px;
-    font-weight:bold;
-    cursor:pointer;
-    font-size:14px;
-  }
+    .overlay {
+        background: rgba(0,0,0,0.70);
+        min-height: 100vh;
+        padding: 20px 16px 40px;
+    }
 
-  .container{
-    max-width:1100px;
-    margin:auto;
-    padding:20px 16px 60px;
-  }
+    .navbar {
+        text-align: center;
+        margin-bottom: 15px;
+    }
 
-  h1{
-    text-align:center;
-    margin-top:15px;
-    font-size:30px;
-    font-weight:bold;
-  }
-  .subtitulo{
-    text-align:center;
-    color:#455a7a;
-    margin-bottom:20px;
-    font-size:14px;
-  }
+    .navbar button {
+        padding: 8px 16px;
+        background: #7BF68F;
+        color: black;
+        border: none;
+        border-radius: 999px;
+        margin: 0 4px;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 13px;
+    }
 
-  /* BANNER DE DESTAQUE */
-  .banner-destaque{
-    background:#0a1f3c;
-    color:#ffffff;
-    border-radius:18px;
-    padding:18px 16px 20px;
-    margin-bottom:24px;
-    box-shadow:0 8px 18px rgba(0,0,0,0.18);
-  }
-  .banner-destaque h2{
-    font-size:20px;
-    margin-bottom:8px;
-  }
-  .banner-destaque p{
-    font-size:14px;
-    margin-bottom:8px;
-    color:#e1e8ff;
-  }
-  .banner-destaque strong{
-    color:#7bf68f;
-  }
-  .banner-destaque button{
-    margin-top:8px;
-    padding:10px 20px;
-    border-radius:999px;
-    border:none;
-    background:#7bf68f;
-    color:#04210b;
-    font-weight:bold;
-    cursor:pointer;
-    font-size:14px;
-  }
+    h1 {
+        text-align: center;
+        margin-top: 8px;
+        font-size: 28px;
+    }
 
-  /* FILTROS DE CATEGORIA */
-  .filtros{
-    display:flex;
-    flex-wrap:wrap;
-    gap:8px;
-    margin-bottom:20px;
-    justify-content:center;
-  }
-  .filtro-btn{
-    padding:8px 14px;
-    border-radius:999px;
-    border:1px solid #0a1f3c;
-    background:#ffffff;
-    color:#0a1f3c;
-    font-size:13px;
-    cursor:pointer;
-  }
-  .filtro-btn.ativo{
-    background:#0a1f3c;
-    color:#ffffff;
-  }
+    .subtitulo {
+        text-align: center;
+        font-size: 13px;
+        opacity: 0.9;
+        margin-bottom: 16px;
+    }
 
-  /* CARD DO PRODUTO */
-  .produto-card{
-    background:#ffffff;
-    border-radius:18px;
-    padding:18px;
-    box-shadow:0 8px 18px rgba(0,0,0,0.08);
-    margin-bottom:26px;
-    transition:transform .2s ease;
-  }
-  .produto-card:hover{
-    transform:scale(1.02);
-  }
-  .produto-img{
-    width:100%;
-    height:220px;
-    border-radius:14px;
-    object-fit:cover;
-    margin-bottom:12px;
-  }
-  .produto-titulo{
-    font-size:20px;
-    font-weight:700;
-    margin-bottom:6px;
-  }
-  .produto-cat{
-    font-size:12px;
-    color:#7b8aa8;
-    margin-bottom:8px;
-  }
-  .produto-desc{
-    color:#455a7a;
-    font-size:14px;
-    margin-bottom:8px;
-    line-height:1.5;
-  }
-  .produto-rating{
-    font-size:13px;
-    color:#f2a900;
-    margin-bottom:4px;
-  }
-  .produto-preco{
-    font-size:18px;
-    margin:4px 0 10px;
-  }
-  .preco-antigo{
-    text-decoration:line-through;
-    color:#a3afc7;
-    font-size:13px;
-    margin-right:6px;
-  }
-  .preco-novo{
-    color:#0a7f4f;
-    font-weight:bold;
-  }
+    .link-carrinho {
+        text-align: center;
+        margin-bottom: 12px;
+        font-size: 14px;
+    }
 
-  .recebe-list{
-    background:#f4f7ff;
-    border-radius:10px;
-    padding:8px 10px;
-    font-size:13px;
-    margin-bottom:10px;
-    color:#455a7a;
-  }
-  .recebe-list ul{
-    padding-left:18px;
-    margin-top:4px;
-  }
+    .link-carrinho a {
+        color: #7BF68F;
+        text-decoration: underline;
+    }
 
-  .produto-acoes{
-    display:flex;
-    flex-direction:column;
-    gap:8px;
-  }
-  .btn-comprar{
-    width:100%;
-    padding:10px;
-    background:#0a7f4f;
-    color:#ffffff;
-    border:none;
-    border-radius:999px;
-    font-size:15px;
-    font-weight:bold;
-    cursor:pointer;
-    box-shadow:0 6px 10px rgba(0,0,0,0.15);
-  }
-  .btn-detalhes{
-    width:100%;
-    padding:10px;
-    background:#ffffff;
-    color:#0a1f3c;
-    border:1px solid #0a1f3c;
-    border-radius:999px;
-    font-size:14px;
-    font-weight:bold;
-    cursor:pointer;
-  }
+    .produto-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 18px;
+        width: 92%;
+        max-width: 900px;
+        margin: 0 auto;
+        margin-top: 10px;
+    }
 
-  /* SEÇÃO VIP */
-  .vip-card{
-    background:#0a1f3c;
-    color:#ffffff;
-    border-radius:20px;
-    padding:18px 16px 20px;
-    margin-top:10px;
-    margin-bottom:26px;
-    text-align:center;
-    box-shadow:0 8px 18px rgba(0,0,0,0.18);
-  }
-  .vip-card h2{
-    font-size:20px;
-    margin-bottom:8px;
-  }
-  .vip-card p{
-    font-size:14px;
-    margin-bottom:6px;
-    color:#d7e2ff;
-  }
-  .vip-preco{
-    font-size:20px;
-    margin:6px 0 12px;
-  }
-  .vip-preco span{
-    font-size:13px;
-    text-decoration:line-through;
-    color:#9fb1ff;
-    margin-right:6px;
-  }
-  .vip-card button{
-    padding:10px 20px;
-    border-radius:999px;
-    border:none;
-    background:#7bf68f;
-    color:#04210b;
-    font-weight:bold;
-    cursor:pointer;
-    font-size:14px;
-  }
+    @media (min-width: 700px) {
+        .produto-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
 
-  /* CUPOM DE DESCONTO */
-  .cupom-card{
-    background:#ffffff;
-    border-radius:16px;
-    padding:14px 14px 16px;
-    margin-bottom:26px;
-    box-shadow:0 6px 14px rgba(0,0,0,0.06);
-  }
-  .cupom-card h2{
-    font-size:16px;
-    margin-bottom:6px;
-  }
-  .cupom-card p{
-    font-size:13px;
-    color:#455a7a;
-    margin-bottom:8px;
-  }
-  .cupom-area{
-    display:flex;
-    gap:8px;
-    flex-wrap:wrap;
-  }
-  .cupom-area input{
-    flex:1;
-    min-width:140px;
-    padding:8px;
-    border-radius:999px;
-    border:1px solid #c3cbe0;
-    font-size:13px;
-  }
-  .cupom-area button{
-    padding:8px 14px;
-    border-radius:999px;
-    border:none;
-    background:#0a1f3c;
-    color:#ffffff;
-    font-size:13px;
-    font-weight:bold;
-    cursor:pointer;
-  }
-  .cupom-msg{
-    margin-top:6px;
-    font-size:12px;
-    color:#0a7f4f;
-  }
+    .card {
+        background: rgba(255,255,255,0.10);
+        backdrop-filter: blur(10px);
+        padding: 14px;
+        border-radius: 16px;
+        box-shadow: 0px 4px 12px rgba(0,0,0,0.5);
+        color: #fff;
+    }
 
-  /* COMBOS (CARROSSEL) */
-  .combos-card{
-    background:#ffffff;
-    border-radius:18px;
-    padding:16px 14px 18px;
-    box-shadow:0 6px 14px rgba(0,0,0,0.06);
-    margin-bottom:26px;
-  }
-  .combos-card h2{
-    font-size:18px;
-    margin-bottom:10px;
-  }
-  .combos-scroller{
-    display:flex;
-    overflow-x:auto;
-    gap:10px;
-    padding-bottom:6px;
-  }
-  .combo-item{
-    min-width:220px;
-    background:#f4f7ff;
-    border-radius:14px;
-    padding:10px 10px 12px;
-    border:1px solid #dde5ff;
-  }
-  .combo-item h3{
-    font-size:15px;
-    margin-bottom:4px;
-  }
-  .combo-item p{
-    font-size:13px;
-    color:#455a7a;
-    margin-bottom:6px;
-  }
-  .combo-preco{
-    font-size:15px;
-    color:#0a7f4f;
-    font-weight:bold;
-  }
+    .card img {
+        width: 100%;
+        height: 170px;
+        object-fit: cover;
+        border-radius: 12px;
+        margin-bottom: 10px;
+    }
 
-  /* BOTÃO WHATSAPP FLUTUANTE */
-  .whatsapp-btn{
-    position:fixed;
-    right:18px;
-    bottom:18px;
-    width:54px;
-    height:54px;
-    border-radius:50%;
-    background:#25D366;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:#ffffff;
-    font-size:26px;
-    text-decoration:none;
-    box-shadow:0 4px 12px rgba(0,0,0,0.35);
-    z-index:1000;
-  }
-  .whatsapp-btn span{
-    position:absolute;
-    right:64px;
-    bottom:18px;
-    background:#0a1f3c;
-    color:#ffffff;
-    padding:6px 10px;
-    border-radius:12px;
-    font-size:11px;
-    white-space:nowrap;
-  }
+    .card h2 {
+        margin-bottom: 6px;
+        font-size: 18px;
+    }
+
+    .card p {
+        font-size: 13px;
+        opacity: 0.95;
+        margin-bottom: 6px;
+    }
+
+    .preco {
+        font-size: 15px;
+        margin-bottom: 8px;
+    }
+
+    .preco span {
+        display: inline-block;
+    }
+
+    .preco-antigo {
+        text-decoration: line-through;
+        color: #cccccc;
+        margin-right: 6px;
+        font-size: 12px;
+    }
+
+    .preco-novo {
+        color: #7BF68F;
+        font-weight: bold;
+    }
+
+    .btn {
+        margin-top: 6px;
+        padding: 9px 12px;
+        background: #7BF68F;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        font-weight: bold;
+        width: 100%;
+        font-size: 14px;
+    }
+
+    .btn-sec {
+        margin-top: 6px;
+        padding: 8px 12px;
+        background: transparent;
+        border: 1px solid #7BF68F;
+        border-radius: 10px;
+        cursor: pointer;
+        font-weight: bold;
+        width: 100%;
+        font-size: 13px;
+        color: #7BF68F;
+    }
 
 </style>
 </head>
+
 <body>
+<div class="overlay">
 
-<!-- NAVBAR -->
-<div class="navbar">
-  <button onclick="window.location.href='index.html'">Home</button>
-  <button onclick="window.location.href='ferramentas.html'">Ferramentas</button>
-  <button onclick="window.location.href='loja.html'">Loja</button>
-  <button onclick="window.location.href='perfil.html'">Perfil</button>
-</div>
+    <div class="navbar">
+        <button onclick="window.location.href='index.html'">Home</button>
+        <button onclick="window.location.href='ferramentas.html'">Ferramentas</button>
+        <button onclick="window.location.href='loja.html'">Loja</button>
+        <button onclick="window.location.href='perfil.html'">Perfil</button>
+    </div>
 
-<div class="container">
+    <h1>Loja de Produtos Digitais</h1>
+    <p class="subtitulo">Invista em você – conteúdos digitais para apoiar sua jornada sem cigarro.</p>
 
-  <h1>Loja Digital RenovaAr</h1>
-  <p class="subtitulo">Produtos digitais para apoiar sua jornada de parar de fumar.</p>
+    <div class="link-carrinho">
+        <a href="carrinho.html">🛒 Ver carrinho</a>
+    </div>
 
-  <!-- BANNER DE DESTAQUE -->
-  <div class="banner-destaque">
-    <h2>🔥 Pacote Premium Anti-Ansiedade</h2>
-    <p>
-      Áudios, e-book e desafios diários para atravessar os piores momentos da vontade de fumar.  
-      <strong>Desconto especial por tempo limitado.</strong>
-    </p>
-    <button onclick="alert('Em breve: página de compra do Pacote Premium.');">
-      Ver detalhes do pacote
-    </button>
-  </div>
+    <div class="produto-grid">
 
-  <!-- FILTROS -->
-  <div class="filtros">
-    <button class="filtro-btn ativo" data-cat="todos">Todos</button>
-    <button class="filtro-btn" data-cat="audio">Áudios</button>
-    <button class="filtro-btn" data-cat="ebook">E-books</button>
-    <button class="filtro-btn" data-cat="curso">Cursos</button>
-    <button class="filtro-btn" data-cat="motivacao">Motivação</button>
-  </div>
+        <!-- PRODUTO 1 -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1523942839745-7848f839b661?w=1600" alt="Áudios Anti-Ansiedade">
+            <h2>Áudios Anti-Ansiedade Premium</h2>
+            <p>Controle a fissura em minutos com áudios profissionais guiados.</p>
+            <p class="preco">
+                <span class="preco-antigo">R$ 39,90</span>
+                <span class="preco-novo">R$ 19,90</span>
+            </p>
+            <button class="btn" onclick="addToCart('audios', 'Áudios Anti-Ansiedade Premium', 19.90)">
+                Adicionar ao carrinho
+            </button>
+            <button class="btn-sec" onclick="window.location.href='produto-audios.html'">
+                Ver detalhes
+            </button>
+        </div>
 
-  <!-- PRODUTO 1 -->
-  <div class="produto-card" data-cat="audio">
-    <img class="produto-img" src="https://images.unsplash.com/photo-1523942839745-7848f839b661?w=1600" alt="Áudios de relaxamento">
-    <div class="produto-titulo">Áudios de Relaxamento Avançado</div>
-    <div class="produto-cat">Categoria: Áudios · Digital</div>
-    <div class="produto-rating">⭐⭐⭐⭐⭐ 4,9 · 212 avaliações</div>
-    <div class="produto-desc">
-      Meditações guiadas para reduzir ansiedade, controlar impulsos e recuperar equilíbrio emocional nos momentos de maior vontade.
-    </div>
-    <div class="produto-preco">
-      <span class="preco-antigo">R$ 39,90</span>
-      <span class="preco-novo">R$ 19,90</span>
-    </div>
-    <div class="recebe-list">
-      <strong>Você vai receber:</strong>
-      <ul>
-        <li>10 áudios exclusivos em alta qualidade</li>
-        <li>Acesso vitalício ao conteúdo</li>
-        <li>Guia em PDF com instruções de uso</li>
-      </ul>
-    </div>
-    <div class="produto-acoes">
-      <button class="btn-comprar" onclick="alert('Em breve: checkout dos Áudios de Relaxamento.');">Comprar agora</button>
-      <button class="btn-detalhes" onclick="alert('Em breve: página detalhada dos Áudios de Relaxamento.');">Ver detalhes</button>
-    </div>
-  </div>
+        <!-- PRODUTO 2 -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1527977966376-1c8408f9ebd3?w=1600" alt="E-book 30 dias">
+            <h2>E-book: Guia Completo 30 Dias</h2>
+            <p>Método estruturado com plano diário e técnicas testadas.</p>
+            <p class="preco">
+                <span class="preco-antigo">R$ 49,90</span>
+                <span class="preco-novo">R$ 29,90</span>
+            </p>
+            <button class="btn" onclick="addToCart('ebook', 'E-book: Guia Completo 30 Dias', 29.90)">
+                Adicionar ao carrinho
+            </button>
+            <button class="btn-sec" onclick="window.location.href='produto-ebook.html'">
+                Ver detalhes
+            </button>
+        </div>
 
-  <!-- PRODUTO 2 -->
-  <div class="produto-card" data-cat="ebook">
-    <img class="produto-img" src="https://images.unsplash.com/photo-1527977966376-1c8408f9ebd3?w=1600" alt="E-book guia completo">
-    <div class="produto-titulo">E-book: Guia Completo para Parar de Fumar</div>
-    <div class="produto-cat">Categoria: E-book · Digital</div>
-    <div class="produto-rating">⭐⭐⭐⭐ 4,8 · 178 avaliações</div>
-    <div class="produto-desc">
-      Estratégias psicológicas, científicas e práticas testadas em pessoas reais.  
-      Aprenda como lidar com recaídas, gatilhos emocionais e reforçar sua mentalidade.
-    </div>
-    <div class="produto-preco">
-      <span class="preco-antigo">R$ 49,90</span>
-      <span class="preco-novo">R$ 29,90</span>
-    </div>
-    <div class="recebe-list">
-      <strong>Você vai receber:</strong>
-      <ul>
-        <li>E-book em PDF com mais de 80 páginas</li>
-        <li>Atualizações futuras do conteúdo</li>
-        <li>Checklist para acompanhar sua evolução</li>
-      </ul>
-    </div>
-    <div class="produto-acoes">
-      <button class="btn-comprar" onclick="alert('Em breve: checkout do E-book.');">Comprar agora</button>
-      <button class="btn-detalhes" onclick="alert('Em breve: página detalhada do E-book.');">Ver detalhes</button>
-    </div>
-  </div>
+        <!-- PRODUTO 3 -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1579202673506-ca3ce28943ef?w=1600" alt="Curso Anti-Ansiedade">
+            <h2>Curso Rápido Anti-Ansiedade</h2>
+            <p>15 videoaulas práticas para controlar fissura e ansiedade.</p>
+            <p class="preco">
+                <span class="preco-antigo">R$ 79,90</span>
+                <span class="preco-novo">R$ 39,90</span>
+            </p>
+            <button class="btn" onclick="addToCart('curso', 'Curso Rápido Anti-Ansiedade', 39.90)">
+                Adicionar ao carrinho
+            </button>
+            <button class="btn-sec" onclick="window.location.href='produto-curso.html'">
+                Ver detalhes
+            </button>
+        </div>
 
-  <!-- PRODUTO 3 -->
-  <div class="produto-card" data-cat="motivacao">
-    <img class="produto-img" src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=1600" alt="Pacote motivacional">
-    <div class="produto-titulo">Pacote Motivacional Premium</div>
-    <div class="produto-cat">Categoria: Motivação · Digital</div>
-    <div class="produto-rating">⭐⭐⭐⭐⭐ 5,0 · 134 avaliações</div>
-    <div class="produto-desc">
-      Mensagens personalizadas, desafios diários e cartões de vitória para reforçar sua motivação nos dias mais difíceis.
-    </div>
-    <div class="produto-preco">
-      <span class="preco-antigo">R$ 29,90</span>
-      <span class="preco-novo">R$ 14,90</span>
-    </div>
-    <div class="recebe-list">
-      <strong>Você vai receber:</strong>
-      <ul>
-        <li>Pacote com 60 mensagens motivacionais</li>
-        <li>Desafios diários para 30 dias</li>
-        <li>Cartões digitais para compartilhar com amigos</li>
-      </ul>
-    </div>
-    <div class="produto-acoes">
-      <button class="btn-comprar" onclick="alert('Em breve: checkout do Pacote Motivacional.');">Comprar agora</button>
-      <button class="btn-detalhes" onclick="alert('Em breve: página detalhada do Pacote Motivacional.');">Ver detalhes</button>
-    </div>
-  </div>
+        <!-- PRODUTO 4 -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=1600" alt="Pacote motivacional">
+            <h2>Pacote Motivacional Premium</h2>
+            <p>Frases, cartões e desafios para 30 dias de motivação.</p>
+            <p class="preco">
+                <span class="preco-antigo">R$ 29,90</span>
+                <span class="preco-novo">R$ 14,90</span>
+            </p>
+            <button class="btn" onclick="addToCart('motivacional', 'Pacote Motivacional Premium', 14.90)">
+                Adicionar ao carrinho
+            </button>
+            <button class="btn-sec" onclick="window.location.href='produto-motivacional.html'">
+                Ver detalhes
+            </button>
+        </div>
 
-  <!-- PRODUTO 4 -->
-  <div class="produto-card" data-cat="curso">
-    <img class="produto-img" src="https://images.unsplash.com/photo-1579202673506-ca3ce28943ef?w=1600" alt="Curso controle de ansiedade">
-    <div class="produto-titulo">Curso Rápido: Controle de Ansiedade</div>
-    <div class="produto-cat">Categoria: Curso · Digital</div>
-    <div class="produto-rating">⭐⭐⭐⭐ 4,7 · 95 avaliações</div>
-    <div class="produto-desc">
-      Vídeos curtos e objetivos ensinando técnicas de respiração, foco, concentração e manejo emocional para vencer a fissura do cigarro.
     </div>
-    <div class="produto-preco">
-      <span class="preco-antigo">R$ 79,90</span>
-      <span class="preco-novo">R$ 39,90</span>
-    </div>
-    <div class="recebe-list">
-      <strong>Você vai receber:</strong>
-      <ul>
-        <li>Acesso a 15 videoaulas exclusivas</li>
-        <li>Material de apoio em PDF</li>
-        <li>Acesso por 1 ano à plataforma</li>
-      </ul>
-    </div>
-    <div class="produto-acoes">
-      <button class="btn-comprar" onclick="alert('Em breve: checkout do Curso de Ansiedade.');">Comprar agora</button>
-      <button class="btn-detalhes" onclick="alert('Em breve: página detalhada do Curso.');">Ver detalhes</button>
-    </div>
-  </div>
-
-  <!-- SEÇÃO VIP / ASSINATURA -->
-  <div class="vip-card">
-    <h2>Assinatura RenovaAr VIP</h2>
-    <p>Acesso a todos os áudios, materiais motivacionais, atualizações e conteúdos exclusivos.</p>
-    <p class="vip-preco">
-      <span>R$ 49,90/mês</span> R$ 29,90/mês
-    </p>
-    <p>Conteúdo sempre atualizado para apoiar você em cada fase da jornada.</p>
-    <button onclick="alert('Em breve: assinatura VIP RenovaAr.');">Quero ser VIP</button>
-  </div>
-
-  <!-- CUPOM DE DESCONTO -->
-  <div class="cupom-card">
-    <h2>Tem um cupom de desconto?</h2>
-    <p>Insira o código abaixo e, se for válido, um desconto será aplicado na sua compra.</p>
-    <div class="cupom-area">
-      <input type="text" id="campoCupom" placeholder="Ex: RENOVA10" />
-      <button onclick="aplicarCupom()">Aplicar</button>
-    </div>
-    <div id="cupomMsg" class="cupom-msg"></div>
-  </div>
-
-  <!-- COMBOS EM CARROSSEL -->
-  <div class="combos-card">
-    <h2>Combos especiais</h2>
-    <div class="combos-scroller">
-      <div class="combo-item">
-        <h3>Combo Foco Total</h3>
-        <p>Áudios de relaxamento + Pacote motivacional.</p>
-        <p class="combo-preco">R$ 24,90</p>
-      </div>
-      <div class="combo-item">
-        <h3>Combo Jornada Completa</h3>
-        <p>E-book completo + curso de ansiedade.</p>
-        <p class="combo-preco">R$ 59,90</p>
-      </div>
-      <div class="combo-item">
-        <h3>Combo Essencial</h3>
-        <p>Áudios + e-book + mensagens diárias.</p>
-        <p class="combo-preco">R$ 39,90</p>
-      </div>
-    </div>
-  </div>
 
 </div>
-
-<!-- BOTÃO WHATSAPP FLUTUANTE -->
-<a 
-  class="whatsapp-btn" 
-  href="https://api.whatsapp.com/send?phone=5500000000000&text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20os%20produtos%20digitais%20do%20RenovaAr."
-  target="_blank"
->
-  ☎
-  <span>Falar com atendimento</span>
-</a>
 
 <script>
-  // FILTROS
-  const filtroBotoes = document.querySelectorAll('.filtro-btn');
-  const produtos = document.querySelectorAll('.produto-card');
-
-  filtroBotoes.forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      const cat = btn.getAttribute('data-cat');
-      filtroBotoes.forEach(b=>b.classList.remove('ativo'));
-      btn.classList.add('ativo');
-
-      produtos.forEach(p=>{
-        const pCat = p.getAttribute('data-cat');
-        if(cat === 'todos' || cat === pCat){
-          p.style.display = 'block';
-        }else{
-          p.style.display = 'none';
-        }
-      });
-    });
-  });
-
-  // CUPOM SIMPLES
-  function aplicarCupom(){
-    const campo = document.getElementById('campoCupom');
-    const msg = document.getElementById('cupomMsg');
-    const valor = campo.value.trim().toUpperCase();
-
-    if(!valor){
-      msg.textContent = "Digite um cupom para aplicar.";
-      msg.style.color = "#b23b3b";
-      return;
+function getCart() {
+    try {
+        const data = localStorage.getItem('renovaar_cart');
+        return data ? JSON.parse(data) : [];
+    } catch(e) {
+        return [];
     }
+}
 
-    if(valor === 'RENOVA10'){
-      msg.textContent = "Cupom aplicado! Desconto de 10% nas próximas compras.";
-      msg.style.color = "#0a7f4f";
-    }else if(valor === 'RENOVA20'){
-      msg.textContent = "Cupom especial! Desconto de 20% no pacote premium.";
-      msg.style.color = "#0a7f4f";
-    }else{
-      msg.textContent = "Cupom inválido ou expirado.";
-      msg.style.color = "#b23b3b";
+function saveCart(cart) {
+    localStorage.setItem('renovaar_cart', JSON.stringify(cart));
+}
+
+function addToCart(id, name, price) {
+    let cart = getCart();
+    const existing = cart.find(item => item.id === id);
+    if (existing) {
+        existing.qty += 1;
+    } else {
+        cart.push({ id, name, price, qty: 1 });
     }
-  }
+    saveCart(cart);
+    alert('Produto adicionado ao carrinho!');
+}
 </script>
 
 </body>
