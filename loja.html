@@ -17,10 +17,10 @@
     .overlay {
         background: rgba(0,0,0,0.70);
         min-height: 100vh;
-        padding: 110px 16px 40px; /* espaço por causa da navbar fixa */
+        padding: 110px 16px 40px;
     }
 
-    /* NAVBAR SUPERIOR (mesma da home/ferramentas/perfil) */
+    /* NAVBAR */
     .navbar {
         position: fixed;
         top: 0;
@@ -45,12 +45,6 @@
         font-size: 13px;
     }
 
-    .navbar button:hover {
-        opacity: 0.9;
-        transform: translateY(-1px);
-    }
-
-    /* BOTÃO CARRINHO NA NAVBAR */
     .cart-btn {
         position: absolute;
         right: 16px;
@@ -76,6 +70,7 @@
         font-weight: bold;
     }
 
+    /* LAYOUT */
     h1 {
         text-align: center;
         margin-top: 0;
@@ -114,26 +109,7 @@
         color: #fff;
         position: relative;
         overflow: hidden;
-        transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
-    }
-
-    .card::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: radial-gradient(circle at top left, rgba(123,246,143,0.22), transparent 60%);
-        opacity: 0;
-        transition: opacity 0.18s ease;
-    }
-
-    .card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0px 8px 18px rgba(0,0,0,0.55);
-        background: rgba(255,255,255,0.16);
-    }
-
-    .card:hover::before {
-        opacity: 1;
+        transition: 0.18s ease;
     }
 
     .card img {
@@ -156,53 +132,22 @@
         color: #04210b;
     }
 
-    .tag-sec {
-        background: rgba(59, 130, 246, 0.92);
-        color: #e5f2ff;
-    }
+    .tag-sec { background: rgba(59, 130, 246, 0.92); }
 
-    .card h2 {
-        margin: 4px 0 4px 0;
-        font-size: 18px;
-    }
+    .card h2 { font-size: 18px; margin: 4px 0; }
 
-    .card p {
-        font-size: 13px;
-        opacity: 0.9;
-        margin-bottom: 4px;
-    }
+    .preco { margin-top: 6px; font-size: 14px; }
 
-    .preco {
-        margin-top: 6px;
-        font-size: 14px;
-    }
+    .antigo { text-decoration: line-through; opacity: 0.7; font-size: 12px; }
+    .novo { color: #7BF68F; font-size: 16px; font-weight: bold; }
 
-    .preco span {
-        margin-right: 6px;
-    }
-
-    .antigo {
-        text-decoration: line-through;
-        opacity: 0.7;
-        font-size: 12px;
-    }
-
-    .novo {
-        font-weight: bold;
-        color: #7BF68F;
-        font-size: 16px;
-    }
-
-    .parcelado {
-        font-size: 11px;
-        opacity: 0.85;
-    }
+    .parcelado { font-size: 12px; opacity: 0.85; }
 
     .btn-row {
         display: flex;
         flex-direction: column;
         gap: 8px;
-        margin-top: 10px;
+        margin-top: 12px;
     }
 
     .btn {
@@ -214,12 +159,6 @@
         font-weight: bold;
         font-size: 14px;
         color: #04210b;
-        transition: filter 0.16s ease, transform 0.16s ease;
-    }
-
-    .btn:hover {
-        filter: brightness(1.05);
-        transform: translateY(-1px);
     }
 
     .btn-sec {
@@ -228,18 +167,12 @@
         color: #7BF68F;
     }
 
-    .info-linha {
-        font-size: 11px;
-        opacity: 0.8;
-        margin-top: 4px;
-    }
-
 </style>
 </head>
 
 <body>
 
-<!-- NAVBAR GLOBAL -->
+<!-- NAVBAR -->
 <div class="navbar">
     <button onclick="window.location.href='index.html'">Home</button>
     <button onclick="window.location.href='ferramentas.html'">Ferramentas</button>
@@ -255,25 +188,21 @@
 <div class="overlay">
     
     <h1>Loja de Produtos Digitais</h1>
-    <p class="subtitle">
-        Recursos práticos para apoiar sua jornada de parar de fumar:
-        áudios, cursos, e-books e materiais motivacionais pensados para o seu dia a dia.
-    </p>
+    <p class="subtitle">Produtos criados para ajudar sua jornada.</p>
 
     <div class="produto-grid">
 
         <!-- PRODUTO 1 -->
         <div class="card">
             <span class="tag">Mais vendido</span>
-            <img src="https://images.unsplash.com/photo-1523942839745-7848f839b661?w=1600" alt="Áudios Anti-Ansiedade">
+            <img src="https://images.unsplash.com/photo-1523942839745-7848f839b661?w=1600">
             <h2>Áudios Anti-Ansiedade Premium</h2>
-            <p>Play rápido para momentos de fissura, com guias de respiração e relaxamento.</p>
+            <p>Guia rápido para controlar fissura em minutos.</p>
             <div class="preco">
                 <span class="antigo">R$ 39,90</span>
                 <span class="novo">R$ 19,90</span>
-                <div class="parcelado">ou 2x de R$ 10,45*</div>
             </div>
-            <p class="info-linha">Inclui 10 áudios guiados + 1 trilha para sono profundo.</p>
+
             <div class="btn-row">
                 <button class="btn" onclick="addToCart('audios','Áudios Anti-Ansiedade Premium',19.90)">Adicionar ao carrinho</button>
                 <button class="btn btn-sec" onclick="window.location.href='produto-audios.html'">Ver detalhes</button>
@@ -283,52 +212,33 @@
         <!-- PRODUTO 2 -->
         <div class="card">
             <span class="tag tag-sec">Novo</span>
-            <img src="https://images.unsplash.com/photo-1527977966376-1c8408f9ebd3?w=1600" alt="E-book 30 Dias">
-            <h2>E-book: Guia Completo 30 Dias</h2>
-            <p>Plano dia a dia para reduzir a vontade de fumar e organizar sua nova rotina.</p>
+            <img src="https://images.unsplash.com/photo-1527977966376-1c8408f9ebd3?w=1600">
+            <h2>E-book 30 Dias</h2>
+            <p>Um plano completo para abandonar o cigarro.</p>
             <div class="preco">
                 <span class="antigo">R$ 49,90</span>
                 <span class="novo">R$ 29,90</span>
-                <div class="parcelado">ou 3x de R$ 10,30*</div>
             </div>
-            <p class="info-linha">Checklists, exercícios escritos e espaço para reflexões diárias.</p>
+
             <div class="btn-row">
-                <button class="btn" onclick="addToCart('ebook','E-book: Guia Completo 30 Dias',29.90)">Adicionar ao carrinho</button>
+                <button class="btn" onclick="addToCart('ebook','E-book 30 Dias',29.90)">Adicionar ao carrinho</button>
                 <button class="btn btn-sec" onclick="window.location.href='produto-ebook.html'">Ver detalhes</button>
             </div>
         </div>
 
         <!-- PRODUTO 3 -->
         <div class="card">
-            <img src="https://images.unsplash.com/photo-1579202673506-ca3ce28943ef?w=1600" alt="Curso Anti-Ansiedade">
-            <h2>Curso Rápido Anti-Ansiedade</h2>
-            <p>15 vídeo-aulas curtas com técnicas de foco, respiração e organização mental.</p>
+            <img src="https://images.unsplash.com/photo-1579202673506-ca3ce28943ef?w=1600">
+            <h2>Curso Anti-Ansiedade</h2>
+            <p>15 aulas com técnicas aprovadas.</p>
             <div class="preco">
                 <span class="antigo">R$ 79,90</span>
                 <span class="novo">R$ 39,90</span>
-                <div class="parcelado">ou 4x de R$ 11,20*</div>
             </div>
-            <p class="info-linha">Acesso por 1 ano, certificado digital e materiais de apoio em PDF.</p>
-            <div class="btn-row">
-                <button class="btn" onclick="addToCart('curso','Curso Rápido Anti-Ansiedade',39.90)">Adicionar ao carrinho</button>
-                <button class="btn btn-sec" onclick="window.location.href='produto-curso.html'">Ver detalhes</button>
-            </div>
-        </div>
 
-        <!-- PRODUTO 4 -->
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=1600" alt="Pacote Motivacional">
-            <h2>Pacote Motivacional Premium</h2>
-            <p>Cartões, frases e desafios diários para manter a motivação sempre em alta.</p>
-            <div class="preco">
-                <span class="antigo">R$ 29,90</span>
-                <span class="novo">R$ 14,90</span>
-                <div class="parcelado">pagamento único via Pix ou cartão.</div>
-            </div>
-            <p class="info-linha">Arquivos prontos para celular e impressão em casa.</p>
             <div class="btn-row">
-                <button class="btn" onclick="addToCart('motivacional','Pacote Motivacional Premium',14.90)">Adicionar ao carrinho</button>
-                <button class="btn btn-sec" onclick="window.location.href='produto-motivacional.html'">Ver detalhes</button>
+                <button class="btn" onclick="addToCart('curso','Curso Anti-Ansiedade',39.90)">Adicionar ao carrinho</button>
+                <button class="btn btn-sec" onclick="window.location.href='produto-curso.html'">Ver detalhes</button>
             </div>
         </div>
 
@@ -336,11 +246,60 @@
 
 </div>
 
+<!-- DEBUG PANEL -->
+<div id="debugPanel" style="
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    max-height: 40%;
+    background: rgba(0,0,0,0.85);
+    color: #7BF68F;
+    font-size: 12px;
+    padding: 10px;
+    overflow-y: auto;
+    border-top: 2px solid #7BF68F;
+    display: none;
+    z-index: 9999;
+"></div>
+
 <script>
+// Painel de debug
+function debug(msg) {
+    const panel = document.getElementById("debugPanel");
+    panel.style.display = "block";
+    panel.innerHTML += "<div>> " + msg + "</div>";
+}
+
+// Abrir com 3 toques
+let tapCount = 0;
+document.addEventListener("click", function(e){
+    if (e.clientX > window.innerWidth * 0.7 &&
+        e.clientY > window.innerHeight * 0.7) {
+        tapCount++;
+        if (tapCount >= 3) {
+            const p = document.getElementById("debugPanel");
+            p.style.display = (p.style.display === "none") ? "block" : "none";
+            tapCount = 0;
+        }
+    } else {
+        tapCount = 0;
+    }
+});
+
+// Captura erros da página
+window.onerror = function(msg, url, line) {
+    debug("ERRO: " + msg + " (linha " + line + ")");
+};
+
+// -----------------------------------------
+// FUNÇÕES DO CARRINHO
+// -----------------------------------------
 function loadCart(){
     try{
         return JSON.parse(localStorage.getItem('renovaar_cart')) || [];
     }catch(e){
+        debug("Erro ao carregar carrinho");
         return [];
     }
 }
@@ -353,26 +312,35 @@ function updateCartCount() {
     const cart = loadCart();
     const total = cart.reduce((sum, item) => sum + (item.qty || 0), 0);
     const el = document.getElementById('cartCount');
-    if (el) {
-        el.textContent = total;
-    }
+    if (el) el.textContent = total;
 }
 
 function addToCart(id, name, price){
+    console.log("addToCart chamado: " + id);
+    debug("addToCart chamado: " + id);
+
     let cart = loadCart();
+    debug("Carrinho atual: " + JSON.stringify(cart));
+
     const existing = cart.find(item => item.id === id);
+
     if(existing){
         existing.qty += 1;
+        debug("Quantidade aumentada: " + existing.qty);
     } else {
         cart.push({id, name, price, qty: 1});
+        debug("Novo item adicionado");
     }
+
     saveCart(cart);
     updateCartCount();
+
     alert('Produto adicionado ao carrinho!');
 }
 
-// Atualiza contador ao carregar a página
+// Atualizar contador ao entrar na página
 updateCartCount();
+
 </script>
 
 </body>
