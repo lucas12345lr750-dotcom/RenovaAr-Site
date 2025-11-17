@@ -1,223 +1,529 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>RenovaAr - Um Dia de Cada Vez</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RenovaAr - Seu apoio para parar de fumar</title>
 
-<style>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background: url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1600") no-repeat center center fixed;
-        background-size: cover;
-        color: #fff;
+      font-family: Arial, sans-serif;
+      background: #f4f7fb;
+      color: #1f3554;
     }
 
-    .overlay {
-        background: rgba(0, 0, 0, 0.55);
-        min-height: 100vh;
-        padding-top: 120px;
+    a {
+      text-decoration: none;
+      color: inherit;
     }
 
-    /* NAVBAR SUPERIOR */
+    /* NAVBAR */
     .navbar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        background: rgba(0, 0, 0, 0.65);
-        padding: 12px;
-        text-align: center;
-        z-index: 999;
-        backdrop-filter: blur(8px);
+      position: sticky;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: #0a1f3c;
+      padding: 10px 12px;
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      z-index: 999;
     }
 
     .navbar button {
-        padding: 8px 16px;
-        background: #7BF68F;
-        color: black;
-        border: none;
-        border-radius: 10px;
-        margin: 0 4px;
-        cursor: pointer;
-        font-weight: bold;
+      padding: 8px 18px;
+      background: #7bf68f;
+      color: #04210b;
+      border: none;
+      border-radius: 999px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 14px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.25);
     }
 
-    /* LOGO */
+    /* CONTAINER GERAL */
+    .page-wrapper {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px 16px 60px;
+    }
+
+    /* LOGO + TÍTULO */
+    .brand-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 10px;
+      margin-bottom: 22px;
+      text-align: center;
+    }
+
     .logo-box {
-        text-align: center;
-        margin-bottom: 5px;
+      background: #ffffff;
+      border-radius: 999px;
+      padding: 10px 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+      margin-bottom: 10px;
     }
 
     .logo-img {
-        width: 120px;
-        height: 120px;
-        object-fit: contain;
-        border-radius: 20px;
-        background: rgba(255,255,255,0.15);
-        padding: 8px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+      height: 52px;
+      width: auto;
+      display: block;
     }
 
-    h1 {
-        text-align: center;
-        font-size: 34px;
-        margin-top: 5px;
-        margin-bottom: 5px;
+    .brand-header h1 {
+      font-size: 30px;
+      font-weight: 700;
+      margin-bottom: 4px;
     }
 
-    .subtitulo {
-        text-align: center;
-        font-size: 14px;
-        opacity: 0.9;
-        margin-bottom: 20px;
+    .brand-header .subtitulo {
+      font-size: 14px;
+      color: #455a7a;
     }
 
-    /* CARTÕES */
+    /* HERO (BANNER PRINCIPAL) */
+    .hero {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 20px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+      margin-bottom: 24px;
+    }
+
+    .hero-text h2 {
+      font-size: 22px;
+      margin-bottom: 8px;
+      color: #0a1f3c;
+    }
+
+    .hero-text p {
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 12px;
+      color: #455a7a;
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .btn-primary {
+      padding: 10px 20px;
+      border-radius: 999px;
+      border: none;
+      background: #0a7f4f;
+      color: #ffffff;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .btn-sec {
+      padding: 10px 20px;
+      border-radius: 999px;
+      border: 1px solid #0a7f4f;
+      background: #ffffff;
+      color: #0a7f4f;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .hero-image {
+      border-radius: 14px;
+      overflow: hidden;
+      max-height: 220px;
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* SEÇÃO PROGRESSO RÁPIDO */
     .card {
-        background: rgba(255, 255, 255, 0.15);
-        border-radius: 15px;
-        padding: 18px;
-        width: 90%;
-        margin: 15px auto;
-        backdrop-filter: blur(10px);
-        color: #fff;
-        box-shadow: 0px 4px 10px rgba(0,0,0,0.4);
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 16px 16px 18px;
+      margin-bottom: 20px;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.06);
+    }
+
+    .card h2 {
+      font-size: 18px;
+      margin-bottom: 8px;
+      color: #0a1f3c;
+    }
+
+    .card p {
+      font-size: 14px;
+      margin-bottom: 4px;
+      color: #455a7a;
+    }
+
+    .progress-numbers {
+      font-size: 16px;
+      font-weight: bold;
+      margin-top: 6px;
     }
 
     /* FRASE MOTIVACIONAL */
     #fraseDia {
-        font-size: 18px;
-        font-style: italic;
-        text-align: center;
-        opacity: 0.9;
+      font-size: 15px;
+      font-style: italic;
+      color: #0a1f3c;
+      margin-top: 6px;
+    }
+
+    /* TEXTO EXPLICATIVO */
+    .texto-destaque h2 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .texto-destaque p {
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 10px;
+    }
+
+    .texto-destaque p strong {
+      font-weight: 700;
+    }
+
+    /* LINHA DO TEMPO DA SAÚDE */
+    .timeline-title {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .timeline-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .timeline-card {
+      background: #f4f8ff;
+      border-radius: 14px;
+      padding: 10px 12px;
+      border: 1px solid #d3e0ff;
+    }
+
+    .timeline-card h3 {
+      font-size: 15px;
+      margin-bottom: 4px;
+      color: #0a1f3c;
+    }
+
+    .timeline-card p {
+      font-size: 13px;
+      color: #455a7a;
+    }
+
+    /* BLOCOS DE DESTAQUE (TESTE, APP, ETC.) */
+    .highlight-block {
+      background: #0a1f3c;
+      color: #ffffff;
+      border-radius: 18px;
+      padding: 18px 16px 20px;
+      text-align: center;
+      margin-bottom: 22px;
+    }
+
+    .highlight-block h2 {
+      font-size: 20px;
+      margin-bottom: 8px;
+      color: #ffffff;
+    }
+
+    .highlight-block p {
+      font-size: 14px;
+      margin-bottom: 12px;
+      color: #e1e8ff;
+    }
+
+    .highlight-block button {
+      background: #7bf68f;
+      color: #04210b;
     }
 
     /* DEPOIMENTOS */
-    .depo-container {
-        width: 95%;
-        margin: auto;
-    }
-
     .depo-title {
-        font-size: 22px;
-        margin-bottom: 10px;
-        font-weight: bold;
+      font-size: 18px;
+      margin-bottom: 10px;
+      font-weight: 700;
+      color: #0a1f3c;
     }
 
     .depo-cards {
-        display: flex;
-        overflow-x: auto;
-        gap: 12px;
-        padding-bottom: 15px;
+      display: flex;
+      overflow-x: auto;
+      gap: 12px;
+      padding-bottom: 10px;
+      margin-bottom: -8px;
     }
 
     .depo-card {
-        min-width: 180px;
-        background: rgba(255,255,255,0.15);
-        border-radius: 12px;
-        padding: 10px;
-        backdrop-filter: blur(8px);
-        text-align: center;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+      min-width: 180px;
+      background: #f5f7ff;
+      border-radius: 14px;
+      padding: 10px;
+      text-align: center;
+      border: 1px solid #dde5ff;
     }
 
     .depo-card img {
-        width: 100%;
-        height: 130px;
-        object-fit: cover;
-        border-radius: 10px;
-        margin-bottom: 8px;
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 6px;
     }
 
     .depo-card p {
-        font-size: 13px;
-        opacity: 0.9;
+      font-size: 13px;
+      color: #455a7a;
     }
 
-</style>
+    /* FOOTER */
+    footer {
+      margin-top: 30px;
+      padding: 16px 12px 30px;
+      text-align: center;
+      font-size: 11px;
+      color: #e5e5e5;
+      background: #0a1f3c;
+    }
 
+    footer .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      line-height: 1.5;
+    }
+
+    footer a {
+      color: #9be7c4;
+      margin: 0 4px;
+      font-size: 11px;
+    }
+
+    /* RESPONSIVO */
+    @media (min-width: 768px) {
+      .hero {
+        flex-direction: row;
+        align-items: center;
+      }
+      .hero-text {
+        flex: 1;
+      }
+      .hero-image {
+        flex: 1;
+        max-height: 260px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<!-- NAVBAR SUPERIOR -->
-<div class="navbar">
+  <!-- NAVBAR SUPERIOR -->
+  <div class="navbar">
     <button onclick="window.location.href='index.html'">Home</button>
     <button onclick="window.location.href='ferramentas.html'">Ferramentas</button>
     <button onclick="window.location.href='loja.html'">Loja</button>
     <button onclick="window.location.href='perfil.html'">Perfil</button>
-</div>
+  </div>
 
-<div class="overlay">
+  <div class="page-wrapper">
 
-    <!-- LOGO -->
-    <div class="logo-box">
-        <img src="logo.png" class="logo-img" alt="Logo RenovaAr">
+    <!-- LOGO + TÍTULO -->
+    <div class="brand-header">
+      <div class="logo-box">
+        <!-- usa o arquivo logo.png que você já colocou no projeto -->
+        <img src="logo.png" alt="Logo RenovaAr" class="logo-img">
+      </div>
+      <h1>RenovaAr</h1>
+      <p class="subtitulo">O suporte que você precisa para parar de fumar — um dia de cada vez.</p>
     </div>
 
-    <h1>RenovaAr</h1>
-    <p class="subtitulo">Sua jornada de liberdade começa aqui. Um dia de cada vez.</p>
+    <!-- HERO / BANNER PRINCIPAL -->
+    <section class="hero">
+      <div class="hero-text">
+        <h2>Comece hoje a sua jornada livre do cigarro</h2>
+        <p>
+          Parar de fumar é um desafio, mas também uma escolha transformadora. 
+          Aqui você encontra apoio, ferramentas e informações para seguir em frente com confiança.
+        </p>
+        <p style="font-weight:bold; color:#0a7f4f;">
+          Descubra quanto você já economizou, acompanhe sua saúde e registre cada conquista.
+        </p>
 
-    <!-- PROGRESSO -->
-    <div class="card">
-        <h2>Seu Progresso</h2>
-        <p style="font-size: 20px;">27 dias sem fumar</p>
-        <p style="font-size: 20px;">R$ 150 economizados</p>
-    </div>
+        <div class="hero-cta">
+          <button class="btn-primary" onclick="window.location.href='ferramentas.html'">
+            Usar ferramentas
+          </button>
+          <button class="btn-sec" onclick="window.location.href='perfil.html'">
+            Ver meu perfil
+          </button>
+        </div>
+      </div>
 
-    <!-- MOTIVAÇÃO -->
-    <div class="card">
-        <h2>Motivação do Momento</h2>
-        <p id="fraseDia">Você é mais forte do que pensa.</p>
-    </div>
+      <div class="hero-image">
+        <!-- imagem estilo profissional: mãos quebrando cigarro -->
+        <img src="https://images.unsplash.com/photo-1512361180813-dc6223be8897?w=1600&auto=format&fit=crop" 
+             alt="Mãos quebrando cigarro ao meio">
+      </div>
+    </section>
+
+    <!-- SEU PROGRESSO -->
+    <section class="card">
+      <h2>Seu Progresso</h2>
+      <p>Resumo rápido da sua jornada até aqui:</p>
+      <p class="progress-numbers">27 dias sem fumar</p>
+      <p class="progress-numbers">R$ 150 economizados</p>
+      <p id="fraseDia">Você é mais forte do que pensa.</p>
+    </section>
+
+    <!-- POR QUE VALE A PENA PARAR DE FUMAR -->
+    <section class="card texto-destaque">
+      <h2>Por que vale a pena parar de fumar?</h2>
+      <p>
+        Parar de fumar é mais do que abandonar um hábito – é escolher uma vida com mais saúde, energia e liberdade.
+        Cada dia longe do cigarro traz benefícios reais e duradouros para o seu corpo e bem-estar.
+      </p>
+      <p>
+        Sabemos que essa decisão não é fácil, mas você não está sozinho. 
+        O RenovaAr foi pensado para oferecer <strong>apoio prático e emocional</strong> em cada etapa da jornada.
+      </p>
+      <p>
+        Use nossas ferramentas para acompanhar seus avanços, registrar emoções, controlar a ansiedade
+        e lembrar o motivo pelo qual você decidiu mudar.
+      </p>
+    </section>
+
+    <!-- LINHA DO TEMPO DA SAÚDE -->
+    <section class="card">
+      <h2 class="timeline-title">Veja como seu corpo começa a se recuperar</h2>
+      <div class="timeline-cards">
+        <div class="timeline-card">
+          <h3>20 minutos</h3>
+          <p>A pressão arterial e os batimentos cardíacos começam a voltar ao normal.</p>
+        </div>
+        <div class="timeline-card">
+          <h3>24 horas</h3>
+          <p>O nível de monóxido de carbono no sangue cai significativamente, melhorando a oxigenação.</p>
+        </div>
+        <div class="timeline-card">
+          <h3>3 meses</h3>
+          <p>A respiração melhora, o fôlego aumenta e atividades do dia a dia ficam mais leves.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOCO: TESTE DE DEPENDÊNCIA / ANSIEDADE -->
+    <section class="highlight-block">
+      <h2>Qual seu grau de dependência?</h2>
+      <p>
+        A nicotina é a principal substância do cigarro que provoca o vício. 
+        Responda a algumas perguntas e descubra seu nível de dependência e ansiedade relacionada ao tabagismo.
+      </p>
+      <button class="btn-primary" onclick="window.location.href='teste-ansiedade.html'">
+        Fazer o teste agora
+      </button>
+    </section>
 
     <!-- DEPOIMENTOS -->
-    <div class="card depo-container">
-        <p class="depo-title">Depoimentos de Pessoas Como Você</p>
-
-        <div class="depo-cards">
-            <div class="depo-card">
-                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600">
-                <p>"Não acreditava que conseguiria. Hoje sinto orgulho de cada dia."</p>
-            </div>
-
-            <div class="depo-card">
-                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600">
-                <p>"O RenovaAr se tornou parte da minha vitória pessoal."</p>
-            </div>
-
-            <div class="depo-card">
-                <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=600">
-                <p>"Minha respiração melhorou e minha autoestima também."</p>
-            </div>
-
-            <div class="depo-card">
-                <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=600">
-                <p>"Se eu consegui, qualquer pessoa consegue."</p>
-            </div>
+    <section class="card">
+      <p class="depo-title">Depoimentos de pessoas como você</p>
+      <div class="depo-cards">
+        <div class="depo-card">
+          <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600" alt="Pessoa 1">
+          <p>"Não acreditava que conseguiria. Hoje sinto orgulho de cada dia sem cigarro."</p>
         </div>
+        <div class="depo-card">
+          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600" alt="Pessoa 2">
+          <p>"Com o RenovaAr, consegui organizar minha jornada e enxergar minhas vitórias."</p>
+        </div>
+        <div class="depo-card">
+          <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=600" alt="Pessoa 3">
+          <p>"Minha respiração melhorou e minha autoestima também."</p>
+        </div>
+        <div class="depo-card">
+          <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=600" alt="Pessoa 4">
+          <p>"Se eu consegui, qualquer pessoa consegue. Um dia de cada vez."</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOCO FINAL: LEMBRETE DE APOIO -->
+    <section class="highlight-block" style="background:#0c396a; margin-bottom:10px;">
+      <h2>Você não precisa passar por isso sozinho</h2>
+      <p>
+        Use o RenovaAr todos os dias: registre seu humor, acompanhe suas metas e volte aqui sempre que precisar de motivação.
+      </p>
+      <button class="btn-sec" onclick="window.location.href='diario.html'">
+        Abrir Diário da Jornada
+      </button>
+    </section>
+
+  </div><!-- /page-wrapper -->
+
+  <!-- RODAPÉ -->
+  <footer>
+    <div class="footer-inner">
+      <div style="margin-bottom:6px;">
+        © 2025 RenovaAr — Todos os direitos reservados.
+      </div>
+      <div style="margin-bottom:6px;">
+        RenovaAr é um projeto de apoio à saúde e bem-estar.
+        Conteúdos exibidos possuem caráter motivacional e informativo.
+      </div>
+      <div style="margin-top:6px;">
+        <a href="politica.html">Política de Privacidade</a> |
+        <a href="termos.html">Termos de Uso</a> |
+        <a href="contato.html">Contato</a>
+      </div>
     </div>
+  </footer>
 
-</div>
+  <script>
+    // FRASES MOTIVACIONAIS ROTATIVAS
+    const frases = [
+      "Você é mais forte do que pensa.",
+      "Cada dia sem fumar é uma vitória.",
+      "Tenha orgulho da sua jornada.",
+      "Respire fundo. Tudo vai ficar bem.",
+      "Seu futuro agradece suas escolhas de hoje."
+    ];
 
-<script>
-// FRASES QUE MUDAM A CADA 1 MINUTO
-const frases = [
-    "Você é mais forte do que pensa.",
-    "Cada dia sem fumar é uma vitória.",
-    "Tenha orgulho da sua jornada.",
-    "Respire fundo. Tudo vai ficar bem.",
-    "Seu futuro agradece suas escolhas de hoje."
-];
+    function trocarFrase() {
+      const alvo = document.getElementById("fraseDia");
+      if (!alvo) return;
+      const indice = Math.floor(Math.random() * frases.length);
+      alvo.textContent = frases[indice];
+    }
 
-function trocarFrase() {
-    document.getElementById("fraseDia").textContent =
-        frases[Math.floor(Math.random() * frases.length)];
-}
-
-setInterval(trocarFrase, 60000);
-</script>
+    // troca a cada 60 segundos
+    setInterval(trocarFrase, 60000);
+  </script>
 
 </body>
 </html>
