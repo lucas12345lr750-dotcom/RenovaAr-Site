@@ -1,77 +1,181 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Loja - RenovaAr</title>
-  <style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>RenovaAr - Loja de Produtos Digitais</title>
+
+<style>
     body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: url("https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=1200") no-repeat center center fixed;
-      background-size: cover;
-      color: white;
-      text-align: center;
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #f4f7fb;
+        color: #0a1f3c;
     }
+
+    .navbar {
+        position: sticky;
+        top: 0;
+        width: 100%;
+        background: #0a1f3c;
+        padding: 12px;
+        text-align: center;
+        z-index: 999;
+    }
+
+    .navbar button {
+        padding: 8px 18px;
+        background: #7bf68f;
+        color: #04210b;
+        border: none;
+        border-radius: 999px;
+        margin: 0 5px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
     .container {
-      background: rgba(0, 0, 0, 0.55);
-      padding: 20px;
-      margin: 20px;
-      border-radius: 18px;
+        max-width: 1100px;
+        margin: auto;
+        padding: 20px 16px 60px;
     }
-    h1 { color: #7bf68f; }
-    .product {
-      background: rgba(255,255,255,0.1);
-      border-radius: 10px;
-      margin: 10px;
-      padding: 10px;
+
+    h1 {
+        text-align: center;
+        margin-top: 15px;
+        font-size: 30px;
+        font-weight: bold;
     }
-    .product img {
-      width: 80%;
-      border-radius: 10px;
+
+    p.subtitulo {
+        text-align: center;
+        color: #455a7a;
+        margin-bottom: 30px;
     }
-    .menu {
-      display: flex;
-      justify-content: space-around;
-      flex-wrap: wrap;
-      margin-top: 25px;
+
+    /* CARD DO PRODUTO */
+    .produto-card {
+        background: #ffffff;
+        border-radius: 18px;
+        padding: 18px;
+        box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+        margin-bottom: 26px;
+        transition: transform .2s ease;
     }
-    .menu button {
-      background: #7bf68f;
-      border: none;
-      padding: 12px 20px;
-      border-radius: 12px;
-      font-weight: bold;
-      color: #000;
-      cursor: pointer;
+
+    .produto-card:hover {
+        transform: scale(1.02);
     }
-  </style>
+
+    .produto-img {
+        width: 100%;
+        height: 220px;
+        border-radius: 14px;
+        object-fit: cover;
+        margin-bottom: 12px;
+    }
+
+    .produto-titulo {
+        font-size: 22px;
+        font-weight: 700;
+        margin-bottom: 8px;
+    }
+
+    .produto-desc {
+        color: #455a7a;
+        font-size: 14px;
+        margin-bottom: 10px;
+        line-height: 1.5;
+    }
+
+    .produto-preco {
+        font-size: 20px;
+        color: #0a7f4f;
+        font-weight: bold;
+        margin-bottom: 14px;
+    }
+
+    .btn-comprar {
+        width: 100%;
+        padding: 12px;
+        background: #0a7f4f;
+        color: #ffffff;
+        border: none;
+        border-radius: 999px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+    }
+
+    .btn-comprar:hover {
+        background: #096b41;
+    }
+
+</style>
 </head>
+
 <body>
-  <div class="container">
-    <h1>Loja</h1>
-    <p>Produtos para ajudar na sua jornada sem fumo.</p>
 
-    <div class="product">
-      <img src="https://images.unsplash.com/photo-1600180758890-6c4a5d1d1d88?w=800" alt="Chá Relaxante">
-      <h3>Chá Relaxante Natural</h3>
-      <p>Ajuda a reduzir o estresse e a ansiedade.</p>
-      <p><strong>R$ 29,90</strong></p>
+<!-- NAVBAR -->
+<div class="navbar">
+    <button onclick="window.location.href='index.html'">Home</button>
+    <button onclick="window.location.href='ferramentas.html'">Ferramentas</button>
+    <button onclick="window.location.href='loja.html'">Loja</button>
+    <button onclick="window.location.href='perfil.html'">Perfil</button>
+</div>
+
+<div class="container">
+
+    <h1>Loja Digital RenovaAr</h1>
+    <p class="subtitulo">Invista na sua jornada. Produtos digitais feitos para ajudar você a vencer o cigarro.</p>
+
+    <!-- PRODUTO 1 -->
+    <div class="produto-card">
+        <img class="produto-img" src="https://images.unsplash.com/photo-1523942839745-7848f839b661?w=1600" />
+        <div class="produto-titulo">Áudios de Relaxamento Avançado</div>
+        <div class="produto-desc">
+            Meditações guiadas para reduzir ansiedade, controlar impulsos e recuperar equilíbrio emocional.
+        </div>
+        <div class="produto-preco">R$ 19,90</div>
+        <button class="btn-comprar">Comprar agora</button>
     </div>
 
-    <div class="product">
-      <img src="https://images.unsplash.com/photo-1581382575285-9f16dfe5d1b1?w=800" alt="Spray Refrescante">
-      <h3>Spray Refrescante</h3>
-      <p>Ideal para momentos de vontade de fumar.</p>
-      <p><strong>R$ 19,90</strong></p>
+    <!-- PRODUTO 2 -->
+    <div class="produto-card">
+        <img class="produto-img" src="https://images.unsplash.com/photo-1527977966376-1c8408f9ebd3?w=1600" />
+        <div class="produto-titulo">E-book: Guia Completo para Parar de Fumar</div>
+        <div class="produto-desc">
+            Estratégias psicológicas, científicas e práticas testadas em pacientes reais.  
+            Aprenda como lidar com recaídas e reforçar sua mentalidade.
+        </div>
+        <div class="produto-preco">R$ 29,90</div>
+        <button class="btn-comprar">Comprar agora</button>
     </div>
 
-    <div class="menu">
-      <button onclick="window.location.href='index.html'">Home</button>
-      <button onclick="window.location.href='ferramentas.html'">Ferramentas</button>
-      <button onclick="window.location.href='loja.html'">Loja</button>
-      <button onclick="window.location.href='perfil.html'">Perfil</button>
+    <!-- PRODUTO 3 -->
+    <div class="produto-card">
+        <img class="produto-img" src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=1600" />
+        <div class="produto-titulo">Pacote Motivacional Premium</div>
+        <div class="produto-desc">
+            Mensagens personalizadas, desafios diários e cartões de vitória para reforçar sua motivação.
+        </div>
+        <div class="produto-preco">R$ 14,90</div>
+        <button class="btn-comprar">Comprar agora</button>
     </div>
-  </div>
+
+    <!-- PRODUTO 4 -->
+    <div class="produto-card">
+        <img class="produto-img" src="https://images.unsplash.com/photo-1579202673506-ca3ce28943ef?w=1600" />
+        <div class="produto-titulo">Curso Rápido: Controle de Ansiedade</div>
+        <div class="produto-desc">
+            Vídeos curtos e objetivos ensinando técnicas de respiração, foco, concentração e manejo emocional.
+        </div>
+        <div class="produto-preco">R$ 39,90</div>
+        <button class="btn-comprar">Comprar agora</button>
+    </div>
+
+</div>
+
 </body>
 </html>
