@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Downloads | RenovaAr</title>
+
+<style>
+    body {
+        margin: 0;
+        background: #000;
+        color: #fff;
+        font-family: Arial;
+    }
+
+    .container {
+        max-width: 900px;
+        padding: 20px;
+        margin: auto;
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .file-box {
+        background: #111;
+        border: 1px solid #333;
+        padding: 15px;
+        border-radius: 12px;
+        margin-bottom: 15px;
+    }
+
+    .file-box button {
+        margin-top: 8px;
+        padding: 8px 14px;
+        background: #7BF68F;
+        color: #04210b;
+        border: none;
+        font-weight: bold;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+
+    .blocked {
+        opacity: 0.4;
+        pointer-events: none;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Downloads Liberados</h1>
+
+    <div class="file-box">
+        <p>meditacao-relaxante.mp3</p>
+        <button id="d1">Baixar</button>
+    </div>
+
+    <div class="file-box">
+        <p>respiracao-guiada.mp3</p>
+        <button id="d2">Baixar</button>
+    </div>
+
+    <div class="file-box">
+        <p>controle-de-ansiedade.mp3</p>
+        <button id="d3">Baixar</button>
+    </div>
+
+    <div class="file-box">
+        <p>sono-profundo.mp3</p>
+        <button id="d4">Baixar</button>
+    </div>
+
+    <div class="file-box">
+        <p>pacote-premium.zip</p>
+        <button id="d5">Baixar</button>
+    </div>
+
+</div>
+
+<script>
+// Proteção
+const comprado = localStorage.getItem("renovaar_premium_audios");
+
+if (!comprado) {
+    document.querySelectorAll("button").forEach(btn => {
+        btn.classList.add("blocked");
+        btn.innerText = "Bloqueado — finalize o pagamento";
+    });
+} else {
+    // aqui você coloca os links reais dos arquivos
+    document.getElementById("d1").onclick = ()=> window.location.href = "/audios/meditacao-relaxante.mp3";
+    document.getElementById("d2").onclick = ()=> window.location.href = "/audios/respiracao-guiada.mp3";
+    document.getElementById("d3").onclick = ()=> window.location.href = "/audios/controle-de-ansiedade.mp3";
+    document.getElementById("d4").onclick = ()=> window.location.href = "/audios/sono-profundo.mp3";
+    document.getElementById("d5").onclick = ()=> window.location.href = "/audios/pacote-premium.zip";
+}
+</script>
+
+</body>
+</html>
