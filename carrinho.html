@@ -9,121 +9,107 @@
     body {
         margin: 0;
         font-family: Arial, sans-serif;
-        background: url("https://images.unsplash.com/photo-1520333789090-1afc82db536a?w=1600") no-repeat center center fixed;
-        background-size: cover;
+        background: #0f1418;
         color: #fff;
     }
 
     .overlay {
-        background: rgba(0,0,0,0.70);
-        min-height: 100vh;
-        padding: 25px 16px 60px;
-    }
-
-    h1 {
-        text-align: center;
-        font-size: 30px;
-        margin-bottom: 20px;
-    }
-
-    /* VOLTAR E HOME */
-    .top-bar {
+        padding: 120px 16px 40px;
         max-width: 900px;
-        margin: 0 auto;
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 20px;
+        margin: auto;
     }
 
-    .top-bar button {
-        padding: 8px 14px;
-        border-radius: 999px;
-        border: none;
+    .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.65);
+        padding: 12px;
+        text-align: center;
+        z-index: 999;
+        backdrop-filter: blur(8px);
+    }
+
+    .navbar button {
+        padding: 8px 16px;
         background: #7BF68F;
         color: #04210b;
-        font-weight: bold;
+        border: none;
+        border-radius: 999px;
+        margin: 0 4px;
         cursor: pointer;
+        font-weight: bold;
         font-size: 13px;
     }
 
-    /* ÁREA DO CARRINHO */
-    .cart-box {
-        max-width: 900px;
-        margin: auto;
-        background: rgba(255,255,255,0.12);
-        backdrop-filter: blur(8px);
-        padding: 20px;
-        border-radius: 15px;
-        box-shadow: 0px 4px 12px rgba(0,0,0,0.4);
+    h1 {
+        font-size: 28px;
+        margin-bottom: 20px;
+        text-align: center;
     }
 
     .item {
         background: rgba(255,255,255,0.10);
-        padding: 14px;
+        padding: 16px;
         border-radius: 12px;
-        margin-bottom: 12px;
+        margin-bottom: 15px;
     }
 
-    .item h3 {
-        margin: 0;
-        font-size: 17px;
+    .item h2 {
+        margin: 0 0 6px 0;
+        font-size: 18px;
     }
 
     .item p {
-        margin: 5px 0;
-        opacity: 0.9;
         font-size: 14px;
+        opacity: 0.9;
     }
 
-    .remove-btn {
-        padding: 7px 12px;
-        background: #ff6868;
+    .btn-remove {
+        margin-top: 8px;
+        padding: 8px 14px;
+        background: #ff4d4d;
         border: none;
         border-radius: 8px;
-        font-weight: bold;
+        color: #fff;
         cursor: pointer;
-        color: white;
-        margin-top: 8px;
-    }
-
-    .total-area {
-        margin-top: 20px;
-        font-size: 20px;
-        text-align: right;
         font-weight: bold;
     }
 
-    .finish-btn {
-        width: 100%;
+    .checkout {
+        margin-top: 25px;
         padding: 14px;
-        margin-top: 20px;
         background: #7BF68F;
-        border: none;
-        border-radius: 12px;
-        font-size: 18px;
-        font-weight: bold;
-        cursor: pointer;
         color: #04210b;
+        font-size: 18px;
+        border-radius: 10px;
+        cursor: pointer;
+        border: none;
+        width: 100%;
+        font-weight: bold;
     }
-
 </style>
 </head>
 
 <body>
 
+<!-- NAVBAR -->
+<div class="navbar">
+    <button onclick="window.location.href='index.html'">Home</button>
+    <button onclick="window.location.href='ferramentas.html'">Ferramentas</button>
+    <button onclick="window.location.href='loja.html'">Loja</button>
+    <button onclick="window.location.href='perfil.html'">Perfil</button>
+</div>
+
 <div class="overlay">
-
-    <div class="top-bar">
-        <button onclick="window.location.href='loja.html'">⬅ Voltar à Loja</button>
-        <button onclick="window.location.href='index.html'">🏠 Home</button>
-    </div>
-
     <h1>Seu Carrinho</h1>
 
-    <div class="cart-box" id="cartArea">
-        <!-- Conteúdo gerado pelo script -->
-    </div>
+    <div id="cartItems"></div>
 
+    <button id="checkoutBtn" class="checkout" style="display:none;">
+        Finalizar Compra
+    </button>
 </div>
 
 <script>
@@ -143,51 +129,45 @@ function removeItem(id){
     let cart = loadCart();
     cart = cart.filter(item => item.id !== id);
     saveCart(cart);
-    renderCart();
+    loadCartItems();
 }
 
-function renderCart(){
+function loadCartItems(){
     const cart = loadCart();
-    const area = document.getElementById("cartArea");
+    const container = document.getElementById('cartItems');
+    const checkout = document.getElementById('checkoutBtn');
+
+    container.innerHTML = "";
 
     if(cart.length === 0){
-        area.innerHTML = "<p style='text-align:center; font-size:18px;'>Seu carrinho está vazio 😕</p>";
+        container.innerHTML = `<p style="text-align:center;opacity:0.8;font-size:16px;">
+            Seu carrinho está vazio.
+        </p>`;
+        checkout.style.display = "none";
         return;
     }
 
-    let html = "";
-    let total = 0;
+    checkout.style.display = "block";
 
     cart.forEach(item => {
-        const subtotal = item.price * item.qty;
-        total += subtotal;
+        const div = document.createElement("div");
+        div.className = "item";
 
-        html += `
-            <div class="item">
-                <h3>${item.name}</h3>
-                <p>Preço: R$ ${item.price.toFixed(2)}</p>
-                <p>Quantidade: ${item.qty}</p>
-                <p>Subtotal: <b>R$ ${subtotal.toFixed(2)}</b></p>
-                <button class="remove-btn" onclick="removeItem('${item.id}')">Remover</button>
-            </div>
+        div.innerHTML = `
+            <h2>${item.name}</h2>
+            <p>Quantidade: ${item.qty}</p>
+            <p>Preço unitário: R$ ${item.price.toFixed(2)}</p>
+            <p>Total: <strong>R$ ${(item.qty * item.price).toFixed(2)}</strong></p>
+            <button class="btn-remove" onclick="removeItem('${item.id}')">
+                Remover
+            </button>
         `;
+
+        container.appendChild(div);
     });
-
-    html += `
-        <div class="total-area">
-            Total: R$ ${total.toFixed(2)}
-        </div>
-        <button class="finish-btn" onclick="finalizarCompra()">Finalizar Compra</button>
-    `;
-
-    area.innerHTML = html;
 }
 
-function finalizarCompra(){
-    alert("Em breve: pagamento integrado! 🚀");
-}
-
-renderCart();
+loadCartItems();
 </script>
 
 </body>
