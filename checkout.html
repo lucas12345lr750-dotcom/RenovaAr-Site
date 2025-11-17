@@ -19,7 +19,10 @@
         padding:20px;
     }
 
-    h1{ text-align:center; }
+    h1{ 
+        text-align:center; 
+        margin-top:10px;
+    }
 
     .box{
         background:rgba(255,255,255,0.08);
@@ -27,6 +30,16 @@
         border-radius:14px;
         margin-top:20px;
         backdrop-filter:blur(10px);
+    }
+
+    .box h2{
+        margin-top:0;
+        margin-bottom:8px;
+    }
+
+    .total{
+        font-size:22px;
+        margin-top:5px;
     }
 
     .pay-btn{
@@ -48,10 +61,26 @@
         background:#111;
         color:#7BF68F;
         border-radius:10px;
-        font-size:14px;
+        font-size:13px;
         word-break:break-all;
     }
 
+    .small{
+        font-size:12px;
+        opacity:0.8;
+        margin-top:6px;
+    }
+
+    .back-btn{
+        margin-top:10px;
+        padding:8px 14px;
+        background:transparent;
+        border-radius:999px;
+        border:1px solid #7BF68F;
+        color:#7BF68F;
+        font-size:13px;
+        cursor:pointer;
+    }
 </style>
 </head>
 
@@ -59,29 +88,38 @@
 
 <div class="container">
 
-<h1>Checkout</h1>
+    <button class="back-btn" onclick="window.location.href='carrinho.html'">⬅ Voltar ao carrinho</button>
 
-<div class="box">
-    <h2>Total da compra:</h2>
-    <p style="font-size:22px;">R$ <span id="total"></span></p>
-</div>
+    <h1>Checkout</h1>
 
-<div class="box">
-    <h2>Formas de pagamento</h2>
-
-    <button class="pay-btn" onclick="gerarPix()">Pagar com Pix</button>
-
-    <div id="pixArea" style="display:none;">
-        <h3>Código Pix (copia e cola):</h3>
-        <div id="pixCode" class="pix-code"></div>
-
-        <button class="pay-btn" onclick="finalizarCompra()">Confirmar pagamento</button>
+    <div class="box">
+        <h2>Total da compra</h2>
+        <p class="total">R$ <span id="total"></span></p>
+        <p class="small">O valor será usado automaticamente no Pix copia e cola.</p>
     </div>
-</div>
+
+    <div class="box">
+        <h2>Pagamento via Pix</h2>
+        <p class="small">Clique no botão abaixo para gerar o código Pix copia e cola com o valor exato da sua compra.</p>
+
+        <button class="pay-btn" onclick="gerarPix()">Gerar código Pix</button>
+
+        <div id="pixArea" style="display:none;">
+            <h3 style="margin-top:16px;">Código Pix (copia e cola)</h3>
+            <div id="pixCode" class="pix-code"></div>
+
+            <p class="small">
+                Copie o código acima, abra o app do seu banco, escolha pagar com Pix &gt; Pix copia e cola, cole o código e confirme.
+            </p>
+
+            <button class="pay-btn" onclick="finalizarCompra()">Já paguei, finalizar</button>
+        </div>
+    </div>
 
 </div>
 
 <script>
+// ---------- Carrinho e total ----------
 function loadCart(){
     try{
         return JSON.parse(localStorage.getItem("renovaar_cart")) || [];
@@ -97,20 +135,102 @@ function calcularTotal(){
     return total;
 }
 
-document.getElementById("total").textContent = calcularTotal().toFixed(2).replace('.', ',');
+const total = calcularTotal();
+document.getElementById("total").textContent = total.toFixed(2).replace('.', ',');
+
+// ---------- Geração de Pix EMV ----------
+function emvField(id, value){
+    const len = value.length.toString().padStart(2,'0');
+    return id + len + value;
+}
+
+// CRC16 para Pix (polinômio 0x1021)
+function crc16(str) {
+    let crc = 0xFFFF;
+    for (let i = 0; i < str.length; i++) {
+        crc ^= (str.charCodeAt(i) << 8);
+        for (let j = 0; j < 8; j++) {
+            if ((crc & 0x8000) !== 0) {
+                crc = (crc << 1) ^ 0x1021;
+            } else {
+                crc = (crc << 1);
+            }
+            crc &= 0xFFFF;
+        }
+    }
+    return crc;
+}
+
+function gerarPayloadPix(valor){
+    // Configure aqui seus dados reais
+    const chavePix = "449418cf-8cde-4085-bf3c-fc578002990b"; // sua chave aleatória
+    const nomeRecebedor = "RENOVAAR";                 // coloque o nome igual no banco (até 25 caracteres)
+    const cidadeRecebedor = "SAO PAULO";              // cidade em MAIÚSCULAS, sem acento
+    const txid = "RENOVAARPIX";                       // identificador da transação
+
+    // Campos fixos Pix
+    let payload = "";
+    payload += emvField("00", "01"); // Payload Format Indicator
+    payload += emvField("01", "12"); // Point of Initiation Method (12 = dinâmico, 11 = estático)
+
+    // Merchant Account Information (GUI + chave)
+    const gui = emvField("00", "br.gov.bcb.pix");
+    const key = emvField("01", chavePix);
+    const desc = ""; // opcional (ID "02")
+    const merchantAccount = gui + key + desc;
+    payload += emvField("26", merchantAccount);
+
+    payload += emvField("52", "0000"); // Merchant Category Code
+    payload += emvField("53", "986");  // Currency (986 = BRL)
+
+    const valorStr = valor.toFixed(2); // exemplo: "39.90"
+    payload += emvField("54", valorStr); // amount
+
+    payload += emvField("58", "BR");                   // País
+    payload += emvField("59", nomeRecebedor);          // Nome
+    payload += emvField("60", cidadeRecebedor);        // Cidade
+
+    // Additional Data Field Template (TXID)
+    const addData = emvField("05", txid);
+    payload += emvField("62", addData);
+
+    // CRC16
+    const toCrc = payload + "6304";
+    const crc = crc16(toCrc).toString(16).toUpperCase().padStart(4,"0");
+    payload += "63" + "04" + crc;
+
+    return payload;
+}
 
 function gerarPix(){
-    const total = calcularTotal().toFixed(2);
-    const chave = "0002012658BR.GOV.BCB.PIX***renovaar" + Math.floor(Math.random()*999999);
-    const code = `Pagamento RenovaAr | Total R$ ${total} | CHAVE: ${chave}`;
+    if (total <= 0){
+        alert("Seu carrinho está vazio ou o total é zero.");
+        return;
+    }
 
-    document.getElementById("pixCode").textContent = code;
-    document.getElementById("pixArea").style.display = "block";
+    const payload = gerarPayloadPix(total);
+    const codeEl = document.getElementById("pixCode");
+    const area = document.getElementById("pixArea");
+
+    codeEl.textContent = payload;
+    area.style.display = "block";
+
+    // tenta copiar automaticamente
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(payload).then(() => {
+            alert("Código Pix gerado e copiado! Agora cole no app do seu banco.");
+        }).catch(() => {
+            alert("Código Pix gerado! Se não copiou automaticamente, copie manualmente.");
+        });
+    } else {
+        alert("Código Pix gerado! Copie manualmente e use no seu app bancário.");
+    }
 }
 
 function finalizarCompra(){
+    // aqui você pode pedir para o usuário enviar comprovante depois, se quiser
     localStorage.removeItem("renovaar_cart");
-    alert("Pagamento confirmado! Obrigado pela compra ❤️");
+    alert("Pagamento concluído (confirme pelo seu banco). Obrigado pela compra! ❤️");
     window.location.href = "index.html";
 }
 </script>
