@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout | RenovaAr</title>
+
+<style>
+    body{
+        margin:0;
+        font-family:Arial, sans-serif;
+        background:#0d0d0d;
+        color:white;
+    }
+
+    .container{
+        max-width:900px;
+        margin:auto;
+        padding:20px;
+    }
+
+    h1{ text-align:center; }
+
+    .box{
+        background:rgba(255,255,255,0.08);
+        padding:20px;
+        border-radius:14px;
+        margin-top:20px;
+        backdrop-filter:blur(10px);
+    }
+
+    .pay-btn{
+        width:100%;
+        padding:14px;
+        margin-top:20px;
+        font-size:18px;
+        background:#7BF68F;
+        border:none;
+        border-radius:10px;
+        color:#04210b;
+        font-weight:bold;
+        cursor:pointer;
+    }
+
+    .pix-code{
+        margin-top:10px;
+        padding:10px;
+        background:#111;
+        color:#7BF68F;
+        border-radius:10px;
+        font-size:14px;
+        word-break:break-all;
+    }
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Checkout</h1>
+
+<div class="box">
+    <h2>Total da compra:</h2>
+    <p style="font-size:22px;">R$ <span id="total"></span></p>
+</div>
+
+<div class="box">
+    <h2>Formas de pagamento</h2>
+
+    <button class="pay-btn" onclick="gerarPix()">Pagar com Pix</button>
+
+    <div id="pixArea" style="display:none;">
+        <h3>Código Pix (copia e cola):</h3>
+        <div id="pixCode" class="pix-code"></div>
+
+        <button class="pay-btn" onclick="finalizarCompra()">Confirmar pagamento</button>
+    </div>
+</div>
+
+</div>
+
+<script>
+function loadCart(){
+    try{
+        return JSON.parse(localStorage.getItem("renovaar_cart")) || [];
+    }catch{
+        return [];
+    }
+}
+
+function calcularTotal(){
+    const cart = loadCart();
+    let total = 0;
+    cart.forEach(item => total += item.price * item.qty);
+    return total;
+}
+
+document.getElementById("total").textContent = calcularTotal().toFixed(2).replace('.', ',');
+
+function gerarPix(){
+    const total = calcularTotal().toFixed(2);
+    const chave = "0002012658BR.GOV.BCB.PIX***renovaar" + Math.floor(Math.random()*999999);
+    const code = `Pagamento RenovaAr | Total R$ ${total} | CHAVE: ${chave}`;
+
+    document.getElementById("pixCode").textContent = code;
+    document.getElementById("pixArea").style.display = "block";
+}
+
+function finalizarCompra(){
+    localStorage.removeItem("renovaar_cart");
+    alert("Pagamento confirmado! Obrigado pela compra ❤️");
+    window.location.href = "index.html";
+}
+</script>
+
+</body>
+</html>
