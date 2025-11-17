@@ -9,22 +9,22 @@
     body {
         margin: 0;
         font-family: Arial, sans-serif;
-        background: #0f1418;
+        background: url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1600") no-repeat center center fixed;
+        background-size: cover;
         color: #fff;
     }
 
     .overlay {
-        padding: 120px 16px 40px;
-        max-width: 900px;
-        margin: auto;
+        background: rgba(0,0,0,0.70);
+        min-height: 100vh;
+        padding: 110px 16px 40px;
     }
 
     .navbar {
         position: fixed;
-        top: 0;
-        left: 0;
+        top: 0; left: 0;
         width: 100%;
-        background: rgba(0, 0, 0, 0.65);
+        background: rgba(0,0,0,0.65);
         padding: 12px;
         text-align: center;
         z-index: 999;
@@ -34,59 +34,76 @@
     .navbar button {
         padding: 8px 16px;
         background: #7BF68F;
-        color: #04210b;
         border: none;
         border-radius: 999px;
         margin: 0 4px;
         cursor: pointer;
         font-weight: bold;
-        font-size: 13px;
+        color: #04210b;
     }
 
     h1 {
-        font-size: 28px;
-        margin-bottom: 20px;
         text-align: center;
+        font-size: 30px;
+        margin-top: 10px;
+    }
+
+    .cart-container {
+        max-width: 900px;
+        margin: 20px auto;
     }
 
     .item {
-        background: rgba(255,255,255,0.10);
-        padding: 16px;
+        background: rgba(255,255,255,0.12);
+        padding: 14px;
         border-radius: 12px;
-        margin-bottom: 15px;
+        backdrop-filter: blur(10px);
+        margin-bottom: 14px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
 
-    .item h2 {
-        margin: 0 0 6px 0;
-        font-size: 18px;
-    }
-
-    .item p {
-        font-size: 14px;
-        opacity: 0.9;
-    }
-
-    .btn-remove {
-        margin-top: 8px;
-        padding: 8px 14px;
-        background: #ff4d4d;
-        border: none;
-        border-radius: 8px;
-        color: #fff;
-        cursor: pointer;
+    .item-name {
+        font-size: 16px;
         font-weight: bold;
     }
 
-    .checkout {
-        margin-top: 25px;
+    .qty-controls {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .qty-controls button {
+        background: #7BF68F;
+        border: none;
+        padding: 4px 10px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: bold;
+        color: #04210b;
+    }
+
+    .total-box {
+        background: rgba(0,0,0,0.50);
+        padding: 18px;
+        border-radius: 14px;
+        margin-top: 20px;
+        font-size: 18px;
+        text-align: center;
+    }
+
+    .checkout-btn {
+        margin-top: 15px;
+        width: 100%;
         padding: 14px;
+        font-size: 18px;
         background: #7BF68F;
         color: #04210b;
-        font-size: 18px;
-        border-radius: 10px;
-        cursor: pointer;
         border: none;
-        width: 100%;
+        border-radius: 14px;
+        cursor: pointer;
         font-weight: bold;
     }
 </style>
@@ -94,10 +111,8 @@
 
 <body>
 
-<!-- NAVBAR -->
 <div class="navbar">
     <button onclick="window.location.href='index.html'">Home</button>
-    <button onclick="window.location.href='ferramentas.html'">Ferramentas</button>
     <button onclick="window.location.href='loja.html'">Loja</button>
     <button onclick="window.location.href='perfil.html'">Perfil</button>
 </div>
@@ -105,69 +120,75 @@
 <div class="overlay">
     <h1>Seu Carrinho</h1>
 
-    <div id="cartItems"></div>
+    <div class="cart-container" id="cartItems"></div>
 
-    <button id="checkoutBtn" class="checkout" style="display:none;">
-        Finalizar Compra
-    </button>
+    <div class="total-box">
+        Total: R$ <span id="totalValue">0,00</span>
+    </div>
+
+    <button class="checkout-btn" onclick="window.location.href='checkout.html'">Finalizar compra</button>
 </div>
 
 <script>
-function loadCart(){
-    try{
-        return JSON.parse(localStorage.getItem('renovaar_cart')) || [];
-    }catch(e){
+function loadCart() {
+    try {
+        return JSON.parse(localStorage.getItem("renovaar_cart")) || [];
+    } catch {
         return [];
     }
 }
 
-function saveCart(cart){
-    localStorage.setItem('renovaar_cart', JSON.stringify(cart));
+function saveCart(cart) {
+    localStorage.setItem("renovaar_cart", JSON.stringify(cart));
 }
 
-function removeItem(id){
-    let cart = loadCart();
-    cart = cart.filter(item => item.id !== id);
-    saveCart(cart);
-    loadCartItems();
-}
-
-function loadCartItems(){
+function updateCart() {
     const cart = loadCart();
-    const container = document.getElementById('cartItems');
-    const checkout = document.getElementById('checkoutBtn');
+    const container = document.getElementById("cartItems");
+    const totalEl = document.getElementById("totalValue");
 
     container.innerHTML = "";
-
-    if(cart.length === 0){
-        container.innerHTML = `<p style="text-align:center;opacity:0.8;font-size:16px;">
-            Seu carrinho está vazio.
-        </p>`;
-        checkout.style.display = "none";
-        return;
-    }
-
-    checkout.style.display = "block";
+    let total = 0;
 
     cart.forEach(item => {
-        const div = document.createElement("div");
-        div.className = "item";
+        total += item.price * item.qty;
 
-        div.innerHTML = `
-            <h2>${item.name}</h2>
-            <p>Quantidade: ${item.qty}</p>
-            <p>Preço unitário: R$ ${item.price.toFixed(2)}</p>
-            <p>Total: <strong>R$ ${(item.qty * item.price).toFixed(2)}</strong></p>
-            <button class="btn-remove" onclick="removeItem('${item.id}')">
-                Remover
-            </button>
+        container.innerHTML += `
+            <div class="item">
+                <div>
+                    <div class="item-name">${item.name}</div>
+                    <div>R$ ${item.price.toFixed(2)}</div>
+                </div>
+
+                <div class="qty-controls">
+                    <button onclick="changeQty('${item.id}', -1)">-</button>
+                    <span>${item.qty}</span>
+                    <button onclick="changeQty('${item.id}', 1)">+</button>
+                </div>
+            </div>
         `;
-
-        container.appendChild(div);
     });
+
+    totalEl.textContent = total.toFixed(2).replace('.', ',');
 }
 
-loadCartItems();
+function changeQty(id, change) {
+    let cart = loadCart();
+
+    const item = cart.find(i => i.id === id);
+    if (!item) return;
+
+    item.qty += change;
+
+    if (item.qty <= 0) {
+        cart = cart.filter(i => i.id !== id);
+    }
+
+    saveCart(cart);
+    updateCart();
+}
+
+updateCart();
 </script>
 
 </body>
