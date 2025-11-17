@@ -1,204 +1,230 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Teste de Ansiedade - RenovaAr</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Teste de Ansiedade – RenovaAr</title>
 
 <style>
-  body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: url("https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1600") no-repeat center center fixed;
-    background-size: cover;
-    color: #fff;
-  }
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #f4f7fb;
+        color: #0a1f3c;
+    }
 
-  .overlay {
-    background: rgba(0, 0, 0, 0.55);
-    padding: 25px;
-    min-height: 100vh;
-  }
+    /* NAVBAR */
+    .navbar {
+        position: sticky;
+        top: 0;
+        width: 100%;
+        background: #0a1f3c;
+        padding: 12px;
+        text-align: center;
+        z-index: 999;
+    }
+    .navbar button {
+        padding: 8px 18px;
+        background: #7bf68f;
+        color: #04210b;
+        border: none;
+        border-radius: 999px;
+        margin: 0 5px;
+        font-weight: bold;
+        cursor: pointer;
+        font-size: 14px;
+    }
 
-  h1 {
-    text-align: center;
-    font-size: 32px;
-    color: #7BF68F;
-    margin-bottom: 10px;
-  }
+    .container {
+        max-width: 900px;
+        margin: auto;
+        padding: 20px 16px 50px;
+    }
 
-  .descricao {
-    text-align: center;
-    font-size: 16px;
-    opacity: 0.9;
-    margin-bottom: 25px;
-  }
+    h1 {
+        text-align: center;
+        font-size: 28px;
+        margin-top: 10px;
+        font-weight: bold;
+    }
 
-  .card {
-    background: rgba(255, 255, 255, 0.13);
-    padding: 18px;
-    border-radius: 14px;
-    margin-bottom: 20px;
-    backdrop-filter: blur(4px);
-    border: 1px solid rgba(255,255,255,0.1);
-  }
+    .subtitulo {
+        text-align: center;
+        color: #455a7a;
+        margin-bottom: 20px;
+        font-size: 14px;
+    }
 
-  .card p {
-    margin: 0 0 10px;
-    font-size: 16px;
-  }
+    /* CARD */
+    .card {
+        background: #ffffff;
+        border-radius: 18px;
+        padding: 20px;
+        margin-bottom: 22px;
+        box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+    }
 
-  .opcao {
-    margin-top: 10px;
-  }
+    .pergunta {
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 12px;
+    }
 
-  .opcao label {
-    display: block;
-    margin-bottom: 6px;
-    font-size: 15px;
-  }
+    /* SLIDER */
+    input[type="range"] {
+        width: 100%;
+        appearance: none;
+        height: 8px;
+        border-radius: 5px;
+        background: #cfd8ea;
+        outline: none;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+        appearance: none;
+        width: 22px;
+        height: 22px;
+        background: #0a7f4f;
+        border-radius: 50%;
+        cursor: pointer;
+    }
 
-  button {
-    width: 100%;
-    padding: 12px;
-    background: #7BF68F;
-    color: black;
-    border: none;
-    font-weight: bold;
-    border-radius: 12px;
-    cursor: pointer;
-    margin-top: 15px;
-  }
+    .valor {
+        text-align: right;
+        font-size: 14px;
+        font-weight: bold;
+        color: #0a7f4f;
+        margin-top: 6px;
+    }
 
-  button:hover {
-    background: #6de283;
-  }
+    /* BOTÃO FINALIZAR */
+    .btn-finalizar {
+        width: 100%;
+        padding: 14px;
+        border-radius: 999px;
+        border: none;
+        background: #0a7f4f;
+        color: white;
+        font-weight: bold;
+        font-size: 16px;
+        cursor: pointer;
+        margin-top: 20px;
+    }
 
-  #resultado {
-    margin-top: 20px;
-    padding: 15px;
-    background: rgba(0,0,0,0.4);
-    border-radius: 12px;
-    text-align: center;
-    display: none;
-  }
+    /* RESULTADO */
+    .resultado-card {
+        background: #ffffff;
+        border-radius: 18px;
+        padding: 20px;
+        margin-top: 24px;
+        box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+        display: none;
+    }
+    .resultado-titulo {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+    .resultado-desc {
+        font-size: 15px;
+        line-height: 1.5;
+        color: #455a7a;
+    }
 
-  .menu {
-    margin-top: 40px;
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-  }
-
-  .menu button {
-    width: auto;
-    padding: 10px 20px;
-  }
+    /* Link Premium */
+    .premium-btn {
+        display: block;
+        margin: 20px auto 0;
+        text-align: center;
+        width: 100%;
+        padding: 12px;
+        background: #ffc107;
+        border-radius: 999px;
+        font-weight: bold;
+        color: #402d01;
+        text-decoration: none;
+        font-size: 16px;
+    }
 
 </style>
 </head>
-
 <body>
 
-<div class="overlay">
-
-  <h1>Teste de Ansiedade</h1>
-  <p class="descricao">Responda as perguntas abaixo e descubra seu nível atual de ansiedade.</p>
-
-  <!-- PERGUNTA 1 -->
-  <div class="card">
-    <p>1. Nas últimas 24 horas, você sentiu seu coração acelerar sem motivo aparente?</p>
-    <div class="opcao">
-      <label><input type="radio" name="p1" value="0"> Nunca</label>
-      <label><input type="radio" name="p1" value="1"> Às vezes</label>
-      <label><input type="radio" name="p1" value="2"> Frequentemente</label>
-    </div>
-  </div>
-
-  <!-- PERGUNTA 2 -->
-  <div class="card">
-    <p>2. Você teve momentos de preocupação intensa ou sensação de perigo iminente?</p>
-    <div class="opcao">
-      <label><input type="radio" name="p2" value="0"> Não</label>
-      <label><input type="radio" name="p2" value="1"> Um pouco</label>
-      <label><input type="radio" name="p2" value="2"> Sim, bastante</label>
-    </div>
-  </div>
-
-  <!-- PERGUNTA 3 -->
-  <div class="card">
-    <p>3. Teve dificuldade para relaxar ou desligar a mente?</p>
-    <div class="opcao">
-      <label><input type="radio" name="p3" value="0"> Não</label>
-      <label><input type="radio" name="p3" value="1"> Às vezes</label>
-      <label><input type="radio" name="p3" value="2"> Sim, muita dificuldade</label>
-    </div>
-  </div>
-
-  <!-- PERGUNTA 4 -->
-  <div class="card">
-    <p>4. Sentiu tensão no corpo, como ombros duros ou mandíbula travada?</p>
-    <div class="opcao">
-      <label><input type="radio" name="p4" value="0"> Nunca</label>
-      <label><input type="radio" name="p4" value="1"> Às vezes</label>
-      <label><input type="radio" name="p4" value="2"> Frequentemente</label>
-    </div>
-  </div>
-
-  <!-- PERGUNTA 5 -->
-  <div class="card">
-    <p>5. Nos últimos dias, teve sensação de falta de ar ou respiração curta?</p>
-    <div class="opcao">
-      <label><input type="radio" name="p5" value="0"> Não</label>
-      <label><input type="radio" name="p5" value="1"> Às vezes</label>
-      <label><input type="radio" name="p5" value="2"> Sim</label>
-    </div>
-  </div>
-
-  <button onclick="calcular()">Ver Resultado</button>
-
-  <div id="resultado"></div>
-
-  <!-- MENU -->
-  <div class="menu">
+<!-- NAVBAR -->
+<div class="navbar">
     <button onclick="window.location.href='index.html'">Home</button>
     <button onclick="window.location.href='ferramentas.html'">Ferramentas</button>
     <button onclick="window.location.href='loja.html'">Loja</button>
     <button onclick="window.location.href='perfil.html'">Perfil</button>
-  </div>
+</div>
+
+<div class="container">
+
+    <h1>Teste de Ansiedade</h1>
+    <p class="subtitulo">Avalie seu nível atual de ansiedade usando este teste rápido e profissional.</p>
+
+    <!-- PERGUNTAS -->
+    <div class="card">
+        <div class="pergunta">1. Como você avalia sua tensão no momento?</div>
+        <input type="range" min="0" max="10" value="0" id="p1" oninput="mostrarValor('v1', this.value)">
+        <div class="valor" id="v1">0/10</div>
+    </div>
+
+    <div class="card">
+        <div class="pergunta">2. Você sente dificuldade de respirar quando está estressado?</div>
+        <input type="range" min="0" max="10" value="0" id="p2" oninput="mostrarValor('v2', this.value)">
+        <div class="valor" id="v2">0/10</div>
+    </div>
+
+    <div class="card">
+        <div class="pergunta">3. Com que frequência você pensa em fumar quando está ansioso?</div>
+        <input type="range" min="0" max="10" value="0" id="p3" oninput="mostrarValor('v3', this.value)">
+        <div class="valor" id="v3">0/10</div>
+    </div>
+
+    <button class="btn-finalizar" onclick="calcularResultado()">Finalizar Teste</button>
+
+    <!-- RESULTADO -->
+    <div class="resultado-card" id="resultado">
+        <div class="resultado-titulo" id="tituloResultado"></div>
+        <p class="resultado-desc" id="descricaoResultado"></p>
+
+        <a class="premium-btn" href="loja.html">Acessar conteúdos anti-ansiedade (Premium)</a>
+    </div>
 
 </div>
 
 <script>
-function calcular() {
-  let total = 0;
-
-  for (let i = 1; i <= 5; i++) {
-    let opcao = document.querySelector(`input[name="p${i}"]:checked`);
-    if (!opcao) {
-      alert("Responda todas as perguntas antes de continuar.");
-      return;
-    }
-    total += parseInt(opcao.value);
-  }
-
-  let texto = "";
-  if (total <= 3) {
-    texto = "<strong>Nível de Ansiedade: Baixa</strong><br>Você está estável. Continue cuidando da sua mente!";
-  } else if (total <= 6) {
-    texto = "<strong>Nível de Ansiedade: Moderada</strong><br>Respire fundo e mantenha sua rotina de autocuidado.";
-  } else {
-    texto = "<strong>Nível de Ansiedade: Alta</strong><br>Recomenda-se exercícios de respiração e pausas. Procure apoio se necessário.";
-  }
-
-  const box = document.getElementById("resultado");
-  box.style.display = "block";
-  box.innerHTML = texto + "<br><br><button onclick='reiniciar()'>Refazer Teste</button>";
+function mostrarValor(campo, valor){
+    document.getElementById(campo).textContent = valor + "/10";
 }
 
-function reiniciar() {
-  document.querySelectorAll("input[type=radio]").forEach(r => r.checked = false);
-  document.getElementById("resultado").style.display = "none";
+function calcularResultado(){
+    let p1 = Number(document.getElementById("p1").value);
+    let p2 = Number(document.getElementById("p2").value);
+    let p3 = Number(document.getElementById("p3").value);
+    let total = p1 + p2 + p3;
+
+    let titulo = "";
+    let texto = "";
+
+    if(total <= 10){
+        titulo = "Ansiedade Baixa";
+        texto = "Seu nível de ansiedade está sob controle. Continue mantendo hábitos saudáveis e aproveite sua evolução.";
+    }
+    else if(total <= 20){
+        titulo = "Ansiedade Moderada";
+        texto = "Pequenos gatilhos podem estar aumentando sua ansiedade. Utilize técnicas de respiração e exercícios mentais.";
+    }
+    else {
+        titulo = "Ansiedade Alta";
+        texto = "Seu nível de ansiedade está elevado. Recomendamos fortemente usar nossas ferramentas anti-ansiedade e os conteúdos Premium.";
+    }
+
+    document.getElementById("tituloResultado").textContent = titulo;
+    document.getElementById("descricaoResultado").textContent = texto;
+
+    document.getElementById("resultado").style.display = "block";
+    window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'});
 }
 </script>
 
