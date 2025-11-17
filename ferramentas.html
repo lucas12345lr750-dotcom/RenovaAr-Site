@@ -1,164 +1,242 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Ferramentas - RenovaAr</title>
+<title>Ferramentas – RenovaAr</title>
 
 <style>
-  body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: url("https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1600") no-repeat center center fixed;
-    background-size: cover;
-    color: #fff;
-  }
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #f4f7fb;
+        color: #0a1f3c;
+    }
 
-  .overlay {
-    background: rgba(0, 0, 0, 0.55);
-    padding: 25px;
-    min-height: 100vh;
-  }
+    /* NAVBAR */
+    .navbar {
+        position: sticky;
+        top: 0;
+        width: 100%;
+        background: #0a1f3c;
+        padding: 12px;
+        text-align: center;
+        z-index: 999;
+    }
+    .navbar button {
+        padding: 8px 18px;
+        background: #7bf68f;
+        color: #04210b;
+        border: none;
+        border-radius: 999px;
+        margin: 0 5px;
+        font-weight: bold;
+        cursor: pointer;
+        font-size: 14px;
+    }
 
-  h1 {
-    text-align: center;
-    font-size: 34px;
-    color: #7BF68F;
-    margin-bottom: 10px;
-  }
+    .container {
+        max-width: 1100px;
+        margin: auto;
+        padding: 20px 16px 50px;
+    }
 
-  p.sub {
-    text-align: center;
-    font-size: 16px;
-    opacity: 0.8;
-    margin-bottom: 30px;
-  }
+    h1 {
+        text-align: center;
+        font-size: 28px;
+        margin-top: 10px;
+        font-weight: bold;
+    }
 
-  .tools-container {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-  }
+    .subtitulo {
+        text-align: center;
+        color: #455a7a;
+        margin-bottom: 20px;
+        font-size: 14px;
+    }
 
-  .tool-card {
-    background: rgba(255, 255, 255, 0.15);
-    padding: 18px;
-    border-radius: 14px;
-    backdrop-filter: blur(4px);
-    border: 1px solid rgba(255,255,255,0.1);
-  }
+    /* CARD GRANDE DE SESSÃO */
+    .section-card {
+        background: #ffffff;
+        border-radius: 18px;
+        padding: 20px;
+        margin-bottom: 28px;
+        box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+    }
 
-  .tool-card h2 {
-    font-size: 22px;
-    color: #7BF68F;
-    margin-bottom: 6px;
-  }
+    .section-title {
+        font-size: 20px;
+        margin-bottom: 8px;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
 
-  .tool-card p {
-    opacity: 0.9;
-    font-size: 15px;
-    margin-bottom: 12px;
-  }
+    /* GRID DE FERRAMENTAS */
+    .tools-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        margin-top: 12px;
+    }
 
-  /* Botões */
-  button {
-    width: 100%;
-    padding: 12px;
-    background: #7BF68F;
-    color: black;
-    border: none;
-    border-radius: 12px;
-    font-weight: bold;
-    cursor: pointer;
-  }
+    .tool-card {
+        background: #ffffff;
+        border-radius: 16px;
+        padding: 16px;
+        text-align: center;
+        box-shadow: 0 6px 14px rgba(0,0,0,0.06);
+        transition: transform .2s ease;
+    }
+    .tool-card:hover {
+        transform: scale(1.03);
+    }
 
-  button:hover {
-    background: #6be07f;
-  }
+    .tool-icon {
+        font-size: 40px;
+        margin-bottom: 10px;
+    }
 
-  /* MENU */
-  .menu {
-    margin-top: 40px;
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-  }
+    .tool-title {
+        font-size: 16px;
+        font-weight: bold;
+        color: #0a1f3c;
+        margin-bottom: 6px;
+    }
 
-  .menu button {
-    width: auto;
-    padding: 10px 20px;
-  }
+    .tool-desc {
+        font-size: 13px;
+        color: #455a7a;
+        margin-bottom: 10px;
+    }
+
+    .tool-btn {
+        padding: 10px;
+        width: 100%;
+        border-radius: 999px;
+        border: none;
+        background: #0a7f4f;
+        color: #fff;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    /* Botão Premium */
+    .premium {
+        background: #ffc107 !important;
+        color: #402d01 !important;
+    }
+
 </style>
 </head>
 
 <body>
 
-<div class="overlay">
-
-  <h1>Ferramentas</h1>
-  <p class="sub">Use recursos práticos para fortalecer sua jornada.</p>
-
-  <div class="tools-container">
-
-    <!-- Ferramenta 1 -->
-    <div class="tool-card">
-      <h2>⏳ Contador de Vícios</h2>
-      <p>Acompanhe quantos dias está sem fumar e veja seu progresso crescer.</p>
-      <button onclick="window.location.href='contador-vicios.html'">Abrir Contador</button>
-    </div>
-
-    <!-- Ferramenta 2 -->
-    <div class="tool-card">
-      <h2>❤️ Controle da Ansiedade</h2>
-      <p>Exercícios simples de respiração para reduzir o desejo de fumar.</p>
-      <button onclick="window.location.href='controle-ansiedade.html'">Acessar</button>
-    </div>
-
-    <!-- Ferramenta 3 -->
-    <div class="tool-card">
-      <h2>📘 Diário da Jornada</h2>
-      <p>Anote seu humor, desafios e vitórias diárias.</p>
-      <button onclick="window.location.href='diario.html'">Acessar</button>
-    </div>
-
-    <!-- Ferramenta 4 -->
-    <div class="tool-card">
-      <h2>📊 Economia Estimada</h2>
-      <p>Veja quanto dinheiro você já deixou de gastar desde que parou.</p>
-      <button onclick="window.location.href='economia.html'">Acessar</button>
-    </div>
-
-    <!-- Ferramenta 5 — NOVA -->
-    <div class="tool-card">
-      <h2>🧠 Teste de Ansiedade</h2>
-      <p>Responda perguntas rápidas e descubra seu nível de ansiedade no momento.</p>
-   <button onclick="window.location.href='teste-ansiedade.html'">Fazer Teste</button>
-    </div>
-
-    <!-- Ferramenta 6 — NOVA -->
-    <div class="tool-card">
-      <h2>🎯 Agenda de Metas</h2>
-      <p>Defina metas semanais e acompanhe sua evolução com clareza.</p>
-<button onclick="window.location.href='agenda-metas.html'">Abrir</button>
-    </div>
-
-    <!-- Ferramenta 7 — NOVA -->
-    <div class="tool-card">
-      <h2>🏅 Sistema de Medalhas</h2>
-      <p>Ganhe medalhas conforme avança: 1 dia, 7 dias, 30 dias, 100 dias e muito mais!</p>
-      <button onclick="window.location.href='medalhas.html'">Acessar</button>
-</div>
-    </div>
-
-  </div>
-
-  <!-- MENU -->
-  <div class="menu">
+<!-- NAVBAR -->
+<div class="navbar">
     <button onclick="window.location.href='index.html'">Home</button>
     <button onclick="window.location.href='ferramentas.html'">Ferramentas</button>
     <button onclick="window.location.href='loja.html'">Loja</button>
     <button onclick="window.location.href='perfil.html'">Perfil</button>
-  </div>
+</div>
+
+<div class="container">
+
+    <h1>Ferramentas</h1>
+    <p class="subtitulo">Recursos profissionais para ajudar você a superar a vontade de fumar.</p>
+
+    <!-- SEÇÃO - TESTES E AUTOAVALIAÇÃO -->
+    <div class="section-card">
+        <div class="section-title">🧪 Testes & Autoavaliação</div>
+
+        <div class="tools-grid">
+
+            <div class="tool-card">
+                <div class="tool-icon">😰</div>
+                <div class="tool-title">Teste de Ansiedade</div>
+                <div class="tool-desc">Avalie seu nível de tensão atual.</div>
+                <button class="tool-btn" onclick="window.location.href='teste-ansiedade.html'">Abrir</button>
+            </div>
+
+            <div class="tool-card">
+                <div class="tool-icon">🧠</div>
+                <div class="tool-title">Controle de Ansiedade</div>
+                <div class="tool-desc">Técnicas de respiração e foco.</div>
+                <button class="tool-btn" onclick="window.location.href='controle-ansiedade.html'">Abrir</button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- SEÇÃO - ROTINA & CONTROLE -->
+    <div class="section-card">
+        <div class="section-title">📅 Rotina & Controle</div>
+
+        <div class="tools-grid">
+
+            <div class="tool-card">
+                <div class="tool-icon">📝</div>
+                <div class="tool-title">Diário da Jornada</div>
+                <div class="tool-desc">Registre seus dias e emoções.</div>
+                <button class="tool-btn" onclick="window.location.href='diario.html'">Abrir</button>
+            </div>
+
+            <div class="tool-card">
+                <div class="tool-icon">🎯</div>
+                <div class="tool-title">Agenda de Metas</div>
+                <div class="tool-desc">Programe desafios e metas semanais.</div>
+                <button class="tool-btn" onclick="window.location.href='agenda-metas.html'">Abrir</button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- SEÇÃO - MOTIVAÇÃO -->
+    <div class="section-card">
+        <div class="section-title">🔥 Motivação & Progresso</div>
+
+        <div class="tools-grid">
+
+            <div class="tool-card">
+                <div class="tool-icon">🏆</div>
+                <div class="tool-title">Sistema de Medalhas</div>
+                <div class="tool-desc">Ganhe conquistas ao progredir.</div>
+                <button class="tool-btn" onclick="window.location.href='medalhas.html'">Abrir</button>
+            </div>
+
+            <div class="tool-card">
+                <div class="tool-icon">📊</div>
+                <div class="tool-title">Progresso Financeiro</div>
+                <div class="tool-desc">Veja quanto você está economizando.</div>
+                <button class="tool-btn" onclick="window.location.href='economia.html'">Abrir</button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- SEÇÃO PREMIUM -->
+    <div class="section-card">
+        <div class="section-title">🌟 Conteúdos Premium</div>
+
+        <div class="tools-grid">
+
+            <div class="tool-card">
+                <div class="tool-icon">🎧</div>
+                <div class="tool-title">Áudios Anti-Ansiedade</div>
+                <div class="tool-desc">Pacote especial para emergências.</div>
+                <button class="tool-btn premium" onclick="window.location.href='loja.html'">Acessar</button>
+            </div>
+
+            <div class="tool-card">
+                <div class="tool-icon">📘</div>
+                <div class="tool-title">E-books & Guias</div>
+                <div class="tool-desc">Materiais completos para estudo.</div>
+                <button class="tool-btn premium" onclick="window.location.href='loja.html'">Acessar</button>
+            </div>
+
+        </div>
+    </div>
 
 </div>
 
